@@ -12,4 +12,6 @@ swan:
     arg-max-length: 10
     dir: /tmp/swan/log
     override-suffix: ...
+    max-custom-files: 144
+    max-error-files: 6
 

@@ -1,4 +1,4 @@
-package com.swan.log.converter;
+package com.swan.log.core;
 
 import ch.qos.logback.classic.pattern.MessageConverter;
 import ch.qos.logback.classic.spi.ILoggingEvent;

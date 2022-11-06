@@ -24,4 +24,10 @@ public class SwanLogProperty {
     /** 日志存放目录 */
     private String dir;
 
+    /** custom.log 最多保留文件个数，按小时切割，每天24个文件*/
+    private Integer maxCustomFiles;
+
+    /** error.log 最多保留文件个数，按天切割，一天一个文件*/
+    private Integer maxErrorFiles;
+
 }

@@ -2,4 +2,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.swan.log.config.SwanLogAutoConfigure
 
 org.springframework.context.ApplicationListener=\
-  com.swan.log.converter.SwanLogInitializer
+  com.swan.log.core.SwanEnvironmentInitializer,\
+  com.swan.log.core.SwanLogInitializer

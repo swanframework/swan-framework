@@ -1,4 +1,4 @@
-package com.swan.log.converter;
+package com.swan.log.core;
 
 import com.swan.log.processor.args.IArgProcessor;
 import com.swan.log.processor.message.IMessageProcessor;
@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.core.OrderComparator;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

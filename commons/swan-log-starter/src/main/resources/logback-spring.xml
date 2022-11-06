@@ -3,19 +3,23 @@
 
 <!--	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
 
-	<!-- 定义变量 SWAN_LOG_DIR，取 application.yml 中的 swan.log.dir 变量-->
-	<springProperty name="SWAN_LOG_DIR" source="swan.log.dir" scope="context"/>
+	<!-- 定义变量 SWAN_LOG_DIR，取 application.yml 中的 swan.log.dir 变量, 默认为 /tmp-->
+	<springProperty name="FILE_LOG_DIR" source="swan.log.dir" defaultValue="/tmp" scope="context"/>
 
-	<!-- 定义文件日志目录，如果未通过环境变量 swan.log.dir 指定，则使用默认的目录: /opt/tmp, 需要确保 /opt/tmp 目录存在 -->
-	<property name="FILE_LOG_DIR" value="${SWAN_LOG_DIR:-/opt/tmp}"/>
+	<!-- custom.log, 默认保留 120 个，即5天的日志。 120 = 24 * 5. 此处变量需要和yaml中配置一致，yaml中用连字符，此处也必须使用连字符，不能使用驼峰-->
+	<springProperty name="MAX_CUSTOM_FILES" source="swan.log.max-custom-files" defaultValue="120" scope="context"/>
 
+	<!-- error.log, 默认保留 120 个，即5天的日志。 120 = 24 * 5-->
+	<springProperty name="MAX_ERROR_FILES" source="swan.log.max-error-files" defaultValue="5" scope="context"/>
+
+	<!-- 日志格式 -->
 	<property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L [%X{LOG_ID}] [%t] - %msg%n"/>
 
 	<!-- 定义日志转换规则
 		conversionWord：定义 pattern 中可用的关键字。此案例中定义为 msg, 则在 pattern 使用 %msg 才会生效
 		converterClass: 自定义转换类
 	-->
-	<conversionRule conversionWord="msg" converterClass="com.swan.log.converter.LogMessageConverter"/>
+	<conversionRule conversionWord="msg" converterClass="com.swan.log.core.LogMessageConverter"/>
 
 	<!-- 控制台输出，采用同步即可 -->
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -32,7 +36,7 @@
 		<file>${FILE_LOG_DIR}/custom.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${FILE_LOG_DIR}/custom.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
-			<MaxHistory>120</MaxHistory>
+			<MaxHistory>${MAX_CUSTOM_FILES}</MaxHistory>
 		</rollingPolicy>
 	</appender>
 
@@ -46,9 +50,11 @@
 
 	<!-- 错误日志输出，采用异步，按天进行分割-->
 	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- 过滤器: 只输出 error 级别的日志-->
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
 		</filter>
+		<!-- error 处理后，custom 依然可以处理-->
 		<Append>true</Append>
 		<encoder>
 			<pattern>${LOG_PATTERN}</pattern>
@@ -56,7 +62,7 @@
 		<file>${FILE_LOG_DIR}/error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>${FILE_LOG_DIR}/error.log.%d{yyyy-MM-dd}</fileNamePattern>
-			<MaxHistory>5</MaxHistory>
+			<MaxHistory>${MAX_ERROR_FILES}</MaxHistory>
 		</rollingPolicy>
 	</appender>
 
