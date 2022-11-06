@@ -1,0 +1,15 @@
+
+server:
+  port: 8081
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    root: info
+    com.swan.log.test: info
+swan:
+  log:
+    max-length: 30
+    arg-max-length: 10
+    dir: /tmp/swan/log
+    override-suffix: ...
+

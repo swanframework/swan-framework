@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+<!--	<include resource="org/springframework/boot/logging/logback/defaults.xml"/>-->
+
+	<!-- 定义变量 SWAN_LOG_DIR，取 application.yml 中的 swan.log.dir 变量-->
+	<springProperty name="SWAN_LOG_DIR" source="swan.log.dir" scope="context"/>
+
+	<!-- 定义文件日志目录，如果未通过环境变量 swan.log.dir 指定，则使用默认的目录: /opt/tmp, 需要确保 /opt/tmp 目录存在 -->
+	<property name="FILE_LOG_DIR" value="${SWAN_LOG_DIR:-/opt/tmp}"/>
+
+	<property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{1}:%L [%X{LOG_ID}] [%t] - %msg%n"/>
+
+	<!-- 定义日志转换规则
+		conversionWord：定义 pattern 中可用的关键字。此案例中定义为 msg, 则在 pattern 使用 %msg 才会生效
+		converterClass: 自定义转换类
+	-->
+	<conversionRule conversionWord="msg" converterClass="com.swan.log.converter.LogMessageConverter"/>
+
+	<!-- 控制台输出，采用同步即可 -->
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<!-- 通用日志输出：输出所有的日志，按小时进行分割  -->
+	<appender name="CUSTOM" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_DIR}/custom.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${FILE_LOG_DIR}/custom.log.%d{yyyy-MM-dd_HH}</fileNamePattern>
+			<MaxHistory>120</MaxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="ASYNC-CUSTOM" class= "ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>20480</queueSize>
+		<includeCallerData>true</includeCallerData>
+		<neverBlock>true</neverBlock>
+		<appender-ref ref ="CUSTOM"/>
+	</appender>
+
+	<!-- 错误日志输出，采用异步，按天进行分割-->
+	<appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<Append>true</Append>
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${FILE_LOG_DIR}/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${FILE_LOG_DIR}/error.log.%d{yyyy-MM-dd}</fileNamePattern>
+			<MaxHistory>5</MaxHistory>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="ASYNC-ERROR" class= "ch.qos.logback.classic.AsyncAppender">
+		<discardingThreshold>0</discardingThreshold>
+		<queueSize>20480</queueSize>
+		<includeCallerData>true</includeCallerData>
+		<neverBlock>true</neverBlock>
+		<appender-ref ref ="ERROR"/>
+	</appender>
+
+	<!-- 默认日志级别为 INFO，可通过配置参数: logging.level.root 参数修改-->
+	<root level="INFO">
+
+		<!-- 本地环境和测试环境，开启控制台输出 -->
+		<springProfile name="dev,test">
+			<appender-ref ref="CONSOLE"/>
+		</springProfile>
+
+		<!-- 测试、预防、生产环境，打开 custom 和 error 文件输出-->
+		<springProfile name="test,pre,prod">
+			<appender-ref ref="ASYNC-CUSTOM"/>
+			<appender-ref ref="ASYNC-ERROR"/>
+		</springProfile>
+	</root>
+
+</configuration>
