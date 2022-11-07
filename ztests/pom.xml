@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>test-swan-log-starter</module>
     </modules>
 
 </project>
