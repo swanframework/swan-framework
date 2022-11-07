@@ -44,6 +44,16 @@
             <artifactId>swan-log-starter</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.swan</groupId>
+            <artifactId>swan-env-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
     </dependencies>
 
 
