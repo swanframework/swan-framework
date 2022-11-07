@@ -10,6 +10,7 @@
 
     <modules>
         <module>swan-log-starter</module>
+        <module>swan-env-starter</module>
     </modules>
 
 </project>

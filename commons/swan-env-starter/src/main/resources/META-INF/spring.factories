@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.swan.env.config.SwanEnvAutoConfig
+
+org.springframework.context.ApplicationListener=\
+  com.swan.env.core.SwanEnvironmentInitializer
