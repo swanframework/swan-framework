@@ -14,4 +14,6 @@ swan:
     override-suffix: ...
     max-custom-files: 144
     max-error-files: 6
-
+spring:
+  application:
+    name: test-wan-log-starter

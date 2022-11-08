@@ -1,8 +1,7 @@
 package com.swan.log.test;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.alibaba.fastjson.JSONObject;
-import com.swan.env.core.SwanEnvironment;
+import com.swan.env.core.ISwanEnvironment;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.slf4j.ILoggerFactory;
@@ -17,7 +16,7 @@ import java.net.URL;
 @Slf4j
 @SpringBootTest
 @ActiveProfiles("test")
-class TestSwanLogStarterApplicationTests {
+class SwanLogStarterTest {
 
     @Test
     void contextLoads() {
@@ -39,14 +38,6 @@ class TestSwanLogStarterApplicationTests {
         log.info("info hello,{},{},{}", "0123456789", "abcdefdewewewe",  "0123456789");
         log.warn("warn hello,{}", "logback");
         log.error("error hello,{}", "logback");
-    }
-
-    @Autowired
-    private SwanEnvironment swanEnvironment;
-
-    @Test
-    public void env() {
-        System.out.println(JSONObject.toJSON(swanEnvironment));
     }
 
 }

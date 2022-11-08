@@ -1,6 +1,6 @@
 package com.swan.env.config;
 
-import com.swan.env.core.SwanEnvironmentInitializer;
+import com.swan.env.core.SwanEnvironmentFactoryBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Import;
  * @since 2022-11-07
  **/
 @Configuration(proxyBeanMethods = false)
+@Import(SwanEnvironmentFactoryBean.class)
 public class SwanEnvAutoConfig {
 
 
