@@ -7,7 +7,8 @@ import org.springframework.core.env.MapPropertySource;
 import java.util.HashMap;
 import java.util.Map;
 
-/** 动态添加环境配置
+/** 动态添加环境配置 <br/>
+ *  Environment 初始化完成后，spring 容器初始化前，动态指定 logging.config 配置文件位置
  * @author zongf
  * @since 2022-11-07
  **/
