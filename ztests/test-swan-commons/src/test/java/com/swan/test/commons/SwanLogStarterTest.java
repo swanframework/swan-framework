@@ -1,12 +1,10 @@
-package com.swan.log.test;
+package com.swan.test.commons;
 
 import ch.qos.logback.classic.LoggerContext;
-import com.swan.env.core.ISwanEnvironment;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.impl.StaticLoggerBinder;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.ClassUtils;

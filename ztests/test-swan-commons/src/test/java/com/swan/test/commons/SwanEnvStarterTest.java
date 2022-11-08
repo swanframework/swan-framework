@@ -1,4 +1,4 @@
-package com.swan.log.test;
+package com.swan.test.commons;
 
 import com.swan.env.core.ISwanEnvironment;
 import lombok.extern.slf4j.Slf4j;
