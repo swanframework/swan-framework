@@ -1,13 +1,15 @@
 package com.swan.test.commons;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-public class TestSwanLogStarterApplication {
+public class TestSwaggerStarterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestSwanLogStarterApplication.class, args);
+        SpringApplication.run(TestSwaggerStarterApplication.class, args);
     }
 
 }

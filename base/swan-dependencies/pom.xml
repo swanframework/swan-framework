@@ -18,17 +18,17 @@
         <maven.compiler.target>8</maven.compiler.target>
         <java.version>1.8</java.version>
 
-        <spring.boot.version>2.5.2</spring.boot.version>
+        <spring.boot.version>2.7.5</spring.boot.version>
 
         <lombok.version>1.18.20</lombok.version>
         <fastjson.version>1.2.75</fastjson.version>
         <hutool.version>5.7.3</hutool.version>
 
-        <swagger.api.version>1.5.20</swagger.api.version>
-        <swagger.version>2.9.2</swagger.version>
-        <swagger.annotations.version>1.6.2</swagger.annotations.version>
-        <swagger.ui.version>1.9.6</swagger.ui.version>
-        <swagger.model.version>1.5.21</swagger.model.version>
+        <!-- swagger start-->
+        <springdoc.openapi.ui.version>1.6.12</springdoc.openapi.ui.version>
+        <knife4j.springdoc.ui.version>3.0.3</knife4j.springdoc.ui.version>
+        <swagger.annotation.version>2.2.4</swagger.annotation.version>
+        <!-- swagger end-->
 
     </properties>
 
@@ -37,7 +37,7 @@
             <!-- 导入 spring boot 依赖 -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-parent</artifactId>
+                <artifactId>spring-boot-starter-parent</artifactId>
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
@@ -55,42 +55,26 @@
                 <version>${hutool.version}</version>
             </dependency>
 
-
-            <!-- 集成swagger  start-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>${swagger.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-models</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.swagger</groupId>
-                        <artifactId>swagger-annotations</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-annotations</artifactId>
-                <version>${swagger.annotations.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.swagger</groupId>
-                <artifactId>swagger-models</artifactId>
-                <version>${swagger.model.version}</version>
-            </dependency>
-
+            <!-- knife4j start-->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>swagger-bootstrap-ui</artifactId>
-                <version>${swagger.ui.version}</version>
+                <artifactId>knife4j-springdoc-ui</artifactId>
+                <version>${knife4j.springdoc.ui.version}</version>
             </dependency>
-            <!-- swagger  end-->
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.openapi.ui.version}</version>
+            </dependency>
+
+            <!-- bean 实体模块，可单独引入此包，指定属性的注释和约束。此版本建议和springdoc-openapi-ui 中依赖的版本保持一致 -->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.annotation.version}</version>
+            </dependency>
+            <!-- knife4j end-->
 
         </dependencies>
     </dependencyManagement>
