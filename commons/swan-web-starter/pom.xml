@@ -12,13 +12,21 @@
 
     <!-- 使用 parent 版本号 -->
     <groupId>com.swan</groupId>
-    <artifactId>swan-env-starter</artifactId>
+    <artifactId>swan-web-starter</artifactId>
 
     <dependencies>
+
+        <!-- spring web mvc-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.swan</groupId>
-            <artifactId>swan-log-starter</artifactId>
+            <artifactId>swan-core-starter</artifactId>
         </dependency>
+
     </dependencies>
 
 </project>

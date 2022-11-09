@@ -7,8 +7,10 @@
     <groupId>com.swan</groupId>
     <artifactId>starters</artifactId>
     <packaging>pom</packaging>
+    <version>2.0.0-SNAPSHOT</version>
 
     <modules>
+        <module>swan-swagger-starter</module>
     </modules>
 
 </project>

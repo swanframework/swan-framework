@@ -12,12 +12,22 @@
 
     <!-- 使用 parent 版本号 -->
     <groupId>com.swan</groupId>
-    <artifactId>swan-env-starter</artifactId>
+    <artifactId>swan-core-starter</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.swan</groupId>
-            <artifactId>swan-log-starter</artifactId>
+            <artifactId>swan-env-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
         </dependency>
     </dependencies>
 

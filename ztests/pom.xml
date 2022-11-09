@@ -7,9 +7,12 @@
     <groupId>com.swan</groupId>
     <artifactId>ztests</artifactId>
     <packaging>pom</packaging>
+    <version>2.0.0-SNAPSHOT</version>
+
 
     <modules>
-        <module>test-swan-log-starter</module>
+        <module>test-swan-commons</module>
+        <module>test-swagger-starter</module>
     </modules>
 
 </project>

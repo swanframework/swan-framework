@@ -4,46 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.swan</groupId>
+        <artifactId>swan-dependencies</artifactId>
+        <version>2.0.0</version>
+        <relativePath>../swan-dependencies</relativePath>
+    </parent>
+
     <groupId>com.swan</groupId>
     <artifactId>swan-parent</artifactId>
-    <version>2.0.0</version>
     <packaging>pom</packaging>
 
+    <description>
+        1. 统一管理 swan starter
+        2. 统一管理 plugin
+
+    </description>
+
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <java.version>1.8</java.version>
-
-        <spring.boot.version>2.5.2</spring.boot.version>
-
-        <lombok.version>1.18.20</lombok.version>
-        <fastjson.version>1.2.75</fastjson.version>
-        <hutool.version>5.7.3</hutool.version>
 
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- 导入 spring boot 依赖 -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-parent</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>${fastjson.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-core</artifactId>
-                <version>${hutool.version}</version>
-            </dependency>
 
             <dependency>
                 <groupId>com.swan</groupId>
@@ -57,6 +40,23 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-swagger-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-core-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-web-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

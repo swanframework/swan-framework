@@ -7,10 +7,13 @@
     <groupId>com.swan</groupId>
     <artifactId>commons</artifactId>
     <packaging>pom</packaging>
+    <version>2.0.0-SNAPSHOT</version>
 
     <modules>
         <module>swan-log-starter</module>
         <module>swan-env-starter</module>
+        <module>swan-core-starter</module>
+        <module>swan-web-starter</module>
     </modules>
 
 </project>

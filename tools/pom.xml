@@ -7,6 +7,8 @@
     <groupId>com.swan</groupId>
     <artifactId>tools</artifactId>
     <packaging>pom</packaging>
+    <version>2.0.0-SNAPSHOT</version>
+
 
     <modules>
 

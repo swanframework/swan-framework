@@ -15,6 +15,7 @@
     <artifactId>swan-log-starter</artifactId>
 
     <dependencies>
+        <!-- springboot 框架核心 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -24,9 +25,9 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
         </dependency>
 
+        <!-- lombok 简化配置化setter/getter 方法-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

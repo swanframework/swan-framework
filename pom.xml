@@ -23,7 +23,7 @@
         <module>commons</module>
         <module>starters</module>
         <module>tools</module>
-        <module>ztests</module>
+<!--        <module>ztests</module>-->
     </modules>
 
 </project>
