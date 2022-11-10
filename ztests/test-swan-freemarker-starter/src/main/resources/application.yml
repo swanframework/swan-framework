@@ -1,0 +1,3 @@
+spring:
+  freemarker:
+    template-loader-path: /templates    # 指定模板目录

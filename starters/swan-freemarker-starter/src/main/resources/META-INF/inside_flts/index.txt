@@ -1,0 +1,19 @@
+
+freemarkerTemplateInside 的根目录为 inside_ftls, 因此，所有使用此模板类的应用，都需要将模板存放至 inside_ftls 目录中.
+
+src/main/resources
+    inside_ftls:
+        mybatis:
+            classConfig.ftl
+            mapper.ftl
+
+使用方式
+
+    @Autowired
+    @Qualifier("freemarkerTemplateInside")
+    private FreemarkerTemplate freemarkerTemplateInside;
+
+
+    freemarkerTemplateInside.getContent("mybatis/classConfig.ftl", root);
+    freemarkerTemplateInside.getContent("mybatis/mapper.ftl", root);
+
