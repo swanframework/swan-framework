@@ -11,6 +11,7 @@
 
     <modules>
         <module>swan-knife4j-starter</module>
+        <module>swan-freemarker-starter</module>
     </modules>
 
 </project>
