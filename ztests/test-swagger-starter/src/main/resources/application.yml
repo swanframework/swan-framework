@@ -43,7 +43,6 @@ knife4j:
       description: 请求token
       allowEmpty: false
   global:
-    name: all
     display-name: 全部
     common-parameters: token
     filter:

@@ -1,5 +1,6 @@
 package com.swan.swagger.config;
 
+import com.swan.core.exception.SwanBaseException;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,11 +14,16 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
+/** 由于 knife4j 配置的特殊性，必须通过@Bean 直接配置一个全部分组的api，只能在 AutoConfig 中将逻辑全部写完
+ * @author zongf
+ * @since 2022-11-10
+ */
 @EnableConfigurationProperties({Knife4jProperties.class})
 @ConditionalOnProperty(name = "knife4j.enable", matchIfMissing = false)
 public class Knife4jAutoConfig implements BeanFactoryAware{
@@ -29,6 +35,7 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
 
     // 参数配置
     private List<Parameter> parameterConfigs = new ArrayList<>();
+
     // 标识参数是否已解析
     private AtomicBoolean parameterHasParsed = new AtomicBoolean(false);
 
@@ -40,27 +47,23 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
     // 配置主页信息
     @Bean
     public OpenAPI homeInfo() {
-
-        Contact contact = new Contact();
-        contact.setName(knife4jProperties.getAuthor());
-
         Info info = new Info()
                 .title(knife4jProperties.getTitle())
                 .description(knife4jProperties.getDescription())
-                .contact(contact)
+                .contact(new Contact().name(knife4jProperties.getAuthor()))
                 .version(knife4jProperties.getVersion())
                 .termsOfService(knife4jProperties.getServiceUrl());
 
         return new OpenAPI().info(info);
     }
 
-    /** 定义全部 api*/
+    // 必须定义一个全部的分组，否则 knife 展示不出来分组接口
     @Bean
     public GroupedOpenApi globalGroup() {
-        return buildGroupedOpenApi(knife4jProperties.getGlobal());
+        return buildGroupedOpenApi(knife4jProperties.getGlobal(), true);
     }
 
-    /** 配置分组Api */
+    // 可选:配置分组Api
     @Bean
     public void groupedOpenApis(){
 
@@ -70,7 +73,7 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
 
         // 解析分组配置
         List<GroupedOpenApi> list = knife4jProperties.getGroups().stream()
-                .map(group -> buildGroupedOpenApi(group))
+                .map(group -> buildGroupedOpenApi(group, false))
                 .collect(Collectors.toList());
 
         // 注册 bean
@@ -89,8 +92,7 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
                         .required(parameterConfig.isRequired())
                         .name(parameterConfig.getName())
                         .description(parameterConfig.getDescription())
-                        .allowEmptyValue(parameterConfig.isAllowEmpty())
-                        ;
+                        .allowEmptyValue(parameterConfig.isAllowEmpty());
                 this.parameterConfigs.add(parameter);
             }
         }
@@ -99,12 +101,13 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
         parameterHasParsed.set(true);
     }
 
-
+    // 筛选参数
     private List<Parameter> getParameters(List<String> commonParameters) {
-        // 如果参数未解析，则先解析参数
+        // 如果参数未解析，则先触发解析参数
         if (!parameterHasParsed.get()) {
             parseParameterConfigs();
         }
+        // 如果公共参数为空，则返回空list
         if (commonParameters == null) {
             return Collections.emptyList();
         }
@@ -115,7 +118,16 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
     }
 
     /** 构造分组配置 */
-    public GroupedOpenApi buildGroupedOpenApi(Knife4jProperties.Group group) {
+    private GroupedOpenApi buildGroupedOpenApi(Knife4jProperties.Group group, boolean isGlobalGroup) {
+
+        if (isGlobalGroup) {
+            // 确保全局分组位于第一位
+            group.setName("");
+        }else {
+            if (!StringUtils.hasText(group.getName())) {
+                throw new SwanBaseException("group.name 属性不能为空");
+            }
+        }
 
         GroupedOpenApi.Builder builder = GroupedOpenApi.builder();
         builder.group(group.getName());

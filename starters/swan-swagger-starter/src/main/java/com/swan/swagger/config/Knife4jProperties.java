@@ -14,34 +14,34 @@ import java.util.List;
 @Setter @Getter
 public class Knife4jProperties {
 
-    /** 是否启用 knife4j 文档*/
+    /** 是否启用 knife4j 生成文档*/
     private boolean enable;
 
-    /** 接口文档标题  */
+    /** 主页-标题  */
     private String title;
 
-    /** 接口文档描述 */
+    /** 主页显示-描述 */
     private String description;
 
-    /** 接口文档版本 */
+    /** 主页显示-版本 */
     private String version;
 
-    /** 接口域名 */
+    /** 主页显示-接口域名 */
     private String host;
 
-    /** 服务地址 */
+    /** 主页显示-服务地址 */
     private String serviceUrl;
 
-    /** 作者 */
+    /** 主页显示-作者 */
     private String author;
 
-    /** 全部分组配置 **/
+    /** 全部分组配置，必须要配置 **/
     private Group global;
 
-    /** 分组配置 */
+    /** 接口分组配置 */
     private List<Group> groups;
 
-    /** 定义参数 */
+    /** 声明参数配置 */
     private List<ParameterConfig> parameterConfigs;
 
     @Setter @Getter
@@ -50,7 +50,7 @@ public class Knife4jProperties {
         /** 参数名 */
         private String name;
 
-        /** 参数位置 */
+        /** 参数位置，可选其一: header|query|cookie|path  */
         private ParameterLocation location;
 
         /** 参数描述 */
@@ -84,13 +84,13 @@ public class Knife4jProperties {
 
     @Setter @Getter
     static class Group{
-        /** 分组名称，ui 按此名字进行分组排序*/
+        /** 分组名称，ui分组下拉框中按此名字进行自然排序，但ui中并不展示*/
         private String name;
 
         /** ui 显示名称 */
         private String displayName;
 
-        /** 通用的参数名称，需要先定义，多个参数用英文逗号分割*/
+        /** 通用的参数名称，需要先声名，多个参数用英文逗号分割*/
         private List<String> commonParameters;
 
         /** 过滤规则 **/
