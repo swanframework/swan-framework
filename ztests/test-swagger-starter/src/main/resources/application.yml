@@ -27,8 +27,21 @@ knife4j:
   host: 127.0.0.1
   service-url: http://localhost:8081
   author: zongf
-  global-parameters: token, requestId
-  parameters:
+  global:
+    name: all
+    display-name: 全部
+    common-parameters: token
+    filter:
+      paths-to-match: /**
+  groups:
+    - name: order                    # knife 分组列表已 group name 进行排序
+      displayName: 订单接口组              # 分组名称
+      pathsToMatch: /**             # 以路径分组
+    - name: user
+      displayName: 用户接口组
+      pathsToMatch: /user/**
+      commonParameters: token,requestId
+  parameter-configs:
     - name: token
       type: String
       required: true
@@ -43,11 +56,5 @@ knife4j:
       defaultValue: ''
       description: 请求token
       allowEmpty: false
-  groups:
-    - name: order                    # knife 分组列表已 group name 进行排序
-      displayName: 订单接口组              # 分组名称
-      pathsToMatch: /**             # 以路径分组
-    - name: user
-      displayName: 用户接口组
-      pathsToMatch: /user/**
-      commonParameters: token,requestId
+
+

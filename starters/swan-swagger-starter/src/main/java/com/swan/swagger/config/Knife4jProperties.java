@@ -1,6 +1,5 @@
 package com.swan.swagger.config;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -36,17 +35,17 @@ public class Knife4jProperties {
     /** 作者 */
     private String author;
 
-    /** 全局参数 */
-    private List<String> globalParameters;
+    /** 全部分组配置 **/
+    private Group global;
 
-    /** 分组 */
+    /** 分组配置 */
     private List<Group> groups;
 
     /** 定义参数 */
-    private List<Parameter> parameters;
+    private List<ParameterConfig> parameterConfigs;
 
     @Setter @Getter
-    public static class Parameter{
+    public static class ParameterConfig {
 
         /** 参数名 */
         private String name;
@@ -89,6 +88,18 @@ public class Knife4jProperties {
         /** ui 显示名称 */
         private String displayName;
 
+        /** 通用的参数名称，需要先定义，多个参数用英文逗号分割*/
+        private List<String> commonParameters;
+
+        /** 过滤规则 **/
+        private Filter filter;
+
+    }
+
+    /** 过滤规则 **/
+    @Setter @Getter
+    static class Filter {
+
         /** 扫描包, 多个包以英文逗号分割*/
         private String[] packagesToScan;
 
@@ -101,8 +112,8 @@ public class Knife4jProperties {
         /** 排除要扫描的目录, 多个路径以英文逗号分割*/
         private String[] pathsToExclude;
 
-        /** 通用的参数名称，需要先定义，多个参数用英文逗号分割*/
-        private List<String> commonParameters;
+        /** 请求要包含的 header */
+        private String[] headersToMatch;
 
     }
 }
