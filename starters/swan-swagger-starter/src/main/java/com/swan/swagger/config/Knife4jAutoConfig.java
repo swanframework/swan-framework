@@ -37,12 +37,30 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
         this.beanFactory = (ConfigurableBeanFactory) beanFactory;
     }
 
-    /** 定义全部api*/
+    // 配置主页信息
+    @Bean
+    public OpenAPI homeInfo() {
+
+        Contact contact = new Contact();
+        contact.setName(knife4jProperties.getAuthor());
+
+        Info info = new Info()
+                .title(knife4jProperties.getTitle())
+                .description(knife4jProperties.getDescription())
+                .contact(contact)
+                .version(knife4jProperties.getVersion())
+                .termsOfService(knife4jProperties.getServiceUrl());
+
+        return new OpenAPI().info(info);
+    }
+
+    /** 定义全部 api*/
     @Bean
     public GroupedOpenApi globalGroup() {
         return buildGroupedOpenApi(knife4jProperties.getGlobal());
     }
 
+    /** 配置分组Api */
     @Bean
     public void groupedOpenApis(){
 
@@ -134,24 +152,5 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
 
         return builder.build();
     }
-
-
-    // 配置主页信息
-    @Bean
-    public OpenAPI homeInfo() {
-
-        Contact contact = new Contact();
-        contact.setName(knife4jProperties.getAuthor());
-
-        Info info = new Info()
-                .title(knife4jProperties.getTitle())
-                .description(knife4jProperties.getDescription())
-                .contact(contact)
-                .version(knife4jProperties.getVersion())
-                .termsOfService(knife4jProperties.getServiceUrl());
-
-        return new OpenAPI().info(info);
-    }
-
 
 }

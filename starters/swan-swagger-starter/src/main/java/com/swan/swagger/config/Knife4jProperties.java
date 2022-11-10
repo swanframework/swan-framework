@@ -49,14 +49,16 @@ public class Knife4jProperties {
 
         /** 参数名 */
         private String name;
+
         /** 参数位置 */
         private ParameterLocation location;
+
         /** 参数描述 */
         private String description;
+
         /** 是否必填 */
         private boolean required;
-        /** 默认值 */
-        private String defaultValue;
+
         /** 是否允许为空*/
         private boolean allowEmpty;
 
