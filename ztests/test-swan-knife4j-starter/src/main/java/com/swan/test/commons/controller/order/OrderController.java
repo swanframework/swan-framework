@@ -20,7 +20,7 @@ public class OrderController {
 
     @Operation(description = "订单详情")
     @GetMapping("/detail")
-    public String detail(@RequestParam UserVO userVO) {
+    public String detail(String name) {
 
         return "hello";
     }

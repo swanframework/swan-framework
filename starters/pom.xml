@@ -10,7 +10,7 @@
     <version>2.0.0-SNAPSHOT</version>
 
     <modules>
-        <module>swan-swagger-starter</module>
+        <module>swan-knife4j-starter</module>
     </modules>
 
 </project>

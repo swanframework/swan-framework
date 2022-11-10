@@ -1,4 +1,4 @@
-package com.swan.swagger.config;
+package com.swan.knife4j.config;
 
 import lombok.Getter;
 import lombok.Setter;

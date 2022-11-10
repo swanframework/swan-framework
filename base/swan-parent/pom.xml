@@ -42,7 +42,7 @@
 
             <dependency>
                 <groupId>com.swan</groupId>
-                <artifactId>swan-swagger-starter</artifactId>
+                <artifactId>swan-knife4j-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

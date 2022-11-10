@@ -1,4 +1,4 @@
-package com.swan.swagger.config;
+package com.swan.knife4j.config;
 
 import com.swan.core.exception.SwanBaseException;
 import io.swagger.v3.oas.models.OpenAPI;

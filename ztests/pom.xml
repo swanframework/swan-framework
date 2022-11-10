@@ -12,7 +12,7 @@
 
     <modules>
         <module>test-swan-commons</module>
-        <module>test-swagger-starter</module>
+        <module>test-swan-knife4j-starter</module>
     </modules>
 
 </project>

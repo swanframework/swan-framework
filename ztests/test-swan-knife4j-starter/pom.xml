@@ -10,12 +10,12 @@
     </parent>
 
     <groupId>com.swan</groupId>
-    <artifactId>test-swagger-starter</artifactId>
+    <artifactId>test-swan-knife4j-starter</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>com.swan</groupId>
-            <artifactId>swan-swagger-starter</artifactId>
+            <artifactId>swan-knife4j-starter</artifactId>
         </dependency>
 
     </dependencies>
