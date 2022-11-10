@@ -1,6 +1,6 @@
-package com.swan.test.commons.controller.user;
+package com.swan.test.knife4j.controller.user;
 
-import com.swan.test.commons.model.UserVO;
+import com.swan.test.knife4j.model.UserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;

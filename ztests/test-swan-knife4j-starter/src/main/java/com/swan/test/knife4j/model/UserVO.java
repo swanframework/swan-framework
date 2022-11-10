@@ -1,4 +1,4 @@
-package com.swan.test.commons.model;
+package com.swan.test.knife4j.model;
 
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Schema;
