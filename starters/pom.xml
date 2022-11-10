@@ -12,6 +12,7 @@
     <modules>
         <module>swan-knife4j-starter</module>
         <module>swan-freemarker-starter</module>
+        <module>swan-mail-starter</module>
     </modules>
 
 </project>
