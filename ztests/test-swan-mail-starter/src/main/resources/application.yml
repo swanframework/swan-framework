@@ -1,0 +1,13 @@
+spring:
+  freemarker:
+    template-loader-path: /templates
+  mail:
+    host: smtp.126.com
+    protocol: smtp
+    password: UZSOIUPMOIQVMNRS
+    username: zongf0504@126.com
+    port: 25
+    sender:
+      name: 向往科技
+      test: true
+      html-template: myMail.ftl     # 自定义邮件模板

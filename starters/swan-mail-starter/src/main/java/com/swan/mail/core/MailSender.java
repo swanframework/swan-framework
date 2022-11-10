@@ -39,6 +39,8 @@ public class MailSender implements IMailSender {
     @Autowired
     private MailProperties mailProperties;
 
+    private static final String INSIDE_MAIL_FTL = "mail/mail.ftl";
+
     @Override
     public boolean sendTextMail(String title, List<String> toList, List<String> ccList, String content) {
         return sendMail(title, toList, ccList, content, 0,false);
@@ -64,7 +66,7 @@ public class MailSender implements IMailSender {
             htmlContent = this.freemarkerTemplate.getContent(swanMailProperties.getHtmlTemplate(), root);
         }else {
             // 使用内置的 html 模板
-            htmlContent = this.freemarkerTemplateInside.getContent("inside_templates/mail/mail.ftl", root);
+            htmlContent = this.freemarkerTemplateInside.getContent(INSIDE_MAIL_FTL, root);
         }
 
         return sendMail(title, toList, ccList, htmlContent, attachmentList.size(), true);
@@ -76,7 +78,7 @@ public class MailSender implements IMailSender {
             MimeMessage message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper=new MimeMessageHelper(message,true);
             helper.setSentDate(new Date());
-            helper.setFrom(mailProperties.getUsername(), swanMailProperties.getSenderName());
+            helper.setFrom(mailProperties.getUsername(), swanMailProperties.getName());
             helper.setSubject(title);
             helper.setTo((String[]) toList.toArray());
 
@@ -89,11 +91,11 @@ public class MailSender implements IMailSender {
             if (swanMailProperties.isTest()) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("标题:").append(title)
-                    .append("发件人:").append(toList)
-                    .append("抄送人:").append(ccList)
-                    .append("附件数:").append(attachmentSize)
-                    .append("邮件内容:").append(content);
-                log.info("[模拟邮件发送]\n%s", sb.toString());
+                    .append(", 发件人:").append(toList)
+                    .append(", 抄送人:").append(ccList)
+                    .append(", 附件数:").append(attachmentSize)
+                    .append(", 邮件内容:\n").append(content);
+                log.info("[模拟邮件发送]\n{}", sb.toString());
             }else {
                 // 发送邮件
                 javaMailSender.send(message);

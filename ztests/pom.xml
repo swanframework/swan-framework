@@ -14,6 +14,7 @@
         <module>test-swan-commons</module>
         <module>test-swan-knife4j-starter</module>
         <module>test-swan-freemarker-starter</module>
+        <module>test-swan-mail-starter</module>
     </modules>
 
 </project>
