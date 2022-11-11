@@ -30,6 +30,10 @@
         <swagger.annotation.version>2.2.4</swagger.annotation.version>
         <!-- swagger end-->
 
+        <mybatis.spring.version>2.1.3</mybatis.spring.version>
+        <mybatis.pagehelper.verion>5.2.1</mybatis.pagehelper.verion>
+        <mysql.connector.version>8.0.25</mysql.connector.version>
+
     </properties>
 
     <dependencyManagement>
@@ -75,6 +79,24 @@
                 <version>${swagger.annotation.version}</version>
             </dependency>
             <!-- knife4j end-->
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${mybatis.pagehelper.verion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.connector.version}</version>
+            </dependency>
 
         </dependencies>
     </dependencyManagement>

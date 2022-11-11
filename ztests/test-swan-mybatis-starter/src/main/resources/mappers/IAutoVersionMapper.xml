@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间使用对应的Mapper类全限定名称 -->
+<mapper namespace="com.swan.test.mybatis.mapper.IAutoVersionMapper">
+
+    <sql id="condition">
+        <if test="condition.name != null">
+            and name like concat(#{condition.name}, "%")
+        </if>
+    </sql>
+
+    <delete id="truncate">
+        truncate  t_auto_version
+    </delete>
+
+
+</mapper>

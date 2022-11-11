@@ -69,6 +69,12 @@
                 <artifactId>swan-mail-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-mybatis-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

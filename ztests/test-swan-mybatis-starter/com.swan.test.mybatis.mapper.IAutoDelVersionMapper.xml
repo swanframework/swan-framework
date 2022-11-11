@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.swan.test.mybatis.mapper.IAutoDelVersionMapper">
+
+    <sql id="tableName">
+        t_auto_del_version
+    </sql>
+
+    <sql id="columns">
+        id
+             ,name
+             ,age
+        ,del
+        ,version
+    </sql>
+
+    <sql id="WhereCondition">
+            del = '0'
+    </sql>
+
+    <!-- 新增方法 -->
+
+<insert id="insert"  useGeneratedKeys="true" keyProperty="id">
+    insert <include refid="tableName"/>(<include refid="columns"/>)
+    values (
+        #{id}
+            ,#{name}
+            ,#{age}
+        ,'0'
+        ,'10'
+    );
+</insert>
+
+
+
+
+<insert id="insertNotNull"  useGeneratedKeys="true" keyProperty="id">
+    insert <include refid="tableName"/>(
+        id
+            <if test="name != null ">,name</if>
+            <if test="age != null ">,age</if>
+            ,del
+            ,version
+    )
+    values(
+        #{id}
+            <if test="name != null ">,#{name}</if>
+            <if test="age != null ">,#{age}</if>
+        ,'0'
+        ,'10'
+    )
+</insert>
+<insert id="insertList"  useGeneratedKeys="true" keyProperty="id">
+    insert <include refid="tableName"/>(<include refid="columns"/>)
+    values
+    <foreach collection="list" separator="," item="entity">
+        (
+        #{entity.id}
+            ,#{entity.name}
+            ,#{entity.age}
+        ,'0'
+        ,'10'
+        )
+    </foreach>
+</insert>
+    <!-- 物理删除方法 -->
+
+<delete id="delete">
+    delete from <include refid="tableName"/>
+    where id = #{id}
+        and version = #{version}
+</delete>
+<delete id="deleteById">
+    delete from <include refid="tableName"/>
+    where id = #{id}
+</delete>
+<delete id="deleteInIds">
+    delete from <include refid="tableName"/>
+    where id in
+    <foreach collection="list" open="(" separator="," close=")" item="id">
+        #{id}
+    </foreach>
+</delete>
+<delete id="deleteList">
+    delete from <include refid="tableName"/>
+    <where>
+                    and
+            <foreach collection="list" open="(" separator="or" close=")" item="entity">
+                (
+                    id = #{entity.id}
+                    and version = #{entity.version}
+                )
+            </foreach>
+    </where>
+
+</delete>
+<delete id="deleteOnCondition">
+    delete from <include refid="tableName"/>
+    <where>
+        <if test="condition != null">
+            <include refid="com.swan.test.mybatis.mapper.IAutoDelVersionMapper.condition"/>
+        </if>
+    </where>
+</delete>
+    <!-- 逻辑删除方法 -->
+
+<delete id="remove">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+            ,version = version + 1
+    where
+        id = #{id}
+            and del = '0'
+            and version = #{version}
+</delete>
+<delete id="removeById">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+            ,version = version + 1
+    where
+        id = #{id}
+            and del = '0'
+</delete>
+<delete id="removeInIds">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+            ,version = version + 1
+    where id in
+        <foreach collection="list" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+            and del = '0'
+</delete>
+<delete id="removeList">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+            ,version = version + 1
+    <where>
+            and
+            <foreach collection="list" open="(" separator="or" close=")" item="entity">
+                (
+                    id = #{entity.id}
+                    and version = #{entity.version}
+                )
+            </foreach>
+            and del = '0'
+    </where>
+
+</delete>
+<delete id="removeOnCondition">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+            ,version = version + 1
+    <where>
+        <if test="condition != null">
+            <include refid="com.swan.test.mybatis.mapper.IAutoDelVersionMapper.condition"/>
+        </if>
+    </where>
+</delete>
+    <!-- 更新方法 -->
+
+<update id="update">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,name = #{name}
+            ,age = #{age}
+            ,version = version + 1
+    where
+        id = #{id}
+            and version = #{version}
+</update>
+<update id="updateById">
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,name = #{name}
+            ,age = #{age}
+            ,version = version + 1
+    where
+        id = #{id}
+</update>
+<update id="updateNotNullById">
+    update <include refid="tableName"/>
+    set
+        id = id
+            <if test="name != null ">
+                ,name = #{name}
+            </if>
+            <if test="age != null ">
+                ,age = #{age}
+            </if>
+            ,version = version + 1
+    where
+        id = #{id}
+</update>
+<update id="updateNotNull">
+    update <include refid="tableName"/>
+    set
+        id = id
+            <if test="name != null ">
+                ,name = #{name}
+            </if>
+            <if test="age != null ">
+                ,age = #{age}
+            </if>
+            ,version = version + 1
+    where
+        id = #{id}
+            and version = #{version}
+</update>
+    <!-- 查询方法 -->
+
+<select id="selectAll" resultType="com.swan.test.mybatis.po.AutoDelVersionEntity">
+    select <include refid="columns"/>
+    from <include refid="tableName"/>
+    <where>
+           del = '0'
+    </where>
+    order by
+        <if test="orderRules.length > 0">
+            <foreach collection="orderRules" separator="," item="rule">
+                ${rule.column} ${rule.type}
+            </foreach>
+        </if>
+        <if test="orderRules.length == 0">
+            id asc
+        </if>
+</select>
+<select id="selectById" resultType="com.swan.test.mybatis.po.AutoDelVersionEntity">
+    select <include refid="columns"/>
+    from <include refid="tableName"/>
+    where id = #{id}
+        and del = '0'
+</select>
+<select id="selectListInIds" resultType="com.swan.test.mybatis.po.AutoDelVersionEntity">
+    select <include refid="columns"/>
+    from <include refid="tableName"/>
+    where id in
+        <foreach collection="idList" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+            and del = '0'
+    order by
+    <if test="orderRules.length > 0">
+        <foreach collection="orderRules" separator="," item="rule">
+            ${rule.column} ${rule.type}
+        </foreach>
+    </if>
+    <if test="orderRules.length == 0">
+        id asc
+    </if>
+</select>
+<select id="selectListOnCondition" resultType="com.swan.test.mybatis.po.AutoDelVersionEntity">
+    select <include refid="columns"/>
+    from <include refid="tableName"/>
+    <where>
+        <if test="condition != null">
+            <include refid="com.swan.test.mybatis.mapper.IAutoDelVersionMapper.condition"/>
+        </if>
+            and del = '0'
+    </where>
+    order by
+    <if test="orderRules.length > 0">
+        <foreach collection="orderRules" separator="," item="rule">
+            ${rule.column} ${rule.type}
+        </foreach>
+    </if>
+    <if test="orderRules.length == 0">
+        id asc
+    </if>
+</select>
+    <!-- 统计方法 -->
+
+<select id="count" resultType="int">
+    select count(id)
+    from <include refid="tableName"/>
+    <where>
+            del = '0'
+    </where>
+</select>
+<select id="countOnCondition" resultType="int">
+    select count(id)
+    from <include refid="tableName"/>
+    <where>
+        <if test="condition != null">
+            <include refid="com.swan.test.mybatis.mapper.IAutoDelVersionMapper.condition"/>
+        </if>
+            and del = '0'
+    </where>
+</select>
+</mapper>
+

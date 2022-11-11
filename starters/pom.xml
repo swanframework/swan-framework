@@ -13,6 +13,7 @@
         <module>swan-knife4j-starter</module>
         <module>swan-freemarker-starter</module>
         <module>swan-mail-starter</module>
+        <module>swan-mybatis-starter</module>
     </modules>
 
 </project>
