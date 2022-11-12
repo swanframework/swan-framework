@@ -1,5 +1,5 @@
 ```java
-public class BaseMapper<T,ID,C,U>{
+public class BaseMapper<ID,T>{
 
     boolean insert(T t);
     boolean insertNotNull(T t);
@@ -23,10 +23,11 @@ public class BaseMapper<T,ID,C,U>{
     T selectById(ID id);
     List<T> selectListInIds(Collection<ID> ids);
     List<T> selectListOn(C c);
+    List<T> selectSortListOn(C c, R... r);
     
     T selectFieldsById(List list, ID id);
     List<T> selectFieldsListInIds(List list, Collection<ID> ids);
-    List<T> selectListOn(List list,C c);
+    List<T> selectFieldsSortListOn(List list,C c, R... r);
 
     int count();
     int count(C c);

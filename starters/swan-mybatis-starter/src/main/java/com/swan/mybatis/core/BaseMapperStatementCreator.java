@@ -1,5 +1,6 @@
 package com.swan.mybatis.core;
 
+import com.swan.freemarker.core.IFreemarkerTemplate;
 import com.swan.mybatis.util.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,6 +15,7 @@ import com.swan.mybatis.mapper.MapperMethodsMetaInfo;
 import com.swan.mybatis.mapper.methods.BaseMethod;
 import com.swan.mybatis.util.TemplateUtil;
 import com.swan.mybatis.util.TxtFileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.util.StringUtils;
 
@@ -36,14 +38,18 @@ public class BaseMapperStatementCreator {
     private DefaultListableBeanFactory applicationContext;
 
     // 模板路径
-    private static final String BASE_MAPPER_FTL = "ftl/BaseMapper.ftl";
+    private static final String BASE_MAPPER_FTL = "mybatis/BaseMapper.ftl";
 
     private SbootMybatisProperties sbootMybatisProperties;
+
+    private IFreemarkerTemplate freemarkerTemplate;
 
     public BaseMapperStatementCreator(DefaultListableBeanFactory beanFactory) {
         this.applicationContext = beanFactory;
         this.configuration = this.applicationContext.getBean(SqlSessionFactory.class).getConfiguration();
         this.sbootMybatisProperties = this.applicationContext.getBean(SbootMybatisProperties.class);
+
+        this.freemarkerTemplate = this.applicationContext.getBean("freemarkerTemplateInside", IFreemarkerTemplate.class);
     }
 
     public Set<Class> process() {
@@ -149,7 +155,7 @@ public class BaseMapperStatementCreator {
         dateMap.put("entityMeta", EntityMetaInfoFactory.createEntityMetaInfo(entityType, conditionName));
         dateMap.put("methodsInfo", new MapperMethodsMetaInfo(mapperInterface));
 
-        String mapperXml = TemplateUtil.getContent(BASE_MAPPER_FTL, dateMap);
+        String mapperXml = this.freemarkerTemplate.getContent(BASE_MAPPER_FTL, dateMap);
 
         if (this.sbootMybatisProperties != null) {
             SbootMybatisProperties.LogConfig logConfig = this.sbootMybatisProperties.getLog();
