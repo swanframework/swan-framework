@@ -1,4 +1,4 @@
-<foreach collection="condition.whereList" item="criterion" separator="or" >
+<foreach collection="condition.whereList" item="criterion" separator="and" >
     <trim prefix="(" suffix=")" prefixOverrides="and" >
             <choose >
                 <when test="criterion.noParamOp" >
