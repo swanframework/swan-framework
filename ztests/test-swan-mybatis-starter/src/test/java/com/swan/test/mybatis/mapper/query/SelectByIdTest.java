@@ -50,7 +50,7 @@ public class SelectByIdTest extends BaseAutoMapperTest {
         Assertions.assertEquals(demo.getAge(), entity.getAge());
 
         // 删除
-        boolean delete = this.autoDelMapper.removeById(demo.getId());
+        boolean delete = this.autoDelMapper.deleteById(demo.getId());
         Assertions.assertTrue(delete);
 
         // 验证查询失败
@@ -95,7 +95,7 @@ public class SelectByIdTest extends BaseAutoMapperTest {
         Assertions.assertEquals(demo.getAge(), entity.getAge());
 
         // 删除
-        boolean delete = this.autoDelVersionMapper.removeById(demo.getId());
+        boolean delete = this.autoDelVersionMapper.deleteById(demo.getId());
         Assertions.assertTrue(delete);
 
         // 验证查询失败

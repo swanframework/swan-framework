@@ -21,7 +21,7 @@ public interface IBasicMapper<ID, E, C> extends
 
         SelectAllMethod<ID, E, C>,
         SelectByIdMethod<ID, E, C>,
-        SelectListInIdsMethod<ID, E, C>,
+        SelectListByIdsMethod<ID, E, C>,
         SelectListOnConditionMethod<ID, E, C>,
 
         DeleteInIdsMethod<ID, E, C>,

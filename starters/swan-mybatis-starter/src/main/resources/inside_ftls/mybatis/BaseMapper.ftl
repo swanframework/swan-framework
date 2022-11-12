@@ -17,10 +17,9 @@
     </sql>
 
     <sql id="WhereCondition">
-        <#if entityMeta.deleteField??>
-            ${entityMeta.deleteField.columnName} = '${entityMeta.deleteField.no}'
-        </#if>
+        <#include "./condition.ftl" />
     </sql>
+
 
     <!-- 新增方法 -->
     <#if (methodsInfo.insert?string('true','false'))=="true">
@@ -35,37 +34,41 @@
 
     <!-- 物理删除方法 -->
     <#if (methodsInfo.delete?string('true','false'))=="true">
-        <#include "delete/delete.ftl"/>
+        <#if entityMeta.deleteField??>
+            <#include "remove/delete.ftl"/>
+        <#else >
+            <#include "delete/delete.ftl"/>
+        </#if>
     </#if>
     <#if (methodsInfo.deleteById?string('true','false'))=="true">
-        <#include "delete/deleteById.ftl"/>
+        <#if entityMeta.deleteField??>
+            <#include "remove/deleteById.ftl"/>
+        <#else >
+            <#include "delete/deleteById.ftl"/>
+        </#if>
     </#if>
     <#if (methodsInfo.deleteInIds?string('true','false'))=="true">
-        <#include "delete/deleteInIds.ftl"/>
+        <#if entityMeta.deleteField??>
+            <#include "remove/deleteInIds.ftl"/>
+        <#else >
+            <#include "delete/deleteInIds.ftl"/>
+        </#if>
     </#if>
     <#if (methodsInfo.deleteList?string('true','false'))=="true">
-        <#include "delete/deleteList.ftl"/>
+        <#if entityMeta.deleteField??>
+            <#include "remove/deleteList.ftl"/>
+        <#else >
+            <#include "delete/deleteList.ftl"/>
+        </#if>
     </#if>
     <#if (methodsInfo.deleteOnCondition?string('true','false'))=="true">
-        <#include "delete/deleteOnCondition.ftl"/>
+        <#if entityMeta.deleteField??>
+            <#include "remove/deleteOnCondition.ftl"/>
+        <#else >
+            <#include "delete/deleteOnCondition.ftl"/>
+        </#if>
     </#if>
 
-    <!-- 逻辑删除方法 -->
-    <#if (methodsInfo.remove?string('true','false'))=="true">
-        <#include "remove/remove.ftl"/>
-    </#if>
-    <#if (methodsInfo.removeById?string('true','false'))=="true">
-        <#include "remove/removeById.ftl"/>
-    </#if>
-    <#if (methodsInfo.removeInIds?string('true','false'))=="true">
-        <#include "remove/removeInIds.ftl"/>
-    </#if>
-    <#if (methodsInfo.removeList?string('true','false'))=="true">
-        <#include "remove/removeList.ftl"/>
-    </#if>
-    <#if (methodsInfo.removeOnCondition?string('true','false'))=="true">
-        <#include "remove/removeOnCondition.ftl"/>
-    </#if>
 
     <!-- 更新方法 -->
     <#if (methodsInfo.update?string('true','false'))=="true">

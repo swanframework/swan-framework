@@ -16,8 +16,28 @@
     </sql>
 
     <sql id="WhereCondition">
-            del = '0'
-    </sql>
+<foreach collection="condition.whereList" item="criterion" separator="or" >
+    <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <choose >
+                <when test="criterion.noParamOp" >
+                    and ${criterion.column} ${criterion.operator}
+                </when>
+                <when test="criterion.singleParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value}
+                </when>
+                <when test="criterion.secondParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listParamOp" >
+                    and  ${criterion.column} ${criterion.operator}
+                    <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                        #{itemValue}
+                    </foreach>
+                </when>
+            </choose>
+    </trim>
+</foreach>    </sql>
+
 
     <!-- 新增方法 -->
 
@@ -66,59 +86,24 @@
     <!-- 物理删除方法 -->
 
 <delete id="delete">
-    delete from <include refid="tableName"/>
-    where id = #{id}
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+    where
+        id = #{id}
+            and del = '0'
 </delete>
 <delete id="deleteById">
-    delete from <include refid="tableName"/>
-    where id = #{id}
+    update <include refid="tableName"/>
+    set
+        id = id
+            ,del = '-1'
+    where
+        id = #{id}
+            and del = '0'
 </delete>
 <delete id="deleteInIds">
-    delete from <include refid="tableName"/>
-    where id in
-    <foreach collection="list" open="(" separator="," close=")" item="id">
-        #{id}
-    </foreach>
-</delete>
-<delete id="deleteList">
-    delete from <include refid="tableName"/>
-    <where>
-                    id in
-            <foreach collection="list" open="(" separator="," close=")" item="entity">
-                #{entity.id}
-            </foreach>
-    </where>
-
-</delete>
-<delete id="deleteOnCondition">
-    delete from <include refid="tableName"/>
-    <where>
-        <if test="condition != null">
-            <include refid="com.swan.test.mybatis.mapper.IAutoDelMapper.condition"/>
-        </if>
-    </where>
-</delete>
-    <!-- 逻辑删除方法 -->
-
-<delete id="remove">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,del = '-1'
-    where
-        id = #{id}
-            and del = '0'
-</delete>
-<delete id="removeById">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,del = '-1'
-    where
-        id = #{id}
-            and del = '0'
-</delete>
-<delete id="removeInIds">
     update <include refid="tableName"/>
     set
         id = id
@@ -129,7 +114,7 @@
         </foreach>
             and del = '0'
 </delete>
-<delete id="removeList">
+<delete id="deleteList">
     update <include refid="tableName"/>
     set
         id = id
@@ -143,7 +128,7 @@
     </where>
 
 </delete>
-<delete id="removeOnCondition">
+<delete id="deleteOnCondition">
     update <include refid="tableName"/>
     set
         id = id
@@ -154,6 +139,7 @@
         </if>
     </where>
 </delete>
+
     <!-- 更新方法 -->
 
 <update id="update">

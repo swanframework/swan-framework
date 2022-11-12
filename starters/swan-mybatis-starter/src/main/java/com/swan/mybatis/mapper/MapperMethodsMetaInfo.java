@@ -25,12 +25,6 @@ public class MapperMethodsMetaInfo {
     private final boolean deleteList;
     private final boolean deleteOnCondition;
 
-    private final boolean remove;
-    private final boolean removeById;
-    private final boolean removeInIds;
-    private final boolean removeList;
-    private final boolean removeOnCondition;
-
     private final boolean update;
     private final boolean updateById;
     private final boolean updateNotNullById;
@@ -63,15 +57,9 @@ public class MapperMethodsMetaInfo {
         this.insert = interfaces.contains(InsertMethod.class);
         this.insertNotNull = interfaces.contains(InsertNotNullMethod.class);
 
-        this.removeById = interfaces.contains(RemoveByIdMethod.class);
-        this.removeInIds = interfaces.contains(RemoveInIdsMethod.class);
-        this.removeList = interfaces.contains(RemoveListMethod.class);
-        this.remove = interfaces.contains(RemoveMethod.class);
-        this.removeOnCondition = interfaces.contains(RemoveOnConditionMethod.class);
-
         this.selectAll = interfaces.contains(SelectAllMethod.class);
         this.selectById = interfaces.contains(SelectByIdMethod.class);
-        this.selectListInIds = interfaces.contains(SelectListInIdsMethod.class);
+        this.selectListInIds = interfaces.contains(SelectListByIdsMethod.class);
         this.selectListOnCondition = interfaces.contains(SelectListOnConditionMethod.class);
 
         this.updateById = interfaces.contains(UpdateByIdMethod.class);

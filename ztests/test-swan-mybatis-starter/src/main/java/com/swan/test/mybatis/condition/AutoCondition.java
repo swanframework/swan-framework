@@ -1,5 +1,7 @@
 package com.swan.test.mybatis.condition;
 
+import com.swan.mybatis.condition.Condition;
+import com.swan.mybatis.condition.UpdateCondition;
 import lombok.Getter;
 import lombok.Setter;
 import com.swan.mybatis.core.ICondition;
@@ -9,7 +11,7 @@ import com.swan.mybatis.core.ICondition;
  * @date 2021-01-09
  */
 @Setter @Getter
-public class AutoCondition implements ICondition {
+public class AutoCondition extends UpdateCondition {
 
     private String name;
 

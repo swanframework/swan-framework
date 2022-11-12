@@ -16,7 +16,28 @@
     </sql>
 
     <sql id="WhereCondition">
-    </sql>
+<foreach collection="condition.whereList" item="criterion" separator="or" >
+    <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <choose >
+                <when test="criterion.noParamOp" >
+                    and ${criterion.column} ${criterion.operator}
+                </when>
+                <when test="criterion.singleParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value}
+                </when>
+                <when test="criterion.secondParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listParamOp" >
+                    and  ${criterion.column} ${criterion.operator}
+                    <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                        #{itemValue}
+                    </foreach>
+                </when>
+            </choose>
+    </trim>
+</foreach>    </sql>
+
 
     <!-- 新增方法 -->
 
@@ -101,62 +122,7 @@
         </if>
     </where>
 </delete>
-    <!-- 逻辑删除方法 -->
 
-<delete id="remove">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,version = version + 1
-    where
-        id = #{id}
-            and version = #{version}
-</delete>
-<delete id="removeById">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,version = version + 1
-    where
-        id = #{id}
-</delete>
-<delete id="removeInIds">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,version = version + 1
-    where id in
-        <foreach collection="list" open="(" separator="," close=")" item="id">
-            #{id}
-        </foreach>
-</delete>
-<delete id="removeList">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,version = version + 1
-    <where>
-            and
-            <foreach collection="list" open="(" separator="or" close=")" item="entity">
-                (
-                    id = #{entity.id}
-                    and version = #{entity.version}
-                )
-            </foreach>
-    </where>
-
-</delete>
-<delete id="removeOnCondition">
-    update <include refid="tableName"/>
-    set
-        id = id
-            ,version = version + 1
-    <where>
-        <if test="condition != null">
-            <include refid="com.swan.test.mybatis.mapper.IAutoVersionMapper.condition"/>
-        </if>
-    </where>
-</delete>
     <!-- 更新方法 -->
 
 <update id="update">

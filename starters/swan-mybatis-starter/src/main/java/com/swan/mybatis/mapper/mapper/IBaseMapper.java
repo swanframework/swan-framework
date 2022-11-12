@@ -21,13 +21,8 @@ public interface IBaseMapper<ID, E, C> extends
 
         SelectAllMethod<ID, E, C>,
         SelectByIdMethod<ID, E, C>,
-        SelectListInIdsMethod<ID, E, C>,
-        SelectListOnConditionMethod<ID, E, C>,
+        SelectListByIdsMethod<ID, E, C>,
+        SelectListOnConditionMethod<ID, E, C>
 
-        RemoveByIdMethod<ID, E, C>,
-        RemoveInIdsMethod<ID, E, C>,
-        RemoveListMethod<ID, E, C>,
-        RemoveMethod<ID, E, C>,
-        RemoveOnConditionMethod<ID, E, C>
 {
 }

@@ -1,5 +1,5 @@
 
-<delete id="removeInIds">
+<delete id="delete">
     update <include refid="tableName"/>
     set
         ${entityMeta.idField.columnName} = ${entityMeta.idField.columnName}
@@ -9,11 +9,12 @@
         <#if entityMeta.versionField??>
             ,${entityMeta.versionField.columnName} = ${entityMeta.versionField.columnName} + 1
         </#if>
-    where ${entityMeta.idField.columnName} in
-        <foreach collection="list" open="(" separator="," close=")" item="id">
-            ${r'#{id}'}
-        </foreach>
+    where
+        ${entityMeta.idField.columnName} = ${r'#{'}${entityMeta.idField.propertyName}}
         <#if entityMeta.deleteField??>
             and ${entityMeta.deleteField.columnName} = '${entityMeta.deleteField.no}'
+        </#if>
+        <#if entityMeta.versionField??>
+            and ${entityMeta.versionField.columnName} = ${r'#{'}${entityMeta.versionField.propertyName}}
         </#if>
 </delete>

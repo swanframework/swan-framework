@@ -1,7 +1,7 @@
 package com.swan.test.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
-import com.swan.mybatis.mapper.methods.SelectListInIdsMethod;
+import com.swan.mybatis.mapper.methods.SelectListByIdsMethod;
 import com.swan.test.mybatis.condition.AutoCondition;
 import com.swan.test.mybatis.po.AutoEntity;
 
@@ -10,7 +10,7 @@ import com.swan.test.mybatis.po.AutoEntity;
  * @date 2021-01-07
  */
 @Mapper
-public interface CustomMethodMapper extends SelectListInIdsMethod<Long, AutoEntity, AutoCondition> {
+public interface CustomMethodMapper extends SelectListByIdsMethod<Long, AutoEntity, AutoCondition> {
 
 
 }

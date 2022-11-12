@@ -81,7 +81,7 @@ public class SelectListOnConditionTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoDelMapper.removeOnCondition(condition);
+        int remove = this.autoDelMapper.deleteOnCondition(condition);
         Assertions.assertEquals(entityList.size(), remove);
 
         entityList = this.autoDelMapper.selectListOnCondition(condition);
@@ -150,7 +150,7 @@ public class SelectListOnConditionTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoDelVersionMapper.removeOnCondition(condition);
+        int remove = this.autoDelVersionMapper.deleteOnCondition(condition);
         Assertions.assertEquals(entityList.size(), remove);
 
         entityList = this.autoDelVersionMapper.selectListOnCondition(condition);

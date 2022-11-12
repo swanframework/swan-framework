@@ -16,13 +16,33 @@
     </sql>
 
     <sql id="WhereCondition">
-    </sql>
+<foreach collection="condition.whereList" item="criterion" separator="or" >
+    <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <choose >
+                <when test="criterion.noParamOp" >
+                    and ${criterion.column} ${criterion.operator}
+                </when>
+                <when test="criterion.singleParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value}
+                </when>
+                <when test="criterion.secondParamOp" >
+                    and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listParamOp" >
+                    and  ${criterion.column} ${criterion.operator}
+                    <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                        #{itemValue}
+                    </foreach>
+                </when>
+            </choose>
+    </trim>
+</foreach>    </sql>
+
 
     <!-- 新增方法 -->
 
     <!-- 物理删除方法 -->
 
-    <!-- 逻辑删除方法 -->
 
     <!-- 更新方法 -->
 

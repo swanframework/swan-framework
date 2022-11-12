@@ -1,5 +1,5 @@
 
-<delete id="removeById">
+<delete id="deleteById">
     update <include refid="tableName"/>
     set
         ${entityMeta.idField.columnName} = ${entityMeta.idField.columnName}

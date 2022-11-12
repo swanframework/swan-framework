@@ -1,5 +1,5 @@
 
-<delete id="removeOnCondition">
+<delete id="deleteInIds">
     update <include refid="tableName"/>
     set
         ${entityMeta.idField.columnName} = ${entityMeta.idField.columnName}
@@ -9,9 +9,11 @@
         <#if entityMeta.versionField??>
             ,${entityMeta.versionField.columnName} = ${entityMeta.versionField.columnName} + 1
         </#if>
-    <where>
-        <if test="condition != null">
-            <include refid="${entityMeta.conditionName}"/>
-        </if>
-    </where>
+    where ${entityMeta.idField.columnName} in
+        <foreach collection="list" open="(" separator="," close=")" item="id">
+            ${r'#{id}'}
+        </foreach>
+        <#if entityMeta.deleteField??>
+            and ${entityMeta.deleteField.columnName} = '${entityMeta.deleteField.no}'
+        </#if>
 </delete>

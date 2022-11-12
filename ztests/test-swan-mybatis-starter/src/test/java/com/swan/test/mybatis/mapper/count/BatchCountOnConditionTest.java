@@ -28,8 +28,20 @@ public class BatchCountOnConditionTest extends BaseAutoMapperTest {
 
         int num = this.autoMapper.insertList(demoList);
         Assertions.assertEquals(demoList.size(), num);
+        AutoCondition condition = new AutoCondition("zhangsan");
+        condition.leftLike(AutoEntity.Fields.name, "zhang");
 
-        Integer count = this.autoMapper.countOnCondition(new AutoCondition("zhangsan"));
+        Integer count = this.autoMapper.countOnCondition(condition);
+        Assertions.assertEquals(5, count.intValue());
+
+    }
+
+    @Test
+    public void condition(){
+
+        AutoCondition condition = new AutoCondition("zhangsan");
+
+        Integer count = this.autoMapper.countOnCondition(condition);
         Assertions.assertEquals(5, count.intValue());
 
     }
