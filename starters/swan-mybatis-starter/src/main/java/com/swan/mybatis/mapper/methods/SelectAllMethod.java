@@ -5,7 +5,7 @@ import com.swan.mybatis.mapper.params.OrderRule;
 
 import java.util.List;
 
-public interface SelectAllMethod<ID, E, C>  extends BaseMethod {
+public interface SelectAllMethod<ID, E>  extends BaseMethod {
 
     public List<E> selectAll(@Param("orderRules") OrderRule... orderRules);
 

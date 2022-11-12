@@ -9,7 +9,7 @@ import com.swan.test.mybatis.po.AutoEntity;
  * @date 2021-01-07
  */
 @Mapper
-public interface ITestMapper extends TestBasicMapper<Long, AutoEntity, AutoCondition> {
+public interface ITestMapper extends TestBasicMapper<Long, AutoEntity> {
 
     void truncate();
 

@@ -6,29 +6,29 @@ import com.swan.mybatis.mapper.methods.*;
  * @author zongf
  * @date 2021-02-26
  */
-public interface IBasicMapper<ID, E, C> extends
-        CountMethod<ID, E, C>,
-        CountOnConditionMethod<ID, E, C>,
+public interface IBasicMapper<ID, E> extends
+        CountMethod<ID, E>,
+        CountOnConditionMethod<ID, E>,
 
-        InsertListMethod<ID, E, C>,
-        InsertMethod<ID, E, C>,
-        InsertNotNullMethod<ID, E, C>,
+        InsertListMethod<ID, E>,
+        InsertMethod<ID, E>,
+        InsertNotNullMethod<ID, E>,
 
-        UpdateByIdMethod<ID, E, C>,
-        UpdateMethod<ID, E, C>,
-        UpdateNotNullByIdMethod<ID, E, C>,
-        UpdateNotNullMethod<ID, E, C>,
+        UpdateByIdMethod<ID, E>,
+        UpdateMethod<ID, E>,
+        UpdateNotNullByIdMethod<ID, E>,
+        UpdateNotNullMethod<ID, E>,
 
-        SelectAllMethod<ID, E, C>,
-        SelectByIdMethod<ID, E, C>,
-        SelectListByIdsMethod<ID, E, C>,
-        SelectListOnConditionMethod<ID, E, C>,
+        SelectAllMethod<ID, E>,
+        SelectByIdMethod<ID, E>,
+        SelectListByIdsMethod<ID, E>,
+        SelectListOnConditionMethod<ID, E>,
 
-        DeleteInIdsMethod<ID, E, C>,
-        DeleteByIdMethod<ID, E, C>,
-        DeleteListMethod<ID, E, C>,
-        DeleteOnConditionMethod<ID, E, C>,
-        DeleteMethod<ID, E, C>
+        DeleteInIdsMethod<ID, E>,
+        DeleteByIdMethod<ID, E>,
+        DeleteListMethod<ID, E>,
+        DeleteOnConditionMethod<ID, E>,
+        DeleteMethod<ID, E>
 {
 
 }

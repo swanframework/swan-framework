@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2021-01-07
  */
 @Mapper
-public interface IAutoMapper extends TestBasicMapper<Long, AutoEntity, AutoCondition> {
+public interface IAutoMapper extends TestBasicMapper<Long, AutoEntity> {
 
     void truncate();
 

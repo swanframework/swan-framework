@@ -1,9 +1,10 @@
 package com.swan.mybatis.mapper.methods;
 
 import com.sun.istack.internal.NotNull;
+import com.swan.mybatis.condition.Condition;
 import org.apache.ibatis.annotations.Param;
 
-public interface CountOnConditionMethod<ID, E, C>  extends BaseMethod {
+public interface CountOnConditionMethod<ID, E>  extends BaseMethod {
 
     /** 统计表中未删除的记录总数 <br/>
      *  * 物理删除: 总数为表中实际数量 <br/>
@@ -11,6 +12,6 @@ public interface CountOnConditionMethod<ID, E, C>  extends BaseMethod {
      * @param condition
      * @return Integer
      */
-    public Integer countOnCondition(@Param("condition") @NotNull C condition);
+    public Integer countOnCondition(@Param("condition") @NotNull Condition condition);
 
 }

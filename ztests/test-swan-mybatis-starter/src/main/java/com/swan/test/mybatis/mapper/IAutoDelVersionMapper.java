@@ -9,7 +9,7 @@ import com.swan.test.mybatis.po.AutoDelVersionEntity;
  * @date 2021-01-07
  */
 @Mapper
-public interface IAutoDelVersionMapper extends TestBasicMapper<Long, AutoDelVersionEntity, AutoDelVersionCondition> {
+public interface IAutoDelVersionMapper extends TestBasicMapper<Long, AutoDelVersionEntity> {
 
     void truncate();
 

@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.Condition;
 
-public interface UpdateOnConditionMethod<ID, E, C>  extends BaseMethod {
+public interface UpdateOnConditionMethod<ID, E>  extends BaseMethod {
 
-    public boolean updateOnCondition(E e, Condition condition); //智能处理 version
+    public boolean updateOnCondition(E eondition); //智能处理 version
 
 }

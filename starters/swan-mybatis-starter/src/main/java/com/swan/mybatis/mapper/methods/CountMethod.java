@@ -1,6 +1,6 @@
 package com.swan.mybatis.mapper.methods;
 
-public interface CountMethod<ID, E, C>  extends BaseMethod {
+public interface CountMethod<ID, E>  extends BaseMethod {
 
     /** 统计表中未删除的记录总数 <br/>
      *  * 物理删除: 总数为表中实际数量 <br/>

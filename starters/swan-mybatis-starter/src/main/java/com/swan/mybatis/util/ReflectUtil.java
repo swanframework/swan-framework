@@ -3,6 +3,7 @@ package com.swan.mybatis.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.util.*;
 
 /** 反射工具类
@@ -68,8 +69,11 @@ public class ReflectUtil {
         // 逐级向上遍历
         for (Class anInterface : interfaces) {
             if (InterfaceUtil.hasInheritance(supperInterface, anInterface)) {
-                if (anInterface.getTypeParameters().length == 3) {
-                    result = anInterface;
+                TypeVariable[] typeParameters = anInterface.getTypeParameters();
+                if (typeParameters.length == 2) {
+                    if (typeParameters[0].getName().equals("ID") && typeParameters[1].getName().equals("E")) {
+                        result = anInterface;
+                    }
                 }
             }
         }

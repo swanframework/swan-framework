@@ -72,7 +72,6 @@ public class BaseMapperStatementCreator {
             Type[] rawParamTypes = ReflectUtil.getRawParamTypes(mapperInterface, BaseMethod.class);
 
             Class entityClz = (Class) rawParamTypes[1];
-            Class conditionClz = (Class) rawParamTypes[2];
 
             // 生成动态xml
             String mapperXml = createMapperXml(mapperInterface, entityClz, getConditionSqlFragmentName(mapperInterface));

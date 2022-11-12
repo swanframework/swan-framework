@@ -10,7 +10,7 @@ import com.swan.test.mybatis.po.AutoEntity;
  * @date 2021-01-07
  */
 @Mapper
-public interface CustomMethodMapper extends SelectListByIdsMethod<Long, AutoEntity, AutoCondition> {
+public interface CustomMethodMapper extends SelectListByIdsMethod<Long, AutoEntity> {
 
 
 }
