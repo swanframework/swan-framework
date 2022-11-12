@@ -43,12 +43,14 @@
 
     <!-- 新增方法 -->
 
-    <!-- 物理删除方法 -->
+    <!-- 删除方法 -->
 
 
     <!-- 更新方法 -->
 
     <!-- 查询方法 -->
+
+
 
 <select id="selectListInIds" resultType="com.swan.test.mybatis.po.AutoEntity">
     select <include refid="columns"/>
@@ -67,6 +69,9 @@
         id asc
     </if>
 </select>
+
+
+
     <!-- 统计方法 -->
 
 </mapper>

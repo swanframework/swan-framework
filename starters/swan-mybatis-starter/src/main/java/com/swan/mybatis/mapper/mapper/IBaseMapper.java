@@ -7,8 +7,7 @@ import com.swan.mybatis.mapper.methods.*;
  * @date 2021-02-26
  */
 public interface IBaseMapper<ID, E> extends
-        CountMethod<ID, E>,
-        CountOnConditionMethod<ID, E>,
+
 
         InsertListMethod<ID, E>,
         InsertMethod<ID, E>,
@@ -28,18 +27,16 @@ public interface IBaseMapper<ID, E> extends
         UpdateNotNullMethod<ID, E>,
         UpdateOnConditionMethod<ID, E>,
 
-
         SelectByIdMethod<ID, E>,
         SelectOnConditionMethod<ID, E>,
-
         SelectListByIdsMethod<ID, E>,
         SelectListOnConditionMethod<ID, E>,
-
         SelectFieldsByIdMethod<ID, E>,
         SelectFieldsByIdsMethod<ID, E>,
         SelectFieldsOnConditionMethod<ID, E>,
+        SelectAllMethod<ID, E>,
 
-        SelectAllMethod<ID, E>
-
+        CountMethod<ID, E>,
+        CountOnConditionMethod<ID, E>
 {
 }

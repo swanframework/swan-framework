@@ -85,23 +85,12 @@
         )
     </foreach>
 </insert>
-    <!-- 物理删除方法 -->
+    <!-- 删除方法 -->
 
 <delete id="delete">
     delete from <include refid="tableName"/>
     where id = #{id}
         and version = #{version}
-</delete>
-<delete id="deleteById">
-    delete from <include refid="tableName"/>
-    where id = #{id}
-</delete>
-<delete id="deleteInIds">
-    delete from <include refid="tableName"/>
-    where id in
-    <foreach collection="list" open="(" separator="," close=")" item="id">
-        #{id}
-    </foreach>
 </delete>
 <delete id="deleteList">
     delete from <include refid="tableName"/>
@@ -115,6 +104,17 @@
             </foreach>
     </where>
 
+</delete>
+<delete id="deleteById">
+    delete from <include refid="tableName"/>
+    where id = #{id}
+</delete>
+<delete id="deleteInIds">
+    delete from <include refid="tableName"/>
+    where id in
+    <foreach collection="list" open="(" separator="," close=")" item="id">
+        #{id}
+    </foreach>
 </delete>
 <delete id="deleteOnCondition">
     delete from <include refid="tableName"/>
@@ -179,26 +179,13 @@
 </update>
     <!-- 查询方法 -->
 
-<select id="selectAll" resultType="com.swan.test.mybatis.po.AutoVersionEntity">
-    select <include refid="columns"/>
-    from <include refid="tableName"/>
-    <where>
-    </where>
-    order by
-        <if test="orderByList.length > 0">
-            <foreach collection="orderByList" separator="," item="rule">
-                ${rule.column} ${rule.type}
-            </foreach>
-        </if>
-        <if test="orderByList.length == 0">
-            id asc
-        </if>
-</select>
+
 <select id="selectById" resultType="com.swan.test.mybatis.po.AutoVersionEntity">
     select <include refid="columns"/>
     from <include refid="tableName"/>
     where id = #{id}
 </select>
+
 <select id="selectListInIds" resultType="com.swan.test.mybatis.po.AutoVersionEntity">
     select <include refid="columns"/>
     from <include refid="tableName"/>
@@ -216,6 +203,7 @@
         id asc
     </if>
 </select>
+
 <select id="selectListOnCondition" resultType="com.swan.test.mybatis.po.AutoVersionEntity">
     select <include refid="columns"/>
     from <include refid="tableName"/>
@@ -233,6 +221,23 @@
     <if test="orderByList.length == 0">
         id asc
     </if>
+</select>
+
+
+<select id="selectAll" resultType="com.swan.test.mybatis.po.AutoVersionEntity">
+    select <include refid="columns"/>
+    from <include refid="tableName"/>
+    <where>
+    </where>
+    order by
+        <if test="orderByList.length > 0">
+            <foreach collection="orderByList" separator="," item="rule">
+                ${rule.column} ${rule.type}
+            </foreach>
+        </if>
+        <if test="orderByList.length == 0">
+            id asc
+        </if>
 </select>
     <!-- 统计方法 -->
 
