@@ -16,27 +16,29 @@
     </sql>
 
     <sql id="WhereCondition">
-<foreach collection="condition.whereList" item="criterion" separator="and" >
-    <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <choose >
-                <when test="criterion.noParamOp" >
-                    and ${criterion.column} ${criterion.operator}
-                </when>
-                <when test="criterion.singleParamOp" >
-                    and  ${criterion.column} ${criterion.operator} #{criterion.value}
-                </when>
-                <when test="criterion.secondParamOp" >
-                    and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listParamOp" >
-                    and  ${criterion.column} ${criterion.operator}
-                    <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
-                        #{itemValue}
-                    </foreach>
-                </when>
-            </choose>
-    </trim>
-</foreach>    </sql>
+<if test="condition != null">
+    <foreach collection="condition.whereList" item="criterion" separator="and" >
+        <trim prefix="(" suffix=")" prefixOverrides="and" >
+                <choose >
+                    <when test="criterion.noParamOp" >
+                        and ${criterion.column} ${criterion.operator}
+                    </when>
+                    <when test="criterion.singleParamOp" >
+                        and  ${criterion.column} ${criterion.operator} #{criterion.value}
+                    </when>
+                    <when test="criterion.secondParamOp" >
+                        and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
+                    </when>
+                    <when test="criterion.listParamOp" >
+                        and  ${criterion.column} ${criterion.operator}
+                        <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                            #{itemValue}
+                        </foreach>
+                    </when>
+                </choose>
+        </trim>
+    </foreach>
+</if>    </sql>
 
 
     <!-- 新增方法 -->
@@ -56,12 +58,12 @@
             #{id}
         </foreach>
     order by
-    <if test="orderRules.length > 0">
-        <foreach collection="orderRules" separator="," item="rule">
+    <if test="orderByList.length > 0">
+        <foreach collection="orderByList" separator="," item="rule">
             ${rule.column} ${rule.type}
         </foreach>
     </if>
-    <if test="orderRules.length == 0">
+    <if test="orderByList.length == 0">
         id asc
     </if>
 </select>

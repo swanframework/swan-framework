@@ -40,7 +40,7 @@ public class SelectAllTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoMapper.deleteInIds(idList);
+        int remove = this.autoMapper.deleteByIds(idList);
         Assertions.assertEquals(idList.size(), remove);
 
         entityList = this.autoMapper.selectAll();
@@ -68,7 +68,7 @@ public class SelectAllTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoDelMapper.deleteInIds(idList);
+        int remove = this.autoDelMapper.deleteByIds(idList);
         Assertions.assertEquals(idList.size(), remove);
 
         entityList = this.autoDelMapper.selectAll();
@@ -97,7 +97,7 @@ public class SelectAllTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoVersionMapper.deleteInIds(idList);
+        int remove = this.autoVersionMapper.deleteByIds(idList);
         Assertions.assertEquals(idList.size(), remove);
 
         entityList = this.autoVersionMapper.selectAll();
@@ -125,7 +125,7 @@ public class SelectAllTest extends BaseAutoMapperTest {
         }
 
         // 测试删除
-        int remove = this.autoDelVersionMapper.deleteInIds(idList);
+        int remove = this.autoDelVersionMapper.deleteByIds(idList);
         Assertions.assertEquals(idList.size(), remove);
 
         entityList = this.autoDelVersionMapper.selectAll();

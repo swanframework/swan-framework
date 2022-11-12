@@ -14,15 +14,32 @@ public interface IBaseMapper<ID, E> extends
         InsertMethod<ID, E>,
         InsertNotNullMethod<ID, E>,
 
-        UpdateByIdMethod<ID, E>,
+        DeleteMethod<ID, E>,
+        DeleteListMethod<ID, E>,
+        DeleteByIdMethod<ID, E>,
+        DeleteByIdsMethod<ID, E>,
+        DeleteOnConditionMethod<ID, E>,
+
         UpdateMethod<ID, E>,
+        UpdateByIdMethod<ID, E>,
+        UpdateFieldsByIdMethod<ID, E>,
+        UpdateFieldsMethod<ID, E>,
         UpdateNotNullByIdMethod<ID, E>,
         UpdateNotNullMethod<ID, E>,
+        UpdateOnConditionMethod<ID, E>,
 
-        SelectAllMethod<ID, E>,
+
         SelectByIdMethod<ID, E>,
+        SelectOnConditionMethod<ID, E>,
+
         SelectListByIdsMethod<ID, E>,
-        SelectListOnConditionMethod<ID, E>
+        SelectListOnConditionMethod<ID, E>,
+
+        SelectFieldsByIdMethod<ID, E>,
+        SelectFieldsByIdsMethod<ID, E>,
+        SelectFieldsOnConditionMethod<ID, E>,
+
+        SelectAllMethod<ID, E>
 
 {
 }

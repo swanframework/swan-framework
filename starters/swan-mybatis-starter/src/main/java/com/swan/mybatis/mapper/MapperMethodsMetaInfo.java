@@ -48,7 +48,7 @@ public class MapperMethodsMetaInfo {
         this.countOnCondition = interfaces.contains(CountOnConditionMethod.class);
 
         this.deleteById = interfaces.contains(DeleteByIdMethod.class);
-        this.deleteInIds = interfaces.contains(DeleteInIdsMethod.class);
+        this.deleteInIds = interfaces.contains(DeleteByIdsMethod.class);
         this.deleteList = interfaces.contains(DeleteListMethod.class);
         this.delete = interfaces.contains(DeleteMethod.class);
         this.deleteOnCondition = interfaces.contains(DeleteOnConditionMethod.class);

@@ -1,7 +1,7 @@
 package com.swan.test.mybatis.mapper;
 
+import com.swan.mybatis.mapper.mapper.IBaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import com.swan.test.mybatis.condition.AutoCondition;
 import com.swan.test.mybatis.po.AutoEntity;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
  * @date 2021-01-07
  */
 @Mapper
-public interface IAutoMapper extends TestBasicMapper<Long, AutoEntity> {
+public interface IAutoMapper extends IBaseMapper<Long, AutoEntity> {
 
     void truncate();
 

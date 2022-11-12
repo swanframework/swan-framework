@@ -1,12 +1,18 @@
 package com.swan.mybatis.mapper.methods;
 
-import com.swan.mybatis.mapper.params.OrderRule;
+import com.swan.mybatis.mapper.params.OrderBy;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface SelectFieldsByIdsMethod<ID, E>  extends BaseMethod {
 
-    public List<E> SelectFieldsListByIds(@Param("idList") List<ID> idList, @Param("orderRules") OrderRule... orderRules);
+
+    /**
+     * @param idList
+     * @param orderByList
+     * @return
+     */
+    public List<E> selectFieldsListByIds(@Param("idList") List<ID> idList, @Param("orderRules") OrderBy... orderByList);
 
 }

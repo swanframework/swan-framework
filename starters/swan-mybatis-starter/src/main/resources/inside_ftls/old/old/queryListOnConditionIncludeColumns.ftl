@@ -16,12 +16,12 @@
         </#if>
     </where>
     order by
-    <if test="orderRules.length > 0">
-        <foreach collection="orderRules" separator="," item="rule">
+    <if test="orderByList.length > 0">
+        <foreach collection="orderByList" separator="," item="rule">
             ${r'${rule.column} ${rule.type}'}
         </foreach>
     </if>
-    <if test="orderRules.length == 0">
+    <if test="orderByList.length == 0">
         ${entityMeta.idField.columnName} asc
     </if>
 </select>

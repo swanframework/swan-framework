@@ -26,7 +26,7 @@ public class DeleteListByIdTest
         Assertions.assertEquals(demoList.size(), saveNum);
 
         List<Long> idList = demoList.stream().map(AutoEntity::getId).collect(Collectors.toList());
-        int delNum = this.autoMapper.deleteInIds(idList);
+        int delNum = this.autoMapper.deleteByIds(idList);
         Assertions.assertEquals(demoList.size(), delNum);
 
         for (Long id : idList) {
@@ -43,7 +43,7 @@ public class DeleteListByIdTest
         Assertions.assertEquals(demoList.size(), saveNum);
 
         List<Long> idList = demoList.stream().map(AutoDelEntity::getId).collect(Collectors.toList());
-        int delNum = this.autoDelMapper.deleteInIds(idList);
+        int delNum = this.autoDelMapper.deleteByIds(idList);
         Assertions.assertEquals(demoList.size(), delNum);
 
         for (Long id : idList) {
@@ -62,7 +62,7 @@ public class DeleteListByIdTest
 
         // 有@version 时, 也不会参考version
         List<Long> idList = demoList.stream().map(AutoVersionEntity::getId).collect(Collectors.toList());
-        int delNum = this.autoVersionMapper.deleteInIds(idList);
+        int delNum = this.autoVersionMapper.deleteByIds(idList);
         Assertions.assertEquals(demoList.size(), delNum);
 
         for (Long id : idList) {
@@ -82,7 +82,7 @@ public class DeleteListByIdTest
 
         // 有@version 时, 也不会参考version
         List<Long> idList = demoList.stream().map(AutoDelVersionEntity::getId).collect(Collectors.toList());
-        int delNum = this.autoDelVersionMapper.deleteInIds(idList);
+        int delNum = this.autoDelVersionMapper.deleteByIds(idList);
         Assertions.assertEquals(demoList.size(), delNum);
 
         for (Long id : idList) {
