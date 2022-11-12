@@ -13,9 +13,7 @@ import com.swan.mybatis.config.SbootMybatisProperties;
 import com.swan.mybatis.factory.EntityMetaInfoFactory;
 import com.swan.mybatis.mapper.MapperMethodsMetaInfo;
 import com.swan.mybatis.mapper.methods.BaseMethod;
-import com.swan.mybatis.util.TemplateUtil;
 import com.swan.mybatis.util.TxtFileUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.util.StringUtils;
 
