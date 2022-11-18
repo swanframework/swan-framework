@@ -1,7 +1,5 @@
 package com.swan.mybatis.mapper.methods;
 
-import com.sun.istack.internal.NotNull;
-
 public interface DeleteByIdMethod<ID, E>  extends BaseMethod {
 
     /** 根据 id 删除对象 <br/>
@@ -12,6 +10,6 @@ public interface DeleteByIdMethod<ID, E>  extends BaseMethod {
      * @param id id 不为空 的对象
      * @return 是否成功删除一条数据
      */
-    public boolean deleteById(@NotNull ID id);
+    public boolean deleteById(ID id);
 
 }

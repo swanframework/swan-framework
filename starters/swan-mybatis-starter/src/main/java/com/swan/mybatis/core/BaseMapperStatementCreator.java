@@ -9,7 +9,7 @@ import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.mapper.MapperFactoryBean;
-import com.swan.mybatis.config.SbootMybatisProperties;
+import com.swan.mybatis.config.SwanMybatisProperties;
 import com.swan.mybatis.factory.EntityMetaInfoFactory;
 import com.swan.mybatis.mapper.MapperMethodsMetaInfo;
 import com.swan.mybatis.mapper.methods.BaseMethod;
@@ -38,14 +38,14 @@ public class BaseMapperStatementCreator {
     // 模板路径
     private static final String BASE_MAPPER_FTL = "mybatis/BaseMapper.ftl";
 
-    private SbootMybatisProperties sbootMybatisProperties;
+    private SwanMybatisProperties swanMybatisProperties;
 
     private IFreemarkerTemplate freemarkerTemplate;
 
     public BaseMapperStatementCreator(DefaultListableBeanFactory beanFactory) {
         this.applicationContext = beanFactory;
         this.configuration = this.applicationContext.getBean(SqlSessionFactory.class).getConfiguration();
-        this.sbootMybatisProperties = this.applicationContext.getBean(SbootMybatisProperties.class);
+        this.swanMybatisProperties = this.applicationContext.getBean(SwanMybatisProperties.class);
 
         this.freemarkerTemplate = this.applicationContext.getBean("freemarkerTemplateInside", IFreemarkerTemplate.class);
     }
@@ -154,10 +154,12 @@ public class BaseMapperStatementCreator {
 
         String mapperXml = this.freemarkerTemplate.getContent(BASE_MAPPER_FTL, dateMap);
 
-        if (this.sbootMybatisProperties != null) {
-            SbootMybatisProperties.LogConfig logConfig = this.sbootMybatisProperties.getLog();
-            if (logConfig.isEnable() && Boolean.TRUE.equals(logConfig.getMapperConfig().get(namespace))) {
-                String mapperPath = StringUtils.hasText(logConfig.getPath()) ? logConfig.getPath() + "/" : "";
+        if (this.swanMybatisProperties != null && swanMybatisProperties.getLogMapper().isEnable()) {
+            SwanMybatisProperties.LogMapper logMapper = this.swanMybatisProperties.getLogMapper();
+            int idx = namespace.lastIndexOf(".");
+            String simpleMapper = namespace.substring(idx + 1, namespace.length());
+            if (logMapper.getMappers().contains(simpleMapper)) {
+                String mapperPath = StringUtils.hasText(logMapper.getPath()) ? logMapper.getPath() + "/" : "";
                 mapperPath += namespace + ".xml";
                 TxtFileUtil.writeFile(mapperPath , mapperXml);
                 log.info("动态生成 Mapper 映射文件: {}", mapperPath);

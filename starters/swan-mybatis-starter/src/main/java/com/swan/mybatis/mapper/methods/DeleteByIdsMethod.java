@@ -1,6 +1,5 @@
 package com.swan.mybatis.mapper.methods;
 
-import com.sun.istack.internal.NotNull;
 
 import java.util.Collection;
 
@@ -14,6 +13,6 @@ public interface DeleteByIdsMethod<ID, E>  extends BaseMethod {
      * @param idList 主键id 列表，不为空
      * @return 删除的数据总数
      */
-    public int deleteByIds(@NotNull Collection<ID> idList);
+    public int deleteByIds(Collection<ID> idList);
 
 }

@@ -11,6 +11,10 @@ mybatis:
   type-aliases-package: com.swan.mybatis.po
   configuration:
     map-underscore-to-camel-case: true
+  log-mapper:
+    enable: true
+    path: target
+    mappers: IAutoMapper
 
 
 server:
@@ -19,13 +23,3 @@ logging:
   level:
     root: info
     com.swan.test.mybatis.mapper: debug
-sboot:
-  mybatis:
-    log:
-      enable: true
-      mapperConfig:
-        com.swan.test.mybatis.mapper.IAutoDelMapper: true
-        com.swan.test.mybatis.mapper.IAutoDelVersionMapper: true
-        com.swan.test.mybatis.mapper.IAutoMapper: true
-        com.swan.test.mybatis.mapper.IAutoVersionMapper: true
-        com.swan.test.mybatis.mapper.CustomMethodMapper: true

@@ -1,7 +1,7 @@
 <sql id="condition">
     <if test="condition != null and condition.criterionList.size > 0">
         and (
-        <trim suffixOverrides = "and | or">
+        <trim prefixOverrides = "and|or">
             <foreach collection="condition.criterionList" item="criterion" >
                 <if test="criterion.operatorParams == 0">
                     ${r'${'}criterion.logicOp} ${r'${'}criterion.column} ${r'${'}criterion.operator}

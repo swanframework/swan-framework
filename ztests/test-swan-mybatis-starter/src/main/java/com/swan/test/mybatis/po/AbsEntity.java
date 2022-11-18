@@ -1,4 +1,4 @@
- package com.swan.test.mybatis.codes;
+ package com.swan.test.mybatis.po;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import com.swan.mybatis.anno.Id;
 
 import java.util.Date;
 
- /** 基础信息-地址
+ /** 基础信息
  * @author zongf
  * @date 2021-03-01
  */
