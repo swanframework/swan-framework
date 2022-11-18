@@ -3,7 +3,7 @@ package com.swan.mybatis.enums;
 import java.util.Arrays;
 import java.util.Optional;
 
-/** Id生成类型
+/** 字段加密策略
  * @author zongf
  * @date 2020-11-27
  */
@@ -13,7 +13,6 @@ public enum EncryptType {
     AES(2, "AES 加密"),
     DES(3, "DES 加密"),
     CUSTOMER(5, "自定义"),
-
     ;
 
     private Integer code;

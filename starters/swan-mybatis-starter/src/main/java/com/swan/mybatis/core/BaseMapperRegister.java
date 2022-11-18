@@ -42,7 +42,9 @@ public class BaseMapperRegister implements ApplicationListener<ContextRefreshedE
             interceptors.setAccessible(true);
             List list = (List) interceptors.get(interceptorChain);
 
+            // 添加字段拦截器，完成 @AutoTime, @Encrypt 等字段自动赋值
             list.add(0, new EntityFieldInterceptor());
+            // 添加 pageHelper 插件
             list.add(1, new PageInterceptor());
         } catch (Exception ex) {
             throw new RuntimeException("Mybatis 字段拦截器注册失败!", ex);

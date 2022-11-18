@@ -3,7 +3,7 @@ package com.swan.mybatis.enums;
 import java.util.Arrays;
 import java.util.Optional;
 
-/** Id生成类型
+/** Id 生成策略
  * @author zongf
  * @date 2020-11-27
  */

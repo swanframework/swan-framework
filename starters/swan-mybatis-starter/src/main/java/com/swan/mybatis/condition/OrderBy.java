@@ -2,7 +2,7 @@ package com.swan.mybatis.condition;
 
 /** 排序规则
  * @author zongf
- * @date 2021-01-09
+ * @since 2021-01-09
  */
 public class OrderBy {
 

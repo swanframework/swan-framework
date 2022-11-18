@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.Arrays;
 import java.util.List;
 
-/**
+/** 查询条件
  * @author zongf
  * @since 2022-11-12
  **/
@@ -37,6 +37,7 @@ public class Criterion {
     // list 参数列表
     private List<Object> listValues;
 
+    // 逻辑运算符: and | or
     private String logicOp;
 
     private static Criterion init(String logicOp, String column, String operator) {

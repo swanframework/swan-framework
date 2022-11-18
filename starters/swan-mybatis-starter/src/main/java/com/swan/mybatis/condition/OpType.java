@@ -1,5 +1,9 @@
 package com.swan.mybatis.condition;
 
+/** 关系运算符
+ * @author zongf
+ * @since 2022-11-18
+ */
 public enum OpType {
 
     equals("="),
@@ -8,7 +12,6 @@ public enum OpType {
     lessOrEquals("<="),
     greaterThan(">"),
     greaterOrEquals(">="),
-
 
     in("in"),
     between("between"),

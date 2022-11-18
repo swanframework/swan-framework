@@ -10,14 +10,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/** 方法标识
+/** 方法标识，判断需要生成那些方法
  * @author zongf
  * @date 2021-02-26
  */
 @Setter @Getter @ToString
 public class MapperMethodsMetaInfo {
 
-    List<String> methodNames = new ArrayList<>();
+    // 方法名
+    private List<String> methodNames;
 
     public MapperMethodsMetaInfo(Class type) {
         Set<Class> interfaces = InterfaceUtil.getInterfaces(type);

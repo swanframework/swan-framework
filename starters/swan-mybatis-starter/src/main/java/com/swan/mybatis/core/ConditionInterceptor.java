@@ -1,6 +1,7 @@
 package com.swan.mybatis.core;
 
 import com.swan.core.exception.SwanBaseException;
+import com.swan.mybatis.anno.Delete;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/** 字段拦截器
+/** 用自定义 mapper 中的 condition 片段，替换为内置的 condition 片段，已废弃
  * @author zongf
  * @date 2020-01-07
  */
@@ -36,6 +37,7 @@ import java.util.Map;
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class}),
 })
+@Deprecated
 public class ConditionInterceptor implements Interceptor {
 
     @Override
@@ -54,8 +56,6 @@ public class ConditionInterceptor implements Interceptor {
             System.out.println("声明类:" + declaringClass);
 
             Object pm = paramMap.get("condition");
-
-
 
                 if (pm instanceof ICondition) {
                     String conditionName = pm.getClass().getSimpleName();

@@ -4,5 +4,6 @@ package com.swan.mybatis.core;
  * @author zongf
  * @date 2021-01-12
  */
+@Deprecated
 public interface ICondition {
 }

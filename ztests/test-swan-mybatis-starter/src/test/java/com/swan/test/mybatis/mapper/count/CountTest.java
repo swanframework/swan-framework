@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Assertions;
  * @author zongf
  * @date 2021-01-10
  */
-public class BatchCountTest extends BaseAutoMapperTest {
+public class CountTest extends BaseAutoMapperTest {
 
     @Test
     public void name() {
