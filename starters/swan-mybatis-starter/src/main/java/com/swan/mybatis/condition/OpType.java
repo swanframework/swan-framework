@@ -8,26 +8,32 @@ public enum OpType {
 
     equals("="),
     notEquals("!="),
+
     lessThan("<"),
     lessOrEquals("<="),
+
     greaterThan(">"),
     greaterOrEquals(">="),
 
-    in("in"),
+    /** 左右闭区间 */
     between("between"),
-    like("like"),
-    leftLike("like"),
-    rightLike("like"),
-
-    notIn("not in"),
+    /** 左右开区间 */
     notBetween("not between"),
+
+    in("in"),
+    notIn("not in"),
+
+    like("like"),
     notLike("not like"),
+
+    leftLike("like"),
     leftNotLike("not like"),
+
+    rightLike("like"),
     rightNotLike("not like"),
 
     isNull("is null"),
     isNotNull("is not null"),
-
     ;
 
     private String operator;

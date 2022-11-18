@@ -47,9 +47,4 @@ public class BaseAutoMapperTest {
         System.out.println("**************************************************************************************************\n");
     }
 
-    @Test
-    public void test() {
-        System.out.println("hello");
-    }
-
 }
