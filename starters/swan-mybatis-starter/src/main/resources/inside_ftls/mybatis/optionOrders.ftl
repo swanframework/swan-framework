@@ -1,8 +1,8 @@
-<sql id="selectOrders">
+<sql id="optionOrders">
     order by
     <choose>
-        <when test="option.length > 0 and option[0].orderBys.size > 0">
-            <foreach collection="option[0].orderBys" separator="," item="rule">
+        <when test="options.length > 0 and options[0].orderBys.size > 0">
+            <foreach collection="options[0].orderBys" separator="," item="rule">
                 ${r'${rule.column} ${rule.type}'}
             </foreach>
         </when>

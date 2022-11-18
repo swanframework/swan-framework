@@ -17,16 +17,16 @@
     </sql>
 
     <!-- 查询条件 -->
-    <#include "./selectCondition.ftl" />
+    <#include "condition.ftl" />
 
     <!-- 查询字段 -->
-    <#include "./selectFields.ftl" />
+    <#include "optionFields.ftl" />
 
     <!-- 搜索排序 -->
-    <#include "./selectOrders.ftl" />
+    <#include "optionOrders.ftl" />
 
     <!-- 分页 -->
-    <#include "./selectLimit.ftl" />
+    <#include "optionLimit.ftl" />
 
     <!-- 新增方法 -->
     <#if methodsInfo.methodNames?seq_contains("insert")>

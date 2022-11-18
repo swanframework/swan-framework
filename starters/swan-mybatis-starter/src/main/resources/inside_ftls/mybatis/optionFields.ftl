@@ -1,10 +1,10 @@
-<sql id="selectFields">
+<sql id="optionFields">
     <choose>
-        <when test="option.length > 0 and option[0].columns.size > 0">
-            <if test="option[0].distinct">
+        <when test="options.length > 0 and options[0].columns.size > 0">
+            <if test="options[0].distinct">
                 distinct
             </if>
-            <foreach collection="option[0].columns" separator="," item="column">
+            <foreach collection="options[0].columns" separator="," item="column">
                 ${r'${'}column}
             </foreach>
         </when>
