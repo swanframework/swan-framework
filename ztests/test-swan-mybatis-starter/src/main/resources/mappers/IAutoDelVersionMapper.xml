@@ -5,11 +5,6 @@
 <mapper namespace="com.swan.test.mybatis.mapper.IAutoDelVersionMapper">
 
 
-    <sql id="condition">
-        <if test="condition.name != null">
-            and name like concat(#{condition.name}, "%")
-        </if>
-    </sql>
 
     <delete id="truncate">
         truncate  t_auto_del_version

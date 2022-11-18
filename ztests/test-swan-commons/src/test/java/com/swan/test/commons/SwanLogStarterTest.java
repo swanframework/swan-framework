@@ -23,7 +23,6 @@ class SwanLogStarterTest {
         String xml = "logback-spring.xml";
         URL resource = cl.getResource(xml);
         System.out.println(cl.getResource("logback-spring.xml").toString());
-        System.out.println(cl.getResource("logback-test-spring.xml").toString());
     }
 
     @Test

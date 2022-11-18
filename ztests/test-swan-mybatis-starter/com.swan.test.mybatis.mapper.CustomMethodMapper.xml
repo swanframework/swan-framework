@@ -11,65 +11,92 @@
         id
              ,name
              ,age
+             ,create_time
+             ,update_time
         
         
     </sql>
 
-    <sql id="WhereCondition">
-<if test="condition != null">
-    <foreach collection="condition.whereList" item="criterion" separator="and" >
-        <trim prefix="(" suffix=")" prefixOverrides="and" >
-                <choose >
-                    <when test="criterion.noParamOp" >
-                        and ${criterion.column} ${criterion.operator}
-                    </when>
-                    <when test="criterion.singleParamOp" >
-                        and  ${criterion.column} ${criterion.operator} #{criterion.value}
-                    </when>
-                    <when test="criterion.secondParamOp" >
-                        and  ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
-                    </when>
-                    <when test="criterion.listParamOp" >
-                        and  ${criterion.column} ${criterion.operator}
-                        <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
-                            #{itemValue}
-                        </foreach>
-                    </when>
-                </choose>
-        </trim>
-    </foreach>
-</if>    </sql>
-
-
+    <!-- 查询条件 -->
+<sql id="condition">
+    <if test="condition != null">
+        <foreach collection="condition.criterionList" item="criterion" >
+            <if test="criterion.operatorParams == 0">
+                ${criterion.logicOp} ${criterion.column} ${criterion.operator}
+            </if>
+            <if test="criterion.operatorParams == 1">
+                ${criterion.logicOp} ${criterion.column} ${criterion.operator} #{criterion.value}
+            </if>
+            <if test="criterion.operatorParams == 2">
+                ${criterion.logicOp} ${criterion.column} ${criterion.operator} #{criterion.value} and #{criterion.secondValue}
+            </if>
+            <if test="criterion.operatorParams == 3">
+                ${criterion.logicOp} ${criterion.column} ${criterion.operator}
+                <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                    #{itemValue}
+                </foreach>
+            </if>
+        </foreach>
+    </if>
+</sql>
+    <!-- 查询字段 -->
+<sql id="selectFields">
+    <choose>
+        <when test="option.length > 0 and option[0].columns.size > 0">
+            <if test="option[0].distinct">
+                distinct
+            </if>
+            <foreach collection="option[0].columns" separator="," item="column">
+                ${column}
+            </foreach>
+        </when>
+        <otherwise>
+            <include refid="columns"/>
+        </otherwise>
+    </choose>
+</sql>
+    <!-- 搜索排序 -->
+<sql id="selectOrders">
+    order by
+    <choose>
+        <when test="option.length > 0 and option[0].orderBys.size > 0">
+            <foreach collection="option[0].orderBys" separator="," item="rule">
+                ${rule.column} ${rule.type}
+            </foreach>
+        </when>
+        <otherwise>
+            id asc
+        </otherwise>
+    </choose>
+</sql>
+    <!-- 分页 -->
+<sql id="selectLimit">
+    <if test="option.length > 0 and option[0].limit != null">
+        limit
+        <if test="option[0].offset">
+            ${optio[0]n.offset}
+        </if>
+        ${option[0].limit}
+    </if>
+</sql>
     <!-- 新增方法 -->
 
     <!-- 删除方法 -->
-
 
     <!-- 更新方法 -->
 
     <!-- 查询方法 -->
 
 
-
-<select id="selectListInIds" resultType="com.swan.test.mybatis.po.AutoEntity">
-    select <include refid="columns"/>
+<select id="selectListByIds" resultType="com.swan.test.mybatis.po.AutoEntity">
+    select <include refid="selectFields" />
     from <include refid="tableName"/>
     where id in
         <foreach collection="idList" open="(" separator="," close=")" item="id">
             #{id}
         </foreach>
-    order by
-    <if test="orderByList.length > 0">
-        <foreach collection="orderByList" separator="," item="rule">
-            ${rule.column} ${rule.type}
-        </foreach>
-    </if>
-    <if test="orderByList.length == 0">
-        id asc
-    </if>
+    <include refid="selectOrders"/>
 </select>
-
 
 
     <!-- 统计方法 -->

@@ -29,7 +29,7 @@ public class CountTest extends BaseAutoMapperTest {
         Assertions.assertEquals(demoList.size(), num);
 
         // 预期查询数量和插入数量相同
-        Integer count = this.autoMapper.count();
+        Integer count = this.autoMapper.count(null);
         Assertions.assertEquals(demoList.size(), count);
     }
 

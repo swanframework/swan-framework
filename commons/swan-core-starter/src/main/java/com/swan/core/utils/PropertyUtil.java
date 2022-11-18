@@ -1,6 +1,5 @@
 package com.swan.core.utils;
 
-import com.sun.istack.internal.NotNull;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -33,7 +32,7 @@ public class PropertyUtil {
      * @return T
      * @since 2022-11-12
      */
-    public static <T> T getOrDefault(Supplier<T> getter, @NotNull T notExpect, T defaultValue) {
+    public static <T> T getOrDefault(Supplier<T> getter, T notExpect, T defaultValue) {
         T result = getter.get();
 
         if (Objects.isNull(notExpect)) {

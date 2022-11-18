@@ -2,7 +2,6 @@ package com.swan.test.mybatis.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.swan.mybatis.mapper.methods.SelectListByIdsMethod;
-import com.swan.test.mybatis.condition.AutoCondition;
 import com.swan.test.mybatis.po.AutoEntity;
 
 /**

@@ -1,31 +1,34 @@
-package com.swan.mybatis.enums;
+package com.swan.mybatis.condition;
 
 public enum OpType {
 
+    equals("="),
+    notEquals("!="),
+    lessThan("<"),
+    lessOrEquals("<="),
+    greaterThan(">"),
+    greaterOrEquals(">="),
 
-    eq("="),
-    le("<="),
-    ge(">="),
-    lt("<"),
-    gt("="),
 
     in("in"),
     between("between"),
     like("like"),
+    leftLike("like"),
+    rightLike("like"),
 
     notIn("not in"),
     notBetween("not between"),
     notLike("not like"),
-
-    groupBy("group by"),
-    having("having"),
+    leftNotLike("not like"),
+    rightNotLike("not like"),
 
     isNull("is null"),
-    notNull("is not null")
+    isNotNull("is not null"),
 
     ;
 
     private String operator;
+
     OpType(String operator){
         this.operator = operator;
     }

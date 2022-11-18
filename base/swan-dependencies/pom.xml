@@ -34,6 +34,8 @@
         <mybatis.pagehelper.verion>5.2.1</mybatis.pagehelper.verion>
         <mysql.connector.version>8.0.25</mysql.connector.version>
 
+        <jacoco.version>0.8.8</jacoco.version>
+        <maven.surefire.version>2.22.2</maven.surefire.version>
     </properties>
 
     <dependencyManagement>
@@ -98,6 +100,30 @@
                 <version>${mysql.connector.version}</version>
             </dependency>
 
+            <!-- jacoco 代码覆盖率测试 -->
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco.version}</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

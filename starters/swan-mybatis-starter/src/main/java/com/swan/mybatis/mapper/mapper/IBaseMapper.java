@@ -8,35 +8,24 @@ import com.swan.mybatis.mapper.methods.*;
  */
 public interface IBaseMapper<ID, E> extends
 
-
         InsertListMethod<ID, E>,
         InsertMethod<ID, E>,
         InsertNotNullMethod<ID, E>,
 
         DeleteMethod<ID, E>,
-        DeleteListMethod<ID, E>,
         DeleteByIdMethod<ID, E>,
         DeleteByIdsMethod<ID, E>,
-        DeleteOnConditionMethod<ID, E>,
 
         UpdateMethod<ID, E>,
         UpdateByIdMethod<ID, E>,
-        UpdateFieldsByIdMethod<ID, E>,
-        UpdateFieldsMethod<ID, E>,
         UpdateNotNullByIdMethod<ID, E>,
         UpdateNotNullMethod<ID, E>,
-        UpdateOnConditionMethod<ID, E>,
 
         SelectByIdMethod<ID, E>,
-        SelectOnConditionMethod<ID, E>,
+        SelectMethod<ID, E>,
         SelectListByIdsMethod<ID, E>,
-        SelectListOnConditionMethod<ID, E>,
-        SelectFieldsByIdMethod<ID, E>,
-        SelectFieldsByIdsMethod<ID, E>,
-        SelectFieldsOnConditionMethod<ID, E>,
-        SelectAllMethod<ID, E>,
+        SelectListMethod<ID, E>,
 
-        CountMethod<ID, E>,
-        CountOnConditionMethod<ID, E>
+        CountMethod<ID, E>
 {
 }

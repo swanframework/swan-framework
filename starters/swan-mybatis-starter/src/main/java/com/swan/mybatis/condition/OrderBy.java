@@ -1,4 +1,4 @@
-package com.swan.mybatis.mapper.params;
+package com.swan.mybatis.condition;
 
 /** 排序规则
  * @author zongf

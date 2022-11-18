@@ -2,9 +2,10 @@ package com.swan.test.mybatis.mapper.page;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
- 
+
+import com.swan.mybatis.condition.Condition;
+import com.swan.mybatis.condition.OpType;
 import org.junit.jupiter.api.Test;
-import com.swan.test.mybatis.condition.AutoCondition;
 import com.swan.test.mybatis.mapper.AutoEntityFactory;
 import com.swan.test.mybatis.BaseAutoMapperTest;
 import com.swan.test.mybatis.po.AutoEntity;
@@ -22,19 +23,20 @@ import org.junit.jupiter.api.Assertions;
 public class PageHelperTest extends BaseAutoMapperTest {
 
     @Test
-    public void autoMapper(){
+    public void selectList(){
         List<AutoEntity> demoList = AutoEntityFactory.createAutoEntity(10, "zhang", "lisi");
         int num = this.autoMapper.insertList(demoList);
         Assertions.assertEquals(demoList.size(), num);
 
-         AutoCondition condition = new AutoCondition("lisi");
+        Condition condition = Condition.newInstance()
+                .and(AutoEntity.Fields.name, OpType.equals, "lisi");
 
         Page<AutoEntity> pager = PageHelper
                 .startPage(-1, 2)
                 .count(true)
                 .reasonable(false)
                 .pageSizeZero(false)
-                .doSelectPage(() -> this.autoMapper.selectListOnCondition(condition))
+                .doSelectPage(() -> this.autoMapper.selectList(condition,null))
                 ;
 
         System.out.println(pager);
