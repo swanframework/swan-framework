@@ -16,10 +16,17 @@
         <#if entityMeta.versionField??>,${entityMeta.versionField.columnName}</#if>
     </sql>
 
-    <sql id="WhereCondition">
-        <#include "./condition.ftl" />
-    </sql>
+    <!-- 查询条件 -->
+    <#include "./selectCondition.ftl" />
 
+    <!-- 查询字段 -->
+    <#include "./selectFields.ftl" />
+
+    <!-- 搜索排序 -->
+    <#include "./selectOrders.ftl" />
+
+    <!-- 分页 -->
+    <#include "./selectLimit.ftl" />
 
     <!-- 新增方法 -->
     <#if methodsInfo.methodNames?seq_contains("insert")>
@@ -54,21 +61,6 @@
             <#include "delete/deleteById.ftl"/>
         </#if>
     </#if>
-    <#if methodsInfo.methodNames?seq_contains("deleteByIds")>
-        <#if entityMeta.deleteField??>
-            <#include "remove/deleteByIds.ftl"/>
-        <#else >
-            <#include "delete/deleteByIds.ftl"/>
-        </#if>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("deleteOnCondition")>
-        <#if entityMeta.deleteField??>
-            <#include "remove/deleteOnCondition.ftl"/>
-        <#else >
-            <#include "delete/deleteOnCondition.ftl"/>
-        </#if>
-    </#if>
-
 
     <!-- 更新方法 -->
     <#if methodsInfo.methodNames?seq_contains("update")>
@@ -77,20 +69,11 @@
     <#if methodsInfo.methodNames?seq_contains("updateById")>
         <#include "update/updateById.ftl"/>
     </#if>
-    <#if methodsInfo.methodNames?seq_contains("updateFieldsById")>
-        <#include "update/updateFieldsById.ftl"/>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("updateFields")>
-        <#include "update/updateFields.ftl"/>
-    </#if>
     <#if methodsInfo.methodNames?seq_contains("updateNotNullById")>
         <#include "update/updateNotNullById.ftl"/>
     </#if>
     <#if methodsInfo.methodNames?seq_contains("updateNotNull")>
         <#include "update/updateNotNull.ftl"/>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("updateOnCondition")>
-        <#include "update/updateOnCondition.ftl"/>
     </#if>
 
     <!-- 查询方法 -->
@@ -98,38 +81,21 @@
     <#if methodsInfo.methodNames?seq_contains("selectById")>
         <#include "select/selectById.ftl"/>
     </#if>
-    <#if methodsInfo.methodNames?seq_contains("selectOnCondition")>
-        <#include "select/selectOnCondition.ftl"/>
-    </#if>
-
     <#if methodsInfo.methodNames?seq_contains("selectListByIds")>
         <#include "select/selectListByIds.ftl"/>
     </#if>
 
-    <#if methodsInfo.methodNames?seq_contains("selectListOnCondition")>
-        <#include "select/selectListOnCondition.ftl"/>
+    <#if methodsInfo.methodNames?seq_contains("select")>
+        <#include "select/select.ftl"/>
     </#if>
 
-    <#if methodsInfo.methodNames?seq_contains("selectFieldsById")>
-        <#include "select/selectFieldsById.ftl"/>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("selectFieldsByIds")>
-        <#include "select/selectFieldsByIds.ftl"/>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("selectFieldsOnCondition")>
-        <#include "select/selectFieldsOnCondition.ftl"/>
-    </#if>
-
-    <#if methodsInfo.methodNames?seq_contains("selectAll")>
-        <#include "select/selectAll.ftl"/>
+    <#if methodsInfo.methodNames?seq_contains("selectList")>
+        <#include "select/selectList.ftl"/>
     </#if>
 
     <!-- 统计方法 -->
     <#if methodsInfo.methodNames?seq_contains("count")>
         <#include "count/count.ftl"/>
-    </#if>
-    <#if methodsInfo.methodNames?seq_contains("countOnCondition")>
-        <#include "count/countOnCondition.ftl"/>
     </#if>
 
 </mapper>

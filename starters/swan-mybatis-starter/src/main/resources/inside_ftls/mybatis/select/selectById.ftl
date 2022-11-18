@@ -1,6 +1,6 @@
 
 <select id="selectById" resultType="${entityMeta.className}">
-    select <include refid="columns"/>
+    select<include refid="selectFields" />
     from <include refid="tableName"/>
     where ${entityMeta.idField.columnName} = ${r'#{'}${entityMeta.idField.propertyName}}
     <#if entityMeta.deleteField??>
