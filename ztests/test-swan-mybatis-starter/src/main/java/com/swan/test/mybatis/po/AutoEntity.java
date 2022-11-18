@@ -9,6 +9,7 @@ import com.swan.mybatis.enums.IdGeneratorType;
 import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author zongf
@@ -26,6 +27,10 @@ public class AutoEntity implements Serializable {
 
     protected Integer age;
 
+    protected Date createTime;
+
+    protected Date updateTime;
+
     public AutoEntity() {
     }
 
@@ -36,6 +41,7 @@ public class AutoEntity implements Serializable {
     public AutoEntity(String name, Integer age) {
         this.name = name;
         this.age = age;
+        this.createTime = updateTime = new Date();
     }
 
 }
