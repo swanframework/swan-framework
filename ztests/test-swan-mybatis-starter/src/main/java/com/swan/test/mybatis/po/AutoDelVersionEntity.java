@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import com.swan.mybatis.anno.*;
 import com.swan.mybatis.enums.IdGeneratorType;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @Table(name = "t_auto_del_version")
 @Setter @Getter @ToString
+@FieldNameConstants
 public class AutoDelVersionEntity implements Serializable {
 
     @Id(generatorType = IdGeneratorType.AUTO_INC)

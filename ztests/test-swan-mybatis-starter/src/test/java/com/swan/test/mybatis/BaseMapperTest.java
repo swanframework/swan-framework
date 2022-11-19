@@ -6,10 +6,8 @@ import com.swan.test.mybatis.mapper.IAutoMapper;
 import com.swan.test.mybatis.mapper.IAutoVersionMapper;
 import org.junit.jupiter.api.BeforeEach;
 import com.swan.mybatis.anno.config.EnableAutoMapper;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.junit.jupiter.api.Assertions;
 import org.springframework.test.context.ActiveProfiles;
 
 /** 测试基础类
@@ -19,7 +17,7 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @EnableAutoMapper
 @ActiveProfiles("dev")
-public class BaseAutoMapperTest {
+public class BaseMapperTest {
 
     @Autowired
     protected IAutoMapper autoMapper;

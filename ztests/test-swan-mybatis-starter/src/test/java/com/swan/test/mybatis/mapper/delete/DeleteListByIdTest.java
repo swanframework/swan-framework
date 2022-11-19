@@ -4,7 +4,7 @@ package com.swan.test.mybatis.mapper.delete;
 import com.swan.core.constants.NumberConstant;
 import org.junit.jupiter.api.Test;
 import com.swan.test.mybatis.mapper.AutoEntityFactory;
-import com.swan.test.mybatis.BaseAutoMapperTest;
+import com.swan.test.mybatis.BaseMapperTest;
 import com.swan.test.mybatis.po.AutoDelEntity;
 import com.swan.test.mybatis.po.AutoDelVersionEntity;
 import com.swan.test.mybatis.po.AutoEntity;
@@ -12,13 +12,13 @@ import com.swan.test.mybatis.po.AutoVersionEntity;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Assertions;
 /**
  * @author zongf
  * @date 2021-01-10
  */
-public class DeleteListByIdTest extends BaseAutoMapperTest {
+public class DeleteListByIdTest extends BaseMapperTest {
 
     @Test
     public void autoMapper(){

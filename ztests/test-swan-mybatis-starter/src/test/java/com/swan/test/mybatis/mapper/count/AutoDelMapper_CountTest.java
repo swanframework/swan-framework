@@ -6,7 +6,7 @@ import com.swan.mybatis.condition.Condition;
 import com.swan.mybatis.condition.OpType;
 import org.junit.jupiter.api.Test;
 import com.swan.test.mybatis.mapper.AutoEntityFactory;
-import com.swan.test.mybatis.BaseAutoMapperTest;
+import com.swan.test.mybatis.BaseMapperTest;
 import com.swan.test.mybatis.po.AutoEntity;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Assertions;
  * @author zongf
  * @date 2021-01-10
  */
-public class AutoMapper_CountTest extends BaseAutoMapperTest {
+public class AutoDelMapper_CountTest extends BaseMapperTest {
 
     @Test
     public void none_param() {

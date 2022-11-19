@@ -1,7 +1,7 @@
 package com.swan.test.mybatis.mapper.delete;
 
 
-import com.swan.test.mybatis.BaseAutoMapperTest;
+import com.swan.test.mybatis.BaseMapperTest;
 import com.swan.test.mybatis.po.AutoDelEntity;
 import com.swan.test.mybatis.po.AutoDelVersionEntity;
 import com.swan.test.mybatis.po.AutoEntity;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  * @author zongf
  * @date 2021-01-10
  */
-public class DeleteTest extends BaseAutoMapperTest {
+public class DeleteTest extends BaseMapperTest {
 
     @Test
     public void autoMapper(){

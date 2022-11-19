@@ -5,7 +5,7 @@ import com.swan.core.constants.NumberConstant;
 import com.swan.mybatis.condition.Condition;
 import com.swan.mybatis.condition.OpType;
 import com.swan.mybatis.condition.SelectOption;
-import com.swan.test.mybatis.BaseAutoMapperTest;
+import com.swan.test.mybatis.BaseMapperTest;
 import com.swan.test.mybatis.mapper.AutoEntityFactory;
 import com.swan.test.mybatis.po.AutoEntity;
 import org.junit.jupiter.api.Assertions;
@@ -20,7 +20,7 @@ import static com.swan.test.mybatis.po.AutoEntity.Fields.*;
  * @author zongf
  * @date 2021-01-10
  */
-public class SelectListTest extends BaseAutoMapperTest {
+public class SelectListTest extends BaseMapperTest {
 
     @Test
     public void noneParam() {

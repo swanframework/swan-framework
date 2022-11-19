@@ -7,6 +7,7 @@ import com.swan.mybatis.anno.Delete;
 import com.swan.mybatis.anno.Id;
 import com.swan.mybatis.anno.Table;
 import com.swan.mybatis.enums.IdGeneratorType;
+import lombok.experimental.FieldNameConstants;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  */
 @Table(name = "t_auto_del")
 @Setter @Getter @ToString
+@FieldNameConstants
 public class AutoDelEntity implements Serializable {
 
     @Id(generatorType = IdGeneratorType.AUTO_INC)
