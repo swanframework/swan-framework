@@ -74,7 +74,7 @@ public class DeleteListByIdTest extends BaseMapperTest {
         Assertions.assertEquals(DEL_NO, entityList.get(0).getDel());
 
         // 验证前两条数据还存在，只是删除标志
-        AutoDelEntity autoDelEntity = this.autoDelMapper.locateById(entityList.get(0).getId());
+        AutoDelEntity autoDelEntity = this.autoDelMapper.locateById(demoList.get(0).getId());
         Assertions.assertNotNull(autoDelEntity);
         Assertions.assertEquals(DEL_YES, autoDelEntity.getDel());
     }
@@ -102,7 +102,7 @@ public class DeleteListByIdTest extends BaseMapperTest {
         Assertions.assertEquals(idList.size(), delNum);
 
         // 验证数据库中只剩下一条记录
-        List<AutoEntity> entityList = this.autoMapper.selectList(null);
+        List<AutoVersionEntity> entityList = this.autoVersionMapper.selectList(null);
         Assertions.assertEquals(NumberConstant.ONE, entityList.size());
         Assertions.assertEquals(demoList.get(2).getId(), entityList.get(0).getId());
 
@@ -136,7 +136,7 @@ public class DeleteListByIdTest extends BaseMapperTest {
         Assertions.assertEquals(DEL_NO, entityList.get(0).getDel());
 
         // 验证前两条数据还存在，只是修改了删除标志和版本号
-        AutoDelVersionEntity autoDelEntity = this.autoDelVersionMapper.locateById(entityList.get(0).getId());
+        AutoDelVersionEntity autoDelEntity = this.autoDelVersionMapper.locateById(demoList.get(0).getId());
         Assertions.assertNotNull(autoDelEntity);
         Assertions.assertEquals(DEL_YES, autoDelEntity.getDel());
         Assertions.assertEquals(START_VERSION + 1, autoDelEntity.getVersion());

@@ -2,8 +2,8 @@ package com.swan.mybatis.core;
 
 import org.apache.ibatis.mapping.SqlCommandType;
 import com.swan.mybatis.anno.Id;
-import com.swan.mybatis.anno.interceptor.AutoTime;
-import com.swan.mybatis.anno.interceptor.ForceNull;
+import com.swan.mybatis.anno.AutoTime;
+import com.swan.mybatis.anno.ForceNull;
 import com.swan.mybatis.enums.IdGeneratorType;
 import com.swan.mybatis.field.handler.AbsFieldHandler;
 import com.swan.mybatis.field.handler.AutoTimeFieldHandler;

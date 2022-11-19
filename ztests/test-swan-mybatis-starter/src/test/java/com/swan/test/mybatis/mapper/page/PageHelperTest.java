@@ -36,7 +36,7 @@ public class PageHelperTest extends BaseMapperTest {
                 .count(true)
                 .reasonable(false)
                 .pageSizeZero(false)
-                .doSelectPage(() -> this.autoMapper.selectList(condition,null))
+                .doSelectPage(() -> this.autoMapper.selectList(condition))
                 ;
 
         System.out.println(pager);

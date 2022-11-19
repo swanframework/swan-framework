@@ -17,12 +17,20 @@ public class OrderBy {
         this.type = orderType;
     }
 
-    public static OrderBy asc(String orderColumn) {
-        return new OrderBy(orderColumn, "asc");
+    /** 降序排列
+     * @param column 字段
+     * @return OrderBy
+     */
+    public static OrderBy asc(String column) {
+        return new OrderBy(column, "asc");
     }
 
-    public static OrderBy desc(String orderColumn) {
-        return new OrderBy(orderColumn, "desc");
+    /** 升序排列
+     * @param column 字段
+     * @return OrderBy
+     */
+    public static OrderBy desc(String column) {
+        return new OrderBy(column, "desc");
     }
 
 }

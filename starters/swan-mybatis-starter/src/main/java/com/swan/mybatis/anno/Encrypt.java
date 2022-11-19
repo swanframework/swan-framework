@@ -1,4 +1,4 @@
-package com.swan.mybatis.anno.interceptor;
+package com.swan.mybatis.anno;
 
 
 import com.swan.mybatis.enums.IdGeneratorType;

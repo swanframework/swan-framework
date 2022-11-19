@@ -6,23 +6,29 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/** 查询选择
  * @author zongf
  * @since 2022-11-18
  **/
 @Getter
 public class SelectOption {
 
+    // 是否去重
     private boolean distinct;
 
+    // 要查询的属性列表
     private List<String> fields;
 
+    // 查询的列名
     private List<String> columns;
 
+    // 排序规则
     private List<OrderBy> orderBys;
 
+    // 物理分页偏移量
     private Integer offset;
 
+    // 最多查询数量
     private Integer limit;
 
     private SelectOption() {

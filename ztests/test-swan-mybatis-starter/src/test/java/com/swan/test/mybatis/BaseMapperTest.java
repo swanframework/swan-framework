@@ -5,7 +5,7 @@ import com.swan.test.mybatis.mapper.IAutoDelVersionMapper;
 import com.swan.test.mybatis.mapper.IAutoMapper;
 import com.swan.test.mybatis.mapper.IAutoVersionMapper;
 import org.junit.jupiter.api.BeforeEach;
-import com.swan.mybatis.anno.config.EnableAutoMapper;
+import com.swan.mybatis.config.EnableAutoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;

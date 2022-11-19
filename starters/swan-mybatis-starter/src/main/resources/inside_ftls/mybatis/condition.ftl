@@ -3,18 +3,18 @@
         and (
         <trim prefixOverrides = "and|or">
             <foreach collection="condition.criterionList" item="criterion" >
-                <if test="criterion.operatorParams == 0">
+                <if test="criterion.operatorParamType == 0">
                     ${r'${'}criterion.logicOp} ${r'${'}criterion.column} ${r'${'}criterion.operator}
                 </if>
-                <if test="criterion.operatorParams == 1">
+                <if test="criterion.operatorParamType == 1">
                     ${r'${'}criterion.logicOp} ${r'${'}criterion.column} ${r'${'}criterion.operator} ${r'#{'}criterion.value}
                 </if>
-                <if test="criterion.operatorParams == 2">
+                <if test="criterion.operatorParamType == 2">
                     ${r'${'}criterion.logicOp} ${r'${'}criterion.column} ${r'${'}criterion.operator} ${r'#{'}criterion.value} and ${r'#{'}criterion.secondValue}
                 </if>
-                <if test="criterion.operatorParams == 3">
+                <if test="criterion.operatorParamType == 3">
                     ${r'${'}criterion.logicOp} ${r'${'}criterion.column} ${r'${'}criterion.operator}
-                    <foreach collection="criterion.listValues" item="itemValue" open="(" close=")" separator="," >
+                    <foreach collection="criterion.values" item="itemValue" open="(" close=")" separator="," >
                         ${r'#{'}itemValue}
                     </foreach>
                 </if>

@@ -1,15 +1,15 @@
-package com.swan.mybatis.anno.interceptor;
+package com.swan.mybatis.anno;
 
 import java.lang.annotation.*;
 
-/** 自动维护时间
+/** 强制赋值为null
  * @author zongf
  * @date 2020-11-27
  */
 @Documented
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AutoTime {
+public @interface ForceNull {
 
     /** 插入时强制设置为null */
     boolean onCreate() default false;

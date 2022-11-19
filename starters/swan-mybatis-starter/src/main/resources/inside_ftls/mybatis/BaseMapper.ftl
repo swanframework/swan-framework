@@ -47,11 +47,11 @@
             <#include "delete/delete.ftl"/>
         </#if>
     </#if>
-    <#if methodsInfo.methodNames?seq_contains("deleteList")>
+    <#if methodsInfo.methodNames?seq_contains("deleteByIds")>
         <#if entityMeta.deleteField??>
-            <#include "remove/deleteList.ftl"/>
+            <#include "remove/deleteByIds.ftl"/>
         <#else >
-            <#include "delete/deleteList.ftl"/>
+            <#include "delete/deleteByIds.ftl"/>
         </#if>
     </#if>
     <#if methodsInfo.methodNames?seq_contains("deleteById")>
