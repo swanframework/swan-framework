@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2020-12-11
  */
 @Setter @Getter
-@ConfigurationProperties(prefix = "sboot.web")
+@ConfigurationProperties(prefix = "swan.web")
 public class SwanWebProperties {
 
     /** 全局异常处理 */
