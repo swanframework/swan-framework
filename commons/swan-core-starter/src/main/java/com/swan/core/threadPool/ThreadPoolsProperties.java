@@ -11,7 +11,7 @@ import java.util.Map;
  * @since 2021-11-26
  */
 @Setter @Getter
-@ConfigurationProperties(prefix = "sboot.thread-pools")
+@ConfigurationProperties(prefix = "swan.thread-pools")
 public class ThreadPoolsProperties {
 
     /** 是否启用 声明式线程池配置 */

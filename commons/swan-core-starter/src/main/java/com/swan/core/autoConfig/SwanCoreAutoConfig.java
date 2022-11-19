@@ -4,6 +4,8 @@ import com.swan.core.components.ApplicationContextHolder;
 import com.swan.core.components.BeanFactoryHolder;
 import com.swan.core.components.ResourceScanner;
 import com.swan.core.threadPool.ThreadPoolRegister;
+import com.swan.core.threadPool.ThreadPoolsProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 2022-11-07
  **/
 @Configuration(proxyBeanMethods = false)
+@EnableConfigurationProperties(ThreadPoolsProperties.class)
 public class SwanCoreAutoConfig {
 
     @Bean
