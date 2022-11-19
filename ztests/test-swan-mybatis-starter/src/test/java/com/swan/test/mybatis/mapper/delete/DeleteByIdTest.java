@@ -1,6 +1,7 @@
 package com.swan.test.mybatis.mapper.delete;
 
  
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import com.swan.test.mybatis.BaseAutoMapperTest;
 import com.swan.test.mybatis.po.AutoDelEntity;
@@ -19,15 +20,26 @@ public class DeleteByIdTest extends BaseAutoMapperTest {
         AutoEntity demo = new AutoEntity("zhangsan", 20);
         boolean success = this.autoMapper.insert(demo);
 
+        // 验证插入成功
         Assertions.assertTrue(success);
         Assertions.assertNotNull(demo.getId());
 
+        // 验证可查询到
+        AutoEntity entity = this.autoMapper.selectById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
+
+        // 验证删除
         boolean delSuccess = this.autoMapper.deleteById(demo.getId());
         Assertions.assertTrue(delSuccess);
 
-        AutoEntity entity = this.autoMapper.selectById(demo.getId());
+        // 验证查询不到
+        entity = this.autoMapper.selectById(demo.getId());
         Assertions.assertNull(entity);
 
+        // 验证删除不存在的记录
+        success = this.autoMapper.deleteById(demo.getId());
+        Assertions.assertFalse(success);
     }
 
     @Test
@@ -36,15 +48,32 @@ public class DeleteByIdTest extends BaseAutoMapperTest {
         AutoDelEntity demo = new AutoDelEntity("zhangsan", 20);
         boolean success = this.autoDelMapper.insert(demo);
 
+        // 验证插入成功
         Assertions.assertTrue(success);
         Assertions.assertNotNull(demo.getId());
 
+        // 验证可查询到
+        AutoDelEntity entity = this.autoDelMapper.selectById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
+
+        // 伪删除
         boolean delSuccess = this.autoDelMapper.deleteById(demo.getId());
         Assertions.assertTrue(delSuccess);
 
-        AutoDelEntity entity = this.autoDelMapper.selectById(demo.getId());
+        // 验证通过普通方式已查询不出来
+        entity = this.autoDelMapper.selectById(demo.getId());
         Assertions.assertNull(entity);
 
+        // 通过物理查询，可查询到
+        entity = this.autoDelMapper.locateById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
+        Assertions.assertEquals(DEL_YES, entity.getDel());
+
+        // 验证删除不存在的记录
+        success = this.autoDelMapper.deleteById(demo.getId());
+        Assertions.assertFalse(success);
     }
 
     // 有@version 字段时, deleteById 也不会考虑版本号
@@ -54,16 +83,26 @@ public class DeleteByIdTest extends BaseAutoMapperTest {
         AutoVersionEntity demo = new AutoVersionEntity("zhangsan", 20);
         boolean success = this.autoVersionMapper.insert(demo);
 
+        // 验证插入成功
         Assertions.assertTrue(success);
         Assertions.assertNotNull(demo.getId());
         Assertions.assertNull(demo.getVersion());
 
+        AutoVersionEntity entity = this.autoVersionMapper.selectById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
+
         // 验证删除成功
-        AutoVersionEntity entity1 = this.autoVersionMapper.selectById(demo.getId());
-        success = this.autoVersionMapper.deleteById(entity1.getId());
+        success = this.autoVersionMapper.deleteById(demo.getId());
         Assertions.assertTrue(success);
-        AutoVersionEntity newEntity = this.autoVersionMapper.selectById(entity1.getId());
-        Assertions.assertNull(newEntity);
+
+        // 验证查询不到记录
+        entity = this.autoVersionMapper.selectById(demo.getId());
+        Assertions.assertNull(entity);
+
+        // 验证删除不存在的记录
+        success = this.autoVersionMapper.deleteById(demo.getId());
+        Assertions.assertFalse(success);
     }
 
     // 有@version 字段时, deleteById 也不会考虑版本号
@@ -73,17 +112,32 @@ public class DeleteByIdTest extends BaseAutoMapperTest {
         AutoDelVersionEntity demo = new AutoDelVersionEntity("zhangsan", 20);
         boolean success = this.autoDelVersionMapper.insert(demo);
 
+        // 验证插入成功
         Assertions.assertTrue(success);
         Assertions.assertNotNull(demo.getId());
-        Assertions.assertNull(demo.getVersion());
 
-        // 验证删除成功
-        AutoDelVersionEntity entity1 = this.autoDelVersionMapper.selectById(demo.getId());
-        success = this.autoDelVersionMapper.deleteById(entity1.getId());
-        Assertions.assertTrue(success);
-        AutoDelVersionEntity newEntity = this.autoDelVersionMapper.selectById(entity1.getId());
-        Assertions.assertNull(newEntity);
+        // 验证可查询到
+        AutoDelVersionEntity entity = this.autoDelVersionMapper.selectById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
 
+        // 伪删除
+        boolean delSuccess = this.autoDelVersionMapper.deleteById(demo.getId());
+        Assertions.assertTrue(delSuccess);
+
+        // 验证通过普通方式已查询不出来
+        entity = this.autoDelVersionMapper.selectById(demo.getId());
+        Assertions.assertNull(entity);
+
+        // 通过物理查询，可查询到
+        entity = this.autoDelVersionMapper.locateById(demo.getId());
+        Assertions.assertNotNull(entity);
+        Assertions.assertEquals(demo.getId(), entity.getId());
+        Assertions.assertEquals(DEL_YES, entity.getDel());
+
+        // 验证删除不存在的记录
+        success = this.autoDelVersionMapper.deleteById(demo.getId());
+        Assertions.assertFalse(success);
     }
 
 

@@ -9,5 +9,10 @@
     <delete id="truncate">
         truncate  t_auto_del_version
     </delete>
+    <select id="locateById" resultType="com.swan.test.mybatis.po.AutoDelVersionEntity">
+        select  *
+        from t_auto_del_version
+        where id = #{id}
+    </select>
 
 </mapper>

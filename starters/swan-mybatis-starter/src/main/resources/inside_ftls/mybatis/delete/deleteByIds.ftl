@@ -1,5 +1,5 @@
 
-<delete id="deleteInIds">
+<delete id="deleteByIds">
     delete from <include refid="tableName"/>
     where ${entityMeta.idField.columnName} in
     <foreach collection="list" open="(" separator="," close=")" item="id">

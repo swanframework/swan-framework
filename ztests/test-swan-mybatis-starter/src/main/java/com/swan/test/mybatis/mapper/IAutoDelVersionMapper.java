@@ -13,4 +13,5 @@ public interface IAutoDelVersionMapper extends IBaseMapper<Long, AutoDelVersionE
 
     void truncate();
 
+    AutoDelVersionEntity locateById(Long id);
 }

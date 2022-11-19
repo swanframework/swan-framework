@@ -8,4 +8,10 @@
         truncate t_auto_del
     </delete>
 
+    <select id="locateById" resultType="com.swan.test.mybatis.po.AutoDelEntity">
+        select  *
+        from t_auto_del
+        where id = #{id}
+    </select>
+
 </mapper>

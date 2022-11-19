@@ -13,4 +13,6 @@ public interface IAutoDelMapper extends IBaseMapper<Long, AutoDelEntity> {
 
     void truncate();
 
+    AutoDelEntity locateById(Long id);
+
 }
