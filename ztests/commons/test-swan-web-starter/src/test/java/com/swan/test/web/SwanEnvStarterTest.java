@@ -1,4 +1,4 @@
-package com.swan.test.commons;
+package com.swan.test.web;
 
 import com.swan.env.core.ISwanEnvironment;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @Slf4j
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles("dev")
 class SwanEnvStarterTest {
 
     @Autowired

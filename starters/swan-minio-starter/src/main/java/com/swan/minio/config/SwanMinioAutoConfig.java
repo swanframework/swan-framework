@@ -31,7 +31,7 @@ public class SwanMinioAutoConfig {
     }
 
     @Bean
-    @ConditionalOnProperty("sboot.minio.enable-bucket")
+    @ConditionalOnProperty("swan.minio.enable-bucket")
     public MinioBucket minioBucket() {
         return new MinioBucket();
     }

@@ -1,13 +1,13 @@
-package com.swan.test.commons;
+package com.swan.test.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestSwanLogStarterApplication {
+public class TestSwanWebStarterApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TestSwanLogStarterApplication.class, args);
+        SpringApplication.run(TestSwanWebStarterApplication.class, args);
     }
 
 }

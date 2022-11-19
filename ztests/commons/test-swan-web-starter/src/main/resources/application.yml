@@ -1,0 +1,9 @@
+server:
+  port: 8001
+swan:
+  web:
+    exception:
+      response-ok: true
+      unknown-message: '网络异常,稍后重试'
+      valid-pattern: fast
+      convert404: false

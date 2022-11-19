@@ -15,7 +15,7 @@
 
     <modules>
 
-        <module>commons/test-swan-commons</module>
+        <module>commons/test-swan-web-starter</module>
         <module>commons/test-swan-core-starter</module>
         <module>commons/test-swan-log-starter</module>
         <module>commons/test-swan-env-starter</module>
