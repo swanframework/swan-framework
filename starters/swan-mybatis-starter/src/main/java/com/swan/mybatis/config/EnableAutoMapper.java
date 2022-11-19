@@ -1,6 +1,6 @@
 package com.swan.mybatis.config;
 
-import com.swan.mybatis.core.BaseMapperInitializer;
+import com.swan.mybatis.core.AutoMapperInitializer;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.*;
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Import(BaseMapperInitializer.class)
+@Import(AutoMapperInitializer.class)
 public @interface EnableAutoMapper {
 
 

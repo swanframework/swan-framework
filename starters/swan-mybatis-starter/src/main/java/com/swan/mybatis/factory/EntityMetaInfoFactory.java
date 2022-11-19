@@ -21,22 +21,23 @@ import java.util.List;
 public class EntityMetaInfoFactory {
 
     public static EntityMetaInfo createEntityMetaInfo(Class entityType, List<String> ignoreFields) {
+        // 未使用 @Table 注解修饰，则抛出异常
         if (!entityType.isAnnotationPresent(Table.class)) {
             throw new SwanMybatisException(entityType.getName() + " 未使用 @Table 指定映射的表名");
         }
 
-        EntityMetaInfo entityMetaInfo = new EntityMetaInfo();
-
-        entityMetaInfo.setClassName(entityType.getCanonicalName());
-
         Table table = (Table) entityType.getAnnotation(Table.class);
+
+        EntityMetaInfo entityMetaInfo = new EntityMetaInfo();
+        entityMetaInfo.setClassName(entityType.getCanonicalName());
         entityMetaInfo.setTableName(table.name());
 
+        // 处理字段
         List<Field> declaredFields = ReflectUtil.getAllDeclareFields(entityType);
         for (Field declaredField : declaredFields) {
             char c = declaredField.getName().charAt(0);
 
-            // 非字母开头熟悉，直接忽略
+            // 非字母开头熟悉，直接忽略。如jacoco 会自动为类添加 $jacocoData 属性
             if (!(('a' <= c && 'z' >= c) || ('A' < c && 'Z' > c))) {
                 log.warn("非法属性, 不予映射, 类名:{}, 字段名:{}", entityType.getCanonicalName(),declaredField.getName());
                 continue;
@@ -45,9 +46,12 @@ public class EntityMetaInfoFactory {
             if (ignoreFields != null && ignoreFields.contains(declaredField.getName())) {
                 continue;
             }
+            // 字段使用了 @Ignore 注解修饰，则忽略属性
             if (declaredField.isAnnotationPresent(Ignore.class)) {
                 continue;
             }
+
+            // 对 @Id、@Version、@Delete 三种字段特殊处理
             if (declaredField.isAnnotationPresent(Id.class)) {
                 Id id = declaredField.getAnnotation(Id.class);
                 if (IdGeneratorType.AUTO_INC.equals(id.generatorType())) {
@@ -59,6 +63,7 @@ public class EntityMetaInfoFactory {
             } else if (declaredField.isAnnotationPresent(Version.class)) {
                 entityMetaInfo.setVersionField(createVersionFieldMeta(declaredField, declaredField.getAnnotation(Version.class)));
             } else {
+                // 普通字段处理
                 entityMetaInfo.getCommonFields().add(createCommonFieldMeta(declaredField));
             }
         }
@@ -70,7 +75,7 @@ public class EntityMetaInfoFactory {
         return entityMetaInfo;
     }
 
-    public static DeleteFieldMetaInfo createDeleteFieldMeta(Field field, Delete delete) {
+    private static DeleteFieldMetaInfo createDeleteFieldMeta(Field field, Delete delete) {
         DeleteFieldMetaInfo deleteFieldInfo = new DeleteFieldMetaInfo();
         deleteFieldInfo.setPropertyName(field.getName());
         deleteFieldInfo.setType(field.getType().getCanonicalName());
@@ -80,7 +85,7 @@ public class EntityMetaInfoFactory {
         return deleteFieldInfo;
     }
 
-    public static VersionFieldMetaInfo createVersionFieldMeta(Field field, Version version) {
+    private static VersionFieldMetaInfo createVersionFieldMeta(Field field, Version version) {
         VersionFieldMetaInfo fieldMetaInfo = new VersionFieldMetaInfo();
         fieldMetaInfo.setPropertyName(field.getName());
         fieldMetaInfo.setType(field.getType().getCanonicalName());
@@ -89,7 +94,7 @@ public class EntityMetaInfoFactory {
         return fieldMetaInfo;
     }
 
-    public static FieldMetaInfo createCommonFieldMeta(Field field) {
+    private static FieldMetaInfo createCommonFieldMeta(Field field) {
         FieldMetaInfo fieldMetaInfo = new FieldMetaInfo();
         fieldMetaInfo.setPropertyName(field.getName());
         fieldMetaInfo.setType(field.getType().getCanonicalName());
@@ -97,7 +102,7 @@ public class EntityMetaInfoFactory {
         return fieldMetaInfo;
     }
 
-    public static String hungarian(String name){
+    private static String hungarian(String name){
         StringBuilder sb=new StringBuilder(name);
         int temp=0;//定位
         if (!name.contains("_")) {

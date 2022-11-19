@@ -19,7 +19,7 @@ import java.util.Set;
  * @date 2021-01-08
  */
 @Slf4j
-public class BaseMapperInitializer implements ApplicationListener<ContextRefreshedEvent> {
+public class AutoMapperInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     // 标识是否已解析
     private static boolean parsed = false;
@@ -32,13 +32,13 @@ public class BaseMapperInitializer implements ApplicationListener<ContextRefresh
 
         if(!parsed){
             // 为BaseMapper自动生成MapperStatement
-            Set<Class> entityClasses = new BaseMapperStatementCreator(beanFactory).process();
+            Set<Class> entityClasses = new AutoMapperStatementRegister(beanFactory).process();
 
-            // 解析字段拦截器需要拦截的字段列表
+            // 解析所有实体需要处理的字段，缓存，交由字段拦截器处理
             new EntityFieldParser().parseFields(entityClasses);
 
-            // 动态添加 mybatis 拦截器
-            registerInterceptor(beanFactory.getBean(SqlSessionFactory.class));
+            // 动态添加 mybatis 拦截器: 分页拦截器、字段拦截器
+            registerInterceptors(beanFactory.getBean(SqlSessionFactory.class));
 
             // 防止重复解析
             parsed = true;
@@ -50,7 +50,7 @@ public class BaseMapperInitializer implements ApplicationListener<ContextRefresh
      * @author zongf
      * @date 2021-01-08
      */
-    public void registerInterceptor(SqlSessionFactory sqlSessionFactory) {
+    public void registerInterceptors(SqlSessionFactory sqlSessionFactory) {
         // 借助反射向mybatis 中注册BaseMapper 拦截器
         try {
             Configuration configuration = sqlSessionFactory.getConfiguration();
