@@ -75,6 +75,12 @@
                 <artifactId>swan-mybatis-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-minio-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

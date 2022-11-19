@@ -14,6 +14,7 @@
         <module>swan-freemarker-starter</module>
         <module>swan-mail-starter</module>
         <module>swan-mybatis-starter</module>
+        <module>swan-minio-starter</module>
     </modules>
 
 </project>
