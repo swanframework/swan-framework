@@ -2,7 +2,7 @@ package com.swan.generator.util;
 
 /** 字符串工具类
  * @author zongf
- * @date 2020-01-07
+ * @since 2020-01-07
  */
 public class StringUtil {
 
@@ -11,7 +11,7 @@ public class StringUtil {
      * @param str
      * @return String
      * @author zongf
-     * @date 2020-01-07
+     * @since 2020-01-07
      */
     public static String camelCase(String str, String splitRegx) {
 
@@ -39,7 +39,7 @@ public class StringUtil {
      * @param str
      * @return String
      * @author zongf
-     * @date 2020-01-07
+     * @since 2020-01-07
      */
     public static String camelCase(String str) {
 
@@ -67,7 +67,7 @@ public class StringUtil {
      * @param name 驼峰命名
      * @return String
      * @author zongf
-     * @date 2020-03-17
+     * @since 2020-03-17
      */
     public static String hungarian(String name){
         StringBuilder sb=new StringBuilder(name);
@@ -87,7 +87,7 @@ public class StringUtil {
      * @param name
      * @return String
      * @author zongf
-     * @date 2020-03-17
+     * @since 2020-03-17
      */
     public static String firstLowerCase(String name) {
         if (Character.isLowerCase(name.charAt(0))) {
@@ -109,7 +109,7 @@ public class StringUtil {
      * @param str 字符串
      * @return String
      * @author zongf
-     * @date 2020-05-25
+     * @since 2020-05-25
      */
     public static String handelDbQuotes(String str) {
         if(str == null) return str;

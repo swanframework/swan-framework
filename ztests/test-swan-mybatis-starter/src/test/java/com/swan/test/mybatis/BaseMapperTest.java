@@ -12,7 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 /** 测试基础类
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 @SpringBootTest
 @EnableAutoMapper

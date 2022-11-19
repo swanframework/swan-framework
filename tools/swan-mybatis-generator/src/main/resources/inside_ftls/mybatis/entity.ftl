@@ -6,7 +6,7 @@ import ${import};
 
 /** ${metaInfo.classComment}
 * @author ${author}
-* @date ${createDate}
+* @since ${createDate}
 */
 @Getter @Setter
 @Table(name = "${metaInfo.tableName}")

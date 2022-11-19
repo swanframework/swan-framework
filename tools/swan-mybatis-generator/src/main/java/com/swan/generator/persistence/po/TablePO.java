@@ -7,7 +7,7 @@ import java.util.Date;
 
 /** 数据库表信息
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 @Setter @Getter
 public class TablePO {

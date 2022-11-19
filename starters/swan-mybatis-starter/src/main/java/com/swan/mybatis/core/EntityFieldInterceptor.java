@@ -14,7 +14,7 @@ import java.util.Map;
 
 /** 字段拦截器
  * @author zongf
- * @date 2020-01-07
+ * @since 2020-01-07
  */
 @Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class }) })
 public class EntityFieldInterceptor implements Interceptor {
@@ -42,7 +42,7 @@ public class EntityFieldInterceptor implements Interceptor {
      * @param mappedStatement
      * @param mixParams 可能为单个对象, 也可能是ParamMap
      * @author zongf
-     * @date 2021-01-08
+     * @since 2021-01-08
      */
     private void handleFields(MappedStatement mappedStatement, Object mixParams) {
         // 如果无参数, 则返回

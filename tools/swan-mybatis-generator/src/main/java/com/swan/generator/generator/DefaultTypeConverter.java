@@ -5,7 +5,7 @@ import com.swan.generator.enums.MysqlDataType;
 
 /**默认类型转换器
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 public class DefaultTypeConverter {
 
@@ -15,7 +15,7 @@ public class DefaultTypeConverter {
      * @param maxIntDigits  最大长度
      * @return JavaMappingType
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static JavaMappingType getType(MysqlDataType dataType, boolean unsigned, int maxIntDigits) {
 

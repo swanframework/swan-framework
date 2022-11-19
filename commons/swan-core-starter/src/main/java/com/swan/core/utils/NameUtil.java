@@ -2,7 +2,7 @@ package com.swan.core.utils;
 
 /**
  * @author zongf
- * @date 2021-03-01
+ * @since 2021-03-01
  */
 public class NameUtil {
 
@@ -10,7 +10,7 @@ public class NameUtil {
      * @param hungaryName 匈牙利命名
      * @return String
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static String toHumpName(String hungaryName) {
 
@@ -63,7 +63,7 @@ public class NameUtil {
      * @param name
      * @return String
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static String firstUppercase(String name) {
         if (name == null) {

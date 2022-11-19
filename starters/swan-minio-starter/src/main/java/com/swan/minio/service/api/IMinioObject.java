@@ -13,7 +13,7 @@ import java.util.Map;
  *          2) objectName: 必须以 . 结尾, 以此区分 目录 和 文件
  *
  * @author zongf
- * @date 2021-08-14
+ * @since 2021-08-14
  */
 public interface IMinioObject {
 
@@ -24,7 +24,7 @@ public interface IMinioObject {
      * @param userData 用户自定义数据
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public ObjectPutResult put(String bucketName, String objectName, byte[] bytes, Map<String, String> userData);
 
@@ -34,7 +34,7 @@ public interface IMinioObject {
      * @param bytes 对象字节数组
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public ObjectPutResult put(String bucketName, String objectName, byte[] bytes);
 
@@ -44,7 +44,7 @@ public interface IMinioObject {
      * @param is 对象输入流
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public ObjectPutResult put(String bucketName, String objectName, InputStream is);
 
@@ -55,7 +55,7 @@ public interface IMinioObject {
      * @param userData 用户自定义数据
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public ObjectPutResult put(String bucketName, String objectName, InputStream is, Map<String, String> userData);
 
@@ -64,7 +64,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public InputStream get(String bucketName, String objectName);
 
@@ -73,7 +73,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public byte[] getBytes(String bucketName, String objectName);
 
@@ -82,7 +82,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public String getString(String bucketName, String objectName);
 
@@ -91,7 +91,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public void remove(String bucketName, String objectName);
 
@@ -100,7 +100,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public boolean exists(String bucketName, String objectName);
 
@@ -109,7 +109,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public ObjectState stat(String bucketName, String objectName);
 
@@ -118,7 +118,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public Map<String, String> getTags(String bucketName, String objectName);
 
@@ -127,7 +127,7 @@ public interface IMinioObject {
      * @param objectName 对象名
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public void setTags(String bucketName, String objectName, Map<String, String> tags);
 
@@ -137,7 +137,7 @@ public interface IMinioObject {
      * @param addTags 新标签
      * @throws MinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public void addTags(String bucketName, String objectName, Map<String, String> addTags);
 

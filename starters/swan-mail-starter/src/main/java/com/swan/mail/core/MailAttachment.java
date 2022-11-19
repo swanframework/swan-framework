@@ -5,7 +5,7 @@ import lombok.Setter;
 
 /** 邮件附件
  * @author zongf
- * @date 2021-10-31
+ * @since 2021-10-31
  */
 @Setter @Getter
 public class MailAttachment {

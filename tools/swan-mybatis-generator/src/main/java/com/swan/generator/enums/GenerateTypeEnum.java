@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /**
  * @author zongf
- * @date 2021-03-25
+ * @since 2021-03-25
  */
 public enum GenerateTypeEnum {
 
@@ -34,7 +34,7 @@ public enum GenerateTypeEnum {
      *
      * @return int 枚举code
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public int code() {
         return this.code;
@@ -45,7 +45,7 @@ public enum GenerateTypeEnum {
      *
      * @return String 枚举desc
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public String desc() {
         return this.desc;
@@ -57,7 +57,7 @@ public enum GenerateTypeEnum {
      * @param code 枚举code
      * @return ClassType code对应的枚举类型
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public static GenerateTypeEnum getEnumOfCode(int code) {
         return Arrays.stream(GenerateTypeEnum.values())
@@ -71,7 +71,7 @@ public enum GenerateTypeEnum {
      * @param desc 枚举desc
      * @return ClassType desc对应的枚举类型
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public static GenerateTypeEnum getEnumOfDesc(String desc) {
         return Arrays.stream(GenerateTypeEnum.values())
@@ -85,7 +85,7 @@ public enum GenerateTypeEnum {
      * @param code 枚举code
      * @return String 枚举desc 或 null
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public static String getDesc(int code) {
         Optional<GenerateTypeEnum> optional = Arrays.stream(GenerateTypeEnum.values())
@@ -100,7 +100,7 @@ public enum GenerateTypeEnum {
      * @param desc 枚举desc
      * @return Integer 枚举code 或 null
      * @author zongf
-     * @date 2021-03-25
+     * @since 2021-03-25
      */
     public static Integer getCode(String desc) {
         Optional<GenerateTypeEnum> optional = Arrays.stream(GenerateTypeEnum.values())

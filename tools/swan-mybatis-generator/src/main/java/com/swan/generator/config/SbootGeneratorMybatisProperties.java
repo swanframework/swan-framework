@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @author zongf
- * @date 2021-11-02
+ * @since 2021-11-02
  */
 @ConfigurationProperties(prefix = "sboot.generator.mybatis")
 @Setter @Getter

@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 
 /** 删除字段标识, 不会自动回写到实体中
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 @Documented
 @Target({ElementType.FIELD})

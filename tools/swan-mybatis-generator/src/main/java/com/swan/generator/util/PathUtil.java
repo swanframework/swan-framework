@@ -4,14 +4,14 @@ import java.io.File;
 
 /** 路径工具类
  * @author zongf
- * @date 2021-03-25
+ * @since 2021-03-25
  */
 public class PathUtil {
 
     /** 获取 java 文件绝对路径
      * @return String
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static String getClassPath(String projectPath, String packageName, String fileName) {
         return getPath(projectPath, packageName, fileName, "src/main/java",".java");
@@ -20,7 +20,7 @@ public class PathUtil {
     /** 获取 xml 文件绝对路径
      * @return String
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static String getXmlPath(String projectPath, String packageName, String fileName) {
         return getPath(projectPath, packageName, fileName, "src/main/resources", ".xml");

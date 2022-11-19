@@ -9,7 +9,7 @@ import java.util.List;
 
 /** 生成一个java类需要的元信息
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 @Setter @Getter @ToString
 public class EntityMeta{

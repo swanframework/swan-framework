@@ -17,7 +17,7 @@ import java.math.BigInteger;
 
 /** Sboot 核心框架自动化配置
  * @author zongf
- * @date 2020-12-11
+ * @since 2020-12-11
  */
 @Configuration(proxyBeanMethods = false)
 @Import({GlobalExceptionHandler.class})

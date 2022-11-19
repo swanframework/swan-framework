@@ -17,7 +17,7 @@ import java.util.List;
 
 /** 通过jdbc 方法
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 public class MetaDao implements IMetaDao {
 
@@ -138,7 +138,7 @@ public class MetaDao implements IMetaDao {
      * @param params 参数
      * @return ResultSet
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     private ResultSet excuteQuery(Connection conn, String sql , Object... params){
         try{

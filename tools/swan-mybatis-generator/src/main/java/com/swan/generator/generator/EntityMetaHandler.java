@@ -18,14 +18,14 @@ import java.util.Set;
 
 /**
  * @author zongf
- * @date 2021-03-25
+ * @since 2021-03-25
  */
 public class EntityMetaHandler {
 
     /** 处理表字段信息
      * @param metaVO  po 模型
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static void handleColumns(EntityMeta metaVO, List<ColumnPO> columnPOList) {
         // 解析字段
@@ -44,7 +44,7 @@ public class EntityMetaHandler {
     /** 处理字段类型是否需要导入依赖
      * @param metaVO po 模型
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static void handleFieldTypeImport(EntityMeta metaVO) {
         // 获取需要导入的类型
@@ -61,7 +61,7 @@ public class EntityMetaHandler {
      * @param javaMappingType
      * @return String
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static String getImportType(String javaMappingType) {
         switch (javaMappingType) {
@@ -78,7 +78,7 @@ public class EntityMetaHandler {
     /** 设置java 类型
      * @param columnPO
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      * @return JavaMappingType
      */
     public static JavaMappingType getJavaType(ColumnPO columnPO) {
@@ -92,7 +92,7 @@ public class EntityMetaHandler {
      * @param tablePrefix 表名前缀
      * @return String
      * @author zongf
-     * @date 2021-11-03
+     * @since 2021-11-03
      */
     public static String handleClassName(EntityMeta metaVO, SbootGeneratorMybatisProperties.ClassConfig config, String tablePrefix) {
 
@@ -121,7 +121,7 @@ public class EntityMetaHandler {
      * @param entityMetaInfo
      * @param generatorConfig
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static void handleDefaultImport(EntityMeta entityMetaInfo, SbootGeneratorMybatisProperties.ClassConfig generatorConfig,
                                            GenerateTypeEnum generateType, CommentTypeEnum commentType){
@@ -162,7 +162,7 @@ public class EntityMetaHandler {
      * @param entityMetaInfo
      * @param config
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static void handleInheritFields(EntityMeta entityMetaInfo,  SbootGeneratorMybatisProperties.ClassConfig config) {
         if (config.getParentClass() != null) {

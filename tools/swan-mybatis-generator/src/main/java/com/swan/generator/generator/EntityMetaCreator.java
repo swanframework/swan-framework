@@ -11,7 +11,7 @@ import java.util.List;
 
 /** 实体信息生成器
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 public class EntityMetaCreator {
 
@@ -23,7 +23,7 @@ public class EntityMetaCreator {
      * @param tableName  表名
      * @return EntityMetaInfo
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public EntityMeta queryEntityMetaInfo(String schemaName, String tableName) {
 

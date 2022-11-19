@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date 2021-07-11
+ * @since 2021-07-11
  */
 @ConfigurationProperties(prefix = "mybatis")
 @Setter @Getter

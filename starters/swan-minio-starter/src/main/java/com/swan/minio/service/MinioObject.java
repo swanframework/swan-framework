@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * @author zongf
- * @date 2021-07-30
+ * @since 2021-07-30
  */
 public class MinioObject implements IMinioObject {
 

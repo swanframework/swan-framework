@@ -14,7 +14,7 @@ import java.util.Map;
 
 /** 对象操作工具类
  * @author zongf
- * @date 2021-07-29
+ * @since 2021-07-29
  */
 @Slf4j
 public final class MinioObjectUtil {
@@ -27,7 +27,7 @@ public final class MinioObjectUtil {
      * @param is 对象流
      * @throws SwanMinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public static ObjectWriteResponse putObject(MinioClient minioClient, String bucketName, String objectName, InputStream is, Map<String,String > userData) {
 
@@ -56,7 +56,7 @@ public final class MinioObjectUtil {
      * @param objectName 对象名
      * @throws SwanMinioException
      * @author zongf
-     * @date 2021-08-14
+     * @since 2021-08-14
      */
     public static InputStream getObject(MinioClient minioClient, String bucketName, String objectName) {
         try {
@@ -84,7 +84,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static void remove(MinioClient minioClient, String bucketName, String objectName) {
         try {
@@ -111,7 +111,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static byte[] getObjectBytes(MinioClient minioClient, String bucketName, String objectName) {
         try {
@@ -139,7 +139,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static StatObjectResponse stat(MinioClient minioClient, String bucketName, String objectName) {
         try {
@@ -168,7 +168,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static Map<String, String> getTags(MinioClient minioClient, String bucketName, String objectName) {
         try {
@@ -199,7 +199,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static void setTags(MinioClient minioClient, String bucketName, String objectName, Map<String, String> tags) {
         try {
@@ -227,7 +227,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static void addTags(MinioClient minioClient, String bucketName, String objectName, Map<String, String> newTags) {
         try {
@@ -259,7 +259,7 @@ public final class MinioObjectUtil {
      * @throws SwanMinioException
      * @return byte[]
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public static boolean exists(MinioClient minioClient, String bucketName, String objectName) {
         try {

@@ -6,7 +6,7 @@ package com.swan.web.constant;
  *  2) 100000-999999: 业务异常
  *  3) 999999: 未知异常
  * @author zongf
- * @date 2021-08-16
+ * @since 2021-08-16
  */
 public class ResponseCode {
 

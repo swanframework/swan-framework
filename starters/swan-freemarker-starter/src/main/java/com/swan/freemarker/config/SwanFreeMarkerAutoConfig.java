@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Primary;
  *
  *
  * @author zongf
- * @date 2021-07-29
+ * @since 2021-07-29
  */
 @Configuration
 public class SwanFreeMarkerAutoConfig {

@@ -4,7 +4,7 @@ import java.util.List;
 
 /** 邮件发送
  * @author zongf
- * @date 2021-10-31
+ * @since 2021-10-31
  */
 public interface IMailSender {
 
@@ -15,7 +15,7 @@ public interface IMailSender {
      * @param content 邮件内容
      * @return boolean
      * @author zongf
-     * @date 2021-07-23
+     * @since 2021-07-23
      */
     boolean sendTextMail(String title, List<String> toList, List<String>  ccList, String content);
 
@@ -26,7 +26,7 @@ public interface IMailSender {
      * @param content 邮件内容
      * @return boolean
      * @author zongf
-     * @date 2021-07-23
+     * @since 2021-07-23
      */
     boolean sendHtmlMail(String title, List<String> toList, List<String>  ccList, String content);
 
@@ -38,7 +38,7 @@ public interface IMailSender {
      * @param attachmentList 附件列表
      * @return boolean
      * @author zongf
-     * @date 2021-07-23
+     * @since 2021-07-23
      */
     boolean sendHtmlMail(String title, List<String> toList, List<String>  ccList, String content, List<MailAttachment> attachmentList);
 

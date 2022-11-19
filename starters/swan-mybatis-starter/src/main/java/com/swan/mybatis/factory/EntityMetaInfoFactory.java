@@ -7,7 +7,7 @@ import com.swan.mybatis.mapper.field.meta.DeleteFieldMetaInfo;
 import com.swan.mybatis.mapper.field.meta.EntityMetaInfo;
 import com.swan.mybatis.mapper.field.meta.FieldMetaInfo;
 import com.swan.mybatis.mapper.field.meta.VersionFieldMetaInfo;
-import com.swan.mybatis.util.ReflectUtil;
+import com.swan.core.utils.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date 2021-01-09
+ * @since 2021-01-09
  */
 @Slf4j
 public class EntityMetaInfoFactory {

@@ -6,7 +6,7 @@ import ${import};
 
 /** ${metaInfo.classComment}
 * @author ${author}
-* @date ${createDate}
+* @since ${createDate}
 */
 <#--@Mapper-->
 public interface ${metaInfo.className} extends ${parentMapperName}<${config.idType}, ${entityName}>{

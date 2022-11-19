@@ -2,7 +2,7 @@ package com.swan.mybatis.mapper.field.id;
 
 /** 数据库主键生成器
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 public class AutoIncIdGenerator implements IdGenerator {
 

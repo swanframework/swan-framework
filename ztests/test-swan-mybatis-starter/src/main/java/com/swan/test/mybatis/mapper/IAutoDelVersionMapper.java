@@ -6,7 +6,7 @@ import com.swan.test.mybatis.po.AutoDelVersionEntity;
 
 /**
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 @Mapper
 public interface IAutoDelVersionMapper extends IBaseMapper<Long, AutoDelVersionEntity> {

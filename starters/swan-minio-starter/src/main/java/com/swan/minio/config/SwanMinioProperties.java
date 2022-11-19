@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /** minio 配置项
  * @author zongf
- * @date 2021-07-11
+ * @since 2021-07-11
  */
 @ConfigurationProperties(prefix = "swan.minio")
 @Setter @Getter

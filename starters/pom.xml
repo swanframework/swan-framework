@@ -15,6 +15,8 @@
         <module>swan-mail-starter</module>
         <module>swan-mybatis-starter</module>
         <module>swan-minio-starter</module>
+        <module>swan-rabbitmq-starter</module>
+        <module>swan-kafka-starter</module>
     </modules>
 
 </project>

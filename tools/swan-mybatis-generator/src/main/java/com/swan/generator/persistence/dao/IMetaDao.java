@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date 2021-11-02
+ * @since 2021-11-02
  */
 public interface IMetaDao {
 
@@ -16,7 +16,7 @@ public interface IMetaDao {
     /** 数据库schemas 查询
      * @return List<SchemaPO>
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public List<SchemaPO> querySchemas();
 
@@ -44,7 +44,7 @@ public interface IMetaDao {
      * @param tableName 表名
      * @return List<ColumnPO>
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public List<ColumnPO> queryColumns(String schemaName, String tableName);
 

@@ -1,4 +1,4 @@
-package com.swan.mybatis.util;
+package com.swan.core.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -8,7 +8,7 @@ import java.util.*;
 
 /** 反射工具类
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 public class ReflectUtil {
 
@@ -20,7 +20,7 @@ public class ReflectUtil {
      * @param clz
      * @return Set<Class>
      * @author zongf
-     * @date 2020-01-07
+     * @since 2020-01-07
      */
     public static Set<Class> getAllInterfaces(Class clz){
         Set<Class> allInterfaces = new LinkedHashSet<>();
@@ -51,7 +51,7 @@ public class ReflectUtil {
      * @param parentInterface
      * @return boolean
      * @author zongf
-     * @date 2020-01-07
+     * @since 2020-01-07
      */
     public static boolean isImplement(Class sub, Class parentInterface) {
         // 如果是接口, 才进行判断, 否则直接抛出异常
@@ -148,7 +148,7 @@ public class ReflectUtil {
      * @param fieldName 属性
      * @return Object
      * @author zongf
-     * @date 2021-01-09
+     * @since 2021-01-09
      */
     public static Object getFieldValue(Object object, String fieldName) {
         if(object == null || fieldName == null || fieldName.isEmpty()) return null;
@@ -176,7 +176,7 @@ public class ReflectUtil {
      * @param clz 类型
      * @return ArrayList<Field>
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static List<Field> getAllDeclareFields(Class clz) {
         LinkedHashMap<String, Field> fieldMap = new LinkedHashMap<>();

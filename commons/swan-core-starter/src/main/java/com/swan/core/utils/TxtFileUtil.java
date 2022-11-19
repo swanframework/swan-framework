@@ -1,10 +1,12 @@
-package com.swan.mybatis.util;
+package com.swan.core.utils;
+
+import com.swan.core.utils.IOUtils;
 
 import java.io.*;
 
 /**文本文件读写, 当文件内容过大时, 需要考虑内存
  * @author zongf
- * @date 2021-01-11
+ * @since 2021-01-11
  */
 public class TxtFileUtil {
 
@@ -12,7 +14,7 @@ public class TxtFileUtil {
      * @param filePath 文件路径
      * @param contents 文件内容
      * @author zongf
-     * @date 2021-01-11
+     * @since 2021-01-11
      */
     public static void writeFile(String filePath, String... contents ) {
 

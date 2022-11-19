@@ -8,7 +8,7 @@ import lombok.Setter;
 
 /**
  * @author zongf
- * @date 2020-10-22
+ * @since 2020-10-22
  */
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,7 +24,7 @@ public class BaseResponse<T> {
     /** 请求成功
      * @return BaseResponse<T>
      * @author zongf
-     * @date 2021-07-14
+     * @since 2021-07-14
      */
     public static <T> BaseResponse<T> success() {
         return success(null);
@@ -34,7 +34,7 @@ public class BaseResponse<T> {
      * @param data 数据
      * @return BaseResponse<T>
      * @author zongf
-     * @date 2021-07-14
+     * @since 2021-07-14
      */
     public static <T> BaseResponse<T> success(T data) {
         return success(data, null);
@@ -45,7 +45,7 @@ public class BaseResponse<T> {
      * @param message 响应信息
      * @return BaseResponse<T>
      * @author zongf
-     * @date 2021-07-14
+     * @since 2021-07-14
      */
     public static <T> BaseResponse<T> success(T data, String message) {
         return new BaseResponse<>(ResponseCode.SUCCESS, message, data);
@@ -56,7 +56,7 @@ public class BaseResponse<T> {
      * @param message 错误提示
      * @return BaseResponse<T>
      * @author zongf
-     * @date 2021-07-14
+     * @since 2021-07-14
      */
     public static <T> BaseResponse<T> fail(Integer code, String message) {
         return fail(null, code, message);
@@ -69,7 +69,7 @@ public class BaseResponse<T> {
      * @param message 错误提示
      * @return BaseResponse<T>
      * @author zongf
-     * @date 2021-07-14
+     * @since 2021-07-14
      */
     public static <T> BaseResponse<T> fail(T data, Integer code, String message) {
         return new BaseResponse<>(code, message, data);
@@ -79,7 +79,7 @@ public class BaseResponse<T> {
     /** 判断返回值是否成功
      * @return boolean
      * @author zongf
-     * @date 2021-08-16
+     * @since 2021-08-16
      */
     public boolean isSuccess() {
         return ResponseCode.SUCCESS == code;

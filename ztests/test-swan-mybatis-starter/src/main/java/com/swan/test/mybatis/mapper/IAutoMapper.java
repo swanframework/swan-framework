@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 @Mapper
 public interface IAutoMapper extends IBaseMapper<Long, AutoEntity> {

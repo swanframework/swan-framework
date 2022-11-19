@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 
 /** 自动化配置，向spring中注册bean
  * @author zongf
- * @date 2021-03-01
+ * @since 2021-03-01
  */
 @Configuration
 @Import(MetaDao.class)

@@ -18,7 +18,7 @@ import static com.swan.test.mybatis.po.AutoEntity.Fields.*;
 
 /**
  * @author zongf
- * @date 2021-01-10
+ * @since 2021-01-10
  */
 public class SelectListTest extends BaseMapperTest {
 

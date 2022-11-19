@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /**
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 @Table(name = "t_auto_del_version")
 @Setter @Getter @ToString

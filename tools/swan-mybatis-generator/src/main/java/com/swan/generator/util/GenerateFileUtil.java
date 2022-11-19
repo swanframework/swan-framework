@@ -5,7 +5,7 @@ import java.io.*;
 
 /**文本文件读写, 当文件内容过大时, 需要考虑内存
  * @author zongf
- * @date 2021-01-11
+ * @since 2021-01-11
  */
 public class GenerateFileUtil {
 
@@ -13,7 +13,7 @@ public class GenerateFileUtil {
      * @param filePath 文件路径
      * @param contents 文件内容
      * @author zongf
-     * @date 2021-01-11
+     * @since 2021-01-11
      */
     public static void writeFile(String filePath, String... contents ) {
 
@@ -36,7 +36,7 @@ public class GenerateFileUtil {
     /** 批量关闭流
      * @param closeables
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static void close(Closeable... closeables) {
         for (Closeable closeable : closeables) {

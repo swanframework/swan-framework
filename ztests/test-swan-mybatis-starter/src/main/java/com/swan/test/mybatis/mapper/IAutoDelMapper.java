@@ -6,7 +6,7 @@ import com.swan.test.mybatis.po.AutoDelEntity;
 
 /**
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 @Mapper
 public interface IAutoDelMapper extends IBaseMapper<Long, AutoDelEntity> {

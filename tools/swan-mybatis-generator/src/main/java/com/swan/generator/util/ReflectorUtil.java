@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 /** 反射工具
  * @author zongf
- * @date 2021-03-01
+ * @since 2021-03-01
  */
 public class ReflectorUtil {
 
@@ -16,7 +16,7 @@ public class ReflectorUtil {
      * @param clz 类型
      * @return ArrayList<Field>
      * @author zongf
-     * @date 2021-03-01
+     * @since 2021-03-01
      */
     public static Set<String> getAllDeclareFields(Class clz) {
 

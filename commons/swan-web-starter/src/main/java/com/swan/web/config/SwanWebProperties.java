@@ -6,7 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /** Sboot 核心框架自动化配置
  * @author zongf
- * @date 2020-12-11
+ * @since 2020-12-11
  */
 @Setter @Getter
 @ConfigurationProperties(prefix = "sboot.web")

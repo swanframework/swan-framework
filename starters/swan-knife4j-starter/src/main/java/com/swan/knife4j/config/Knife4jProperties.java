@@ -8,7 +8,7 @@ import java.util.List;
 
 /**配置
  * @author zongf
- * @date 2021-07-21
+ * @since 2021-07-21
  */
 @ConfigurationProperties(prefix = "knife4j")
 @Setter @Getter

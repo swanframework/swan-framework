@@ -9,14 +9,14 @@ import com.swan.mybatis.mapper.field.handler.AbsFieldHandler;
 import com.swan.mybatis.mapper.field.handler.AutoTimeFieldHandler;
 import com.swan.mybatis.mapper.field.handler.ForceNullFieldHandler;
 import com.swan.mybatis.mapper.field.handler.IdFieldHandler;
-import com.swan.mybatis.util.ReflectUtil;
+import com.swan.core.utils.ReflectUtil;
 
 import java.lang.reflect.Field;
 import java.util.*;
 
 /** 字段解析器
  * @author zongf
- * @date 2021-01-08
+ * @since 2021-01-08
  */
 public class EntityFieldParser {
 
@@ -26,7 +26,7 @@ public class EntityFieldParser {
     /** 解析需要动态修改的字段
      * @param classes
      * @author zongf
-     * @date 2021-01-08
+     * @since 2021-01-08
      */
     public final void parseFields(Set<Class> classes) {
 

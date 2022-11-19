@@ -23,7 +23,7 @@ import java.util.Map;
 
 /**
  * @author zongf
- * @date 2021-03-01
+ * @since 2021-03-01
  */
 public class MybatisGeneratorService implements IMybatisGeneratorService {
 

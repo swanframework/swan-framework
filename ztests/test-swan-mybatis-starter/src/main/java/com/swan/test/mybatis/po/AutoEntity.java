@@ -13,7 +13,7 @@ import java.util.Date;
 
 /**
  * @author zongf
- * @date 2021-01-07
+ * @since 2021-01-07
  */
 @Table(name = "t_auto")
 @Setter @Getter @ToString

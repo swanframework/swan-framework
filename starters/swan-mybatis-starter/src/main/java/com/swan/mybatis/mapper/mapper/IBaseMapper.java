@@ -4,7 +4,7 @@ import com.swan.mybatis.mapper.methods.*;
 
 /** 通用 Mapper，集成逻辑删除Api
  * @author zongf
- * @date 2021-02-26
+ * @since 2021-02-26
  */
 public interface IBaseMapper<ID, E> extends
 

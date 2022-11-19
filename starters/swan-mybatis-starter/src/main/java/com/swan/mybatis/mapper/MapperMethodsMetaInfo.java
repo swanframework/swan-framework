@@ -1,18 +1,17 @@
 package com.swan.mybatis.mapper;
 
-import com.swan.mybatis.util.InterfaceUtil;
+import com.swan.core.utils.InterfaceUtil;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /** 方法标识，判断需要生成那些方法
  * @author zongf
- * @date 2021-02-26
+ * @since 2021-02-26
  */
 @Setter @Getter @ToString
 public class MapperMethodsMetaInfo {

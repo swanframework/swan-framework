@@ -16,7 +16,7 @@ import java.util.Set;
 
 /** 核心逻辑, spring 完成初始化后，开始处理
  * @author zongf
- * @date 2021-01-08
+ * @since 2021-01-08
  */
 @Slf4j
 public class AutoMapperInitializer implements ApplicationListener<ContextRefreshedEvent> {
@@ -48,7 +48,7 @@ public class AutoMapperInitializer implements ApplicationListener<ContextRefresh
     /** 注册字段拦截器, 借助反射向mybtis 主配置类中注册字段拦截器
      * @param sqlSessionFactory
      * @author zongf
-     * @date 2021-01-08
+     * @since 2021-01-08
      */
     public void registerInterceptors(SqlSessionFactory sqlSessionFactory) {
         // 借助反射向mybatis 中注册BaseMapper 拦截器

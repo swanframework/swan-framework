@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * @author zongf
- * @date 2021-11-02
+ * @since 2021-11-02
  */
 public enum CommentTypeEnum {
 
@@ -37,7 +37,7 @@ public enum CommentTypeEnum {
      * @param code
      * @return CommentType
      * @author zongf
-     * @date 2021-11-02
+     * @since 2021-11-02
      */
     public static CommentTypeEnum getEnumByCode(Integer code) {
         return code == null ? null : Arrays.stream(CommentTypeEnum.values())
@@ -52,7 +52,7 @@ public enum CommentTypeEnum {
      * @param desc
      * @return CommentType
      * @author zongf
-     * @date 2021-11-02
+     * @since 2021-11-02
      */
     public static CommentTypeEnum getEnumByDesc(String desc) {
         return desc == null ? null : Arrays.stream(CommentTypeEnum.values())
@@ -67,7 +67,7 @@ public enum CommentTypeEnum {
      * @param code
      * @return String
      * @author zongf
-     * @date 2021-11-02
+     * @since 2021-11-02
      */
     public static String getDesc(Integer code) {
         CommentTypeEnum enm = getEnumByCode(code);
@@ -80,7 +80,7 @@ public enum CommentTypeEnum {
      * @param desc
      * @return Integer
      * @author zongf
-     * @date 2021-11-02
+     * @since 2021-11-02
      */
     public static Integer getCode(String desc) {
         CommentTypeEnum enm = getEnumByDesc(desc);

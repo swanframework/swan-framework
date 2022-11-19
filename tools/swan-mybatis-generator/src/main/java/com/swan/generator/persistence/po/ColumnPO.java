@@ -6,7 +6,7 @@ import lombok.Setter;
 
 /** 表字段信息
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 @Setter @Getter
 public class ColumnPO {

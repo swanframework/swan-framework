@@ -7,14 +7,14 @@ import java.util.List;
  *  2) minio 删除桶时, 桶内元素必须为空
  *
  * @author zongf
- * @date 2021-07-30
+ * @since 2021-07-30
  */
 public interface IMinioBucket {
 
     /** 创建 bucket
      * @param bucketName bucket 名称，支持_-, 尽量不要使用其它特殊字符
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public void make(String bucketName);
 
@@ -22,21 +22,21 @@ public interface IMinioBucket {
      * @param bucketName
      * @return Boolean
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public Boolean exists(String bucketName);
 
     /** 删除空的 bucket
      * @param bucketName
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public void remove(String bucketName);
 
     /** 获取所有的 bucket 名称
      * @return List<String>
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public List<String> listBuckets();
 
@@ -45,7 +45,7 @@ public interface IMinioBucket {
      * @param objectNamePrefix 对象名称前缀
      * @return List<String>
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public List<String> listObjects(String bucketName, String objectNamePrefix);
 
@@ -53,7 +53,7 @@ public interface IMinioBucket {
      * @param bucketName 桶名称
      * @param policyConfig 策略
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public void setPolicy(String bucketName, String policyConfig);
 
@@ -61,7 +61,7 @@ public interface IMinioBucket {
      * @param bucketName 桶名称
      * @return String
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public String getPolicy(String bucketName);
 
@@ -69,7 +69,7 @@ public interface IMinioBucket {
      * @param bucketName 桶名称
      * @return String
      * @author zongf
-     * @date 2021-07-30
+     * @since 2021-07-30
      */
     public void deletePolicy(String bucketName);
 

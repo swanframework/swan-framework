@@ -1,4 +1,4 @@
-package com.swan.mybatis.util;
+package com.swan.core.utils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 /** 接口工具
  * @author zongf
- * @date 2021-02-26
+ * @since 2021-02-26
  */
 public class InterfaceUtil {
 
@@ -14,7 +14,7 @@ public class InterfaceUtil {
      * @param type 接口类型
      * @return Set<Class>
      * @author zongf
-     * @date 2021-02-26
+     * @since 2021-02-26
      */
     public static Set<Class> getInterfaces(Class type) {
 
@@ -35,7 +35,7 @@ public class InterfaceUtil {
      * @param sunInterface 子接口
      * @return boolean
      * @author zongf
-     * @date 2021-02-26
+     * @since 2021-02-26
      */
     public static boolean hasInheritance(Class parentInterface, Class sunInterface) {
         return getInterfaces(sunInterface).contains(parentInterface);
@@ -47,7 +47,7 @@ public class InterfaceUtil {
      * @param parentInterface 父接口
      * @return Class
      * @author zongf
-     * @date 2021-02-26
+     * @since 2021-02-26
      */
     public static Class findDeclareInheritance(Class subInterface, Class parentInterface) {
 

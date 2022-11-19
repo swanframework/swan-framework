@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /** Id 生成策略
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 public enum IdGeneratorType {
 
@@ -30,7 +30,7 @@ public enum IdGeneratorType {
      *
      * @return int 枚举code
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public int code() {
         return this.code;
@@ -41,7 +41,7 @@ public enum IdGeneratorType {
      *
      * @return String 枚举desc
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public String desc() {
         return this.desc;
@@ -53,7 +53,7 @@ public enum IdGeneratorType {
      * @param code 枚举code
      * @return IdType code对应的枚举类型
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static IdGeneratorType getEnumOfCode(int code) {
         return Arrays.stream(IdGeneratorType.values())
@@ -67,7 +67,7 @@ public enum IdGeneratorType {
      * @param desc 枚举desc
      * @return IdType desc对应的枚举类型
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static IdGeneratorType getEnumOfDesc(String desc) {
         return Arrays.stream(IdGeneratorType.values())
@@ -81,7 +81,7 @@ public enum IdGeneratorType {
      * @param code 枚举code
      * @return String 枚举desc 或 null
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static String getDesc(int code) {
         Optional<IdGeneratorType> optional = Arrays.stream(IdGeneratorType.values())
@@ -96,7 +96,7 @@ public enum IdGeneratorType {
      * @param desc 枚举desc
      * @return Integer 枚举code 或 null
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static Integer getCode(String desc) {
         Optional<IdGeneratorType> optional = Arrays.stream(IdGeneratorType.values())

@@ -4,7 +4,7 @@ import com.swan.core.exception.SwanBaseException;
 
 /** BaseMapperException 异常
  * @author zongf
- * @date 2021-01-11
+ * @since 2021-01-11
  */
 public class SwanMybatisException extends SwanBaseException {
 

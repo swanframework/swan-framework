@@ -8,7 +8,7 @@ import java.util.Date;
 
  /** 基础信息
  * @author zongf
- * @date 2021-03-01
+ * @since 2021-03-01
  */
  @Getter @Setter
  public class AbsEntity {

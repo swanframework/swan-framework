@@ -2,7 +2,7 @@ package com.swan.generator.enums;
 
 /** mysql所有数据类型
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 public enum MysqlDataType {
 

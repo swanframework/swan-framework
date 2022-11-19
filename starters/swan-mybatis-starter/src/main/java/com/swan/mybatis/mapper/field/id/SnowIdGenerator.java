@@ -1,11 +1,11 @@
 package com.swan.mybatis.mapper.field.id;
 
 
-import com.swan.mybatis.util.SnowIdUtil;
+import com.swan.core.utils.SnowIdUtil;
 
 /** 雪花主键生成器
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 public class SnowIdGenerator implements IdGenerator {
 

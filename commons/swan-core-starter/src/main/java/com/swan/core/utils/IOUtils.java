@@ -1,17 +1,17 @@
-package com.swan.mybatis.util;
+package com.swan.core.utils;
 
 import java.io.Closeable;
 
 /** IO 工具类
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 public class IOUtils {
 
     /** 批量关闭流
      * @param closeables
      * @author zongf
-     * @date 2019-11-30
+     * @since 2019-11-30
      */
     public static void close(Closeable... closeables) {
         for (Closeable closeable : closeables) {

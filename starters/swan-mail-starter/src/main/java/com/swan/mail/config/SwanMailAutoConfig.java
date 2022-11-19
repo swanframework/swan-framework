@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
 
 /** 邮件 自动化配置
  * @author zongf
- * @date 2021-07-29
+ * @since 2021-07-29
  */
 @EnableConfigurationProperties({MailProperties.class, SwanMailProperties.class})
 @Configuration

@@ -9,7 +9,7 @@ import java.util.Map;
 
 /** 文件状态
  * @author zongf
- * @date 2021-11-03
+ * @since 2021-11-03
  */
 @Setter @Getter @Builder
 public class ObjectState {

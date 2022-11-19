@@ -5,7 +5,7 @@ import java.util.Optional;
 
 /** 字段加密策略
  * @author zongf
- * @date 2020-11-27
+ * @since 2020-11-27
  */
 public enum EncryptType {
 
@@ -29,7 +29,7 @@ public enum EncryptType {
      *
      * @return int 枚举code
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public int code() {
         return this.code;
@@ -40,7 +40,7 @@ public enum EncryptType {
      *
      * @return String 枚举desc
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public String desc() {
         return this.desc;
@@ -52,7 +52,7 @@ public enum EncryptType {
      * @param code 枚举code
      * @return IdType code对应的枚举类型
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static EncryptType getEnumOfCode(int code) {
         return Arrays.stream(EncryptType.values())
@@ -66,7 +66,7 @@ public enum EncryptType {
      * @param desc 枚举desc
      * @return IdType desc对应的枚举类型
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static EncryptType getEnumOfDesc(String desc) {
         return Arrays.stream(EncryptType.values())
@@ -80,7 +80,7 @@ public enum EncryptType {
      * @param code 枚举code
      * @return String 枚举desc 或 null
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static String getDesc(int code) {
         Optional<EncryptType> optional = Arrays.stream(EncryptType.values())
@@ -95,7 +95,7 @@ public enum EncryptType {
      * @param desc 枚举desc
      * @return Integer 枚举code 或 null
      * @author zongf
-     * @date 2020-11-27
+     * @since 2020-11-27
      */
     public static Integer getCode(String desc) {
         Optional<EncryptType> optional = Arrays.stream(EncryptType.values())

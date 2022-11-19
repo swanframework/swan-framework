@@ -1,1 +1,4 @@
-
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.swan.core.autoConfig.SwanCoreAutoConfig
+org.springframework.context.ApplicationListener=\
+  com.swan.core.listener.ApplicationRefreshMulticaster

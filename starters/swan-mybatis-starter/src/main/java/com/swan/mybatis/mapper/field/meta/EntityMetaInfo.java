@@ -9,7 +9,7 @@ import java.util.List;
 
 /** 实体信息
  * @author zongf
- * @date 2021-01-09
+ * @since 2021-01-09
  */
 @Setter @Getter @ToString
 public class EntityMetaInfo {

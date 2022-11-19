@@ -6,7 +6,7 @@ import lombok.ToString;
 
 /** java 属性
  * @author zongf
- * @date 2019-11-30
+ * @since 2019-11-30
  */
 @Setter @Getter @ToString
 public class EntityFieldMeta {

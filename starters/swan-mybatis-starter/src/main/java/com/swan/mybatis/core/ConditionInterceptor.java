@@ -20,7 +20,7 @@ import org.apache.ibatis.scripting.xmltags.WhereSqlNode;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import com.swan.mybatis.util.ReflectUtil;
+import com.swan.core.utils.ReflectUtil;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import java.util.Map;
 
 /** 用自定义 mapper 中的 condition 片段，替换为内置的 condition 片段，已废弃
  * @author zongf
- * @date 2020-01-07
+ * @since 2020-01-07
  */
 @Intercepts({
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),

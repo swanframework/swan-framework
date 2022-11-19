@@ -7,7 +7,7 @@ import java.util.List;
 
 /** 分页响应
  * @author zongf
- * @date 2021-11-03
+ * @since 2021-11-03
  */
 @Setter @Getter
 public class PagerResponse<T> {

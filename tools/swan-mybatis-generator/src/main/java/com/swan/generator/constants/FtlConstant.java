@@ -2,7 +2,7 @@ package com.swan.generator.constants;
 
 /**
  * @author zongf
- * @date 2021-03-02
+ * @since 2021-03-02
  */
 public class FtlConstant {
 

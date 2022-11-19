@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * @author zongf
- * @date 2021-01-08
+ * @since 2021-01-08
  */
 public class IdGeneratorFactory {
 

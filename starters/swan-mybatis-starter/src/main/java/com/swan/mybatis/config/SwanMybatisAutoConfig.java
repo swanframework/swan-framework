@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author zongf
- * @date 2021-07-13
+ * @since 2021-07-13
  */
 @EnableConfigurationProperties({SwanMybatisProperties.class})
 @Configuration(proxyBeanMethods = false)

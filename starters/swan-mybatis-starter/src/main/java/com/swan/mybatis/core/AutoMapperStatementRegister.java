@@ -2,7 +2,7 @@ package com.swan.mybatis.core;
 
 import com.swan.freemarker.core.IFreemarkerTemplate;
 import com.swan.mybatis.mapper.field.meta.EntityMetaInfo;
-import com.swan.mybatis.util.ReflectUtil;
+import com.swan.core.utils.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
@@ -14,7 +14,7 @@ import com.swan.mybatis.config.SwanMybatisProperties;
 import com.swan.mybatis.factory.EntityMetaInfoFactory;
 import com.swan.mybatis.mapper.MapperMethodsMetaInfo;
 import com.swan.mybatis.mapper.methods.BaseMethod;
-import com.swan.mybatis.util.TxtFileUtil;
+import com.swan.core.utils.TxtFileUtil;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.util.StringUtils;
 
@@ -25,7 +25,7 @@ import java.util.*;
 
 /** BaseMapper接口方法映射MapperStatement生成器
  * @author zongf
- * @date 2021-01-08
+ * @since 2021-01-08
  */
 @Slf4j
 public class AutoMapperStatementRegister {
@@ -92,7 +92,7 @@ public class AutoMapperStatementRegister {
     /** 获取所有继承IBaseMapper 接口, 且使用@Mapper 修饰的组件.
      * @return
      * @author zongf
-     * @date 2021-01-11
+     * @since 2021-01-11
      */
     private List<MapperFactoryBean> getBaseMapperFactoryBeans() {
         List<MapperFactoryBean> baseMapperFactoryBeanList = new ArrayList<>();
@@ -119,7 +119,7 @@ public class AutoMapperStatementRegister {
      * @param entityType 实体类型
      * @return String
      * @author zongf
-     * @date 2020-01-09
+     * @since 2020-01-09
      */
     private String createMapperXml(Class mapperInterface, Class entityType) {
 

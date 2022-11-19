@@ -5,7 +5,7 @@ import com.swan.core.exception.SwanBaseException;
 
 /**
  * @author zongf
- * @date 2021-11-02
+ * @since 2021-11-02
  */
 public class CodesGeneratorException extends SwanBaseException {
 

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @author zongf
- * @date 2021-07-29
+ * @since 2021-07-29
  */
 @Configuration
 @EnableConfigurationProperties(SwanMinioProperties.class)
