@@ -10,12 +10,13 @@
     <version>2.0.0-SNAPSHOT</version>
 
     <modules>
-        <module>test-swan-core-starter</module>
-        <module>test-swan-commons</module>
-        <module>test-swan-knife4j-starter</module>
-        <module>test-swan-freemarker-starter</module>
-        <module>test-swan-mail-starter</module>
-        <module>test-swan-mybatis-starter</module>
+        <module>commons/test-swan-commons</module>
+        <module>commons/test-swan-commons</module>
+
+        <module>starters/test-swan-knife4j-starter</module>
+        <module>starters/test-swan-freemarker-starter</module>
+        <module>starters/test-swan-mail-starter</module>
+        <module>starters/test-swan-mybatis-starter</module>
     </modules>
 
 </project>

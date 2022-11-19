@@ -7,7 +7,7 @@ import com.swan.test.mybatis.po.AutoVersionEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
+
 /**
  * @author zongf
  * @since 2021-01-10
