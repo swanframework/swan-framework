@@ -38,6 +38,8 @@
         <maven.surefire.version>2.22.2</maven.surefire.version>
 
         <minio.version>8.3.0</minio.version>
+
+        <hibernate.validator.version>6.0.17.Final</hibernate.validator.version>
     </properties>
 
     <dependencyManagement>
@@ -115,6 +117,12 @@
                 <groupId>io.minio</groupId>
                 <artifactId>minio</artifactId>
                 <version>${minio.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
             </dependency>
 
         </dependencies>
