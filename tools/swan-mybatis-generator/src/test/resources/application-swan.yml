@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/swan-mybatis?serverTimezone=UTC&&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+sboot:
+  generator:
+    mybatis:
+      author: zongf
+      table-prefix: t_
+      entity:
+        package-name: com.swan.generator.auto
+        name-prefix: Sboot
+        name-suffix: Entity
+        anno-package: com.swan.mybatis
+      mapper:
+        package-name: com.swan.generator.auto
+        name-prefix: I
+        name-suffix: Mapper
+        id-type: Long
+        xml-dir: mappers
+        parent-class: com.swan.mybatis.mapper.mapper.IBaseMapper
