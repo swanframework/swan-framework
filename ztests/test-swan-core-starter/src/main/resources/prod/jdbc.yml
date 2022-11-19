@@ -1,0 +1,3 @@
+jdbc:
+  username: prod-root
+  password: prod-123456

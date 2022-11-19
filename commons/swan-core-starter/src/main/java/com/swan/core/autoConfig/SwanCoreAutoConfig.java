@@ -5,6 +5,8 @@ import com.swan.core.components.BeanFactoryHolder;
 import com.swan.core.components.ResourceScanner;
 import com.swan.core.threadPool.ThreadPoolRegister;
 import com.swan.core.threadPool.ThreadPoolsProperties;
+import com.swan.core.yaml.YamlSource;
+import com.swan.core.yaml.YamlSourceFactoryPostProcessor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,6 +37,11 @@ public class SwanCoreAutoConfig {
     @Bean
     public ThreadPoolRegister threadPoolRegister() {
         return new ThreadPoolRegister();
+    }
+
+    @Bean
+    public YamlSourceFactoryPostProcessor yamlSourceFactoryPostProcessor() {
+        return new YamlSourceFactoryPostProcessor();
     }
 
 }

@@ -17,3 +17,4 @@ swan:
 spring:
   application:
     name: test-wan-log-starter
+

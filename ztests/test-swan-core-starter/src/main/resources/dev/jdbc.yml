@@ -1,0 +1,3 @@
+jdbc:
+  username: dev-root
+  password: dev-123456
