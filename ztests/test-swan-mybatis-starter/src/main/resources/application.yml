@@ -15,6 +15,7 @@ mybatis:
     enable: true
     path: target
     mappers: IAutoMapper
+  ignore-fields:
 
 
 server:
