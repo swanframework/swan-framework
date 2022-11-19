@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 
 @Slf4j
 @SpringBootTest
-@ActiveProfiles("threadPool")
+@ActiveProfiles("dev,threadPool")
 public class ThreadPoolTest {
 
     @Autowired
