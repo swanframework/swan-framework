@@ -10,6 +10,7 @@
     <version>2.0.0-SNAPSHOT</version>
 
     <modules>
+        <module>test-swan-core-starter</module>
         <module>test-swan-commons</module>
         <module>test-swan-knife4j-starter</module>
         <module>test-swan-freemarker-starter</module>

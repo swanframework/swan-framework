@@ -1,0 +1,20 @@
+swan:
+  thread-pools:
+    enable: true
+    default-config:
+      core-pool-size: 5
+      max-pool-size: 10
+      daemon: false
+      await-termination-seconds: 100
+      allow-core-thread-time-out: true
+      thread-group-name: thread-default-
+      thread-name-prefix: default-
+      keep-alive-seconds: 100
+      queue-capacity: 100
+    pool-configs:
+      jobPool:
+        thread-name-prefix: job
+      taskPool:
+        core-pool-size: 10
+
+
