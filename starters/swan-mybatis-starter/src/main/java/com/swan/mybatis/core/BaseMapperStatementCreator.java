@@ -42,6 +42,8 @@ public class BaseMapperStatementCreator {
 
     private IFreemarkerTemplate freemarkerTemplate;
 
+    private static Set<String> ignoreFields = new HashSet<>();
+
     public BaseMapperStatementCreator(DefaultListableBeanFactory beanFactory) {
         this.applicationContext = beanFactory;
         this.configuration = this.applicationContext.getBean(SqlSessionFactory.class).getConfiguration();
@@ -149,7 +151,7 @@ public class BaseMapperStatementCreator {
         String namespace = mapperInterface.getName();
         Map<String, Object> dateMap = new HashMap<>();
         dateMap.put("namespace", namespace);
-        dateMap.put("entityMeta", EntityMetaInfoFactory.createEntityMetaInfo(entityType, conditionName));
+        dateMap.put("entityMeta", EntityMetaInfoFactory.createEntityMetaInfo(entityType, conditionName, swanMybatisProperties.getIgnoreFields()));
         dateMap.put("methodsInfo", new MapperMethodsMetaInfo(mapperInterface));
 
         String mapperXml = this.freemarkerTemplate.getContent(BASE_MAPPER_FTL, dateMap);

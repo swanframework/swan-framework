@@ -8,17 +8,21 @@ import com.swan.mybatis.field.meta.EntityMetaInfo;
 import com.swan.mybatis.field.meta.FieldMetaInfo;
 import com.swan.mybatis.field.meta.VersionFieldMetaInfo;
 import com.swan.mybatis.util.ReflectUtil;
+import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author zongf
  * @date 2021-01-09
  */
+@Slf4j
 public class EntityMetaInfoFactory {
 
-    public static EntityMetaInfo createEntityMetaInfo(Class entityType, String conditionName) {
+    public static EntityMetaInfo createEntityMetaInfo(Class entityType, String conditionName, List<String> ignoreFields) {
         if (!entityType.isAnnotationPresent(Table.class)) {
             throw new BaseMapperException(entityType.getName() + " 未使用 @Table 指定映射的表名");
         }
@@ -33,9 +37,21 @@ public class EntityMetaInfoFactory {
 
         List<Field> declaredFields = ReflectUtil.getAllDeclareFields(entityType);
         for (Field declaredField : declaredFields) {
+            char c = declaredField.getName().charAt(0);
+
+            // 非字母开头熟悉，直接忽略
+            if (!(('a' <= c && 'z' >= c) || ('A' < c && 'Z' > c))) {
+                log.warn("非法属性, 不予映射, 类名:{}, 字段名:{}", entityType.getCanonicalName(),declaredField.getName());
+                continue;
+            }
+            // 自定义全局属性忽略
+            if (ignoreFields != null && ignoreFields.contains(declaredField.getName())) {
+                continue;
+            }
             if (declaredField.isAnnotationPresent(Ignore.class)) {
                 continue;
-            } else if (declaredField.isAnnotationPresent(Id.class)) {
+            }
+            if (declaredField.isAnnotationPresent(Id.class)) {
                 Id id = declaredField.getAnnotation(Id.class);
                 if (IdGeneratorType.AUTO_INC.equals(id.generatorType())) {
                     entityMetaInfo.setAutoIncId(true);

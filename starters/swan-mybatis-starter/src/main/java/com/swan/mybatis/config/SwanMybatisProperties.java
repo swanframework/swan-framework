@@ -17,6 +17,9 @@ public class SwanMybatisProperties {
     /** 输出自动生成的 xxxmapper.xml 文件 */
     private LogMapper logMapper = new LogMapper();
 
+    /** 全局属性忽略 */
+    private List<String> ignoreFields;
+
     @Setter @Getter
     public static class LogMapper {
 
