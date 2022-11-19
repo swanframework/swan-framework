@@ -17,6 +17,7 @@
         <module>swan-minio-starter</module>
         <module>swan-rabbitmq-starter</module>
         <module>swan-kafka-starter</module>
+        <module>swan-redis-starter</module>
     </modules>
 
 </project>

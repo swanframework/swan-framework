@@ -30,7 +30,7 @@
 
             <dependency>
                 <groupId>com.swan</groupId>
-                <artifactId>swan-log-starter</artifactId>
+                <artifactId>swan-core-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -42,13 +42,7 @@
 
             <dependency>
                 <groupId>com.swan</groupId>
-                <artifactId>swan-knife4j-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.swan</groupId>
-                <artifactId>swan-core-starter</artifactId>
+                <artifactId>swan-log-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -66,7 +60,25 @@
 
             <dependency>
                 <groupId>com.swan</groupId>
+                <artifactId>swan-kafka-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-knife4j-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
                 <artifactId>swan-mail-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-minio-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -78,9 +90,16 @@
 
             <dependency>
                 <groupId>com.swan</groupId>
-                <artifactId>swan-minio-starter</artifactId>
+                <artifactId>swan-rabbitmq-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-redis-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
