@@ -9,9 +9,16 @@
     <packaging>pom</packaging>
     <version>2.0.0-SNAPSHOT</version>
 
+    <description>
+        commons 和 starters 中不需要再有 pom.xml, 直接通过 ztests/pom.xml 统一管理即可。
+    </description>
+
     <modules>
+
         <module>commons/test-swan-commons</module>
-        <module>commons/test-swan-commons</module>
+        <module>commons/test-swan-core-starter</module>
+        <module>commons/test-swan-log-starter</module>
+        <module>commons/test-swan-env-starter</module>
 
         <module>starters/test-swan-knife4j-starter</module>
         <module>starters/test-swan-freemarker-starter</module>

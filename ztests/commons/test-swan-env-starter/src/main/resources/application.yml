@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: test-wan-env-starter
+logging:
+    level:
+      root: info
+      com.swan.log.test: info
+swan:
+  log:
+    max-length: 30
+    arg-max-length: 10
+    dir: /tmp/swan/env
+    override-suffix: ...
+    max-custom-files: 144
+    max-error-files: 6
+
