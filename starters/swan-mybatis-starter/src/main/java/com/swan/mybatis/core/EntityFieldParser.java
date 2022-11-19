@@ -14,7 +14,7 @@ import com.swan.mybatis.util.ReflectUtil;
 import java.lang.reflect.Field;
 import java.util.*;
 
-/** 解析字段
+/** 字段解析器
  * @author zongf
  * @date 2021-01-08
  */

@@ -40,7 +40,7 @@ public class PageHelperTest extends BaseMapperTest {
                 ;
 
         System.out.println(pager);
-        Assertions.assertEquals(pager.getPages(), demoList.size() /2 / pager.getPageSize());
-        Assertions.assertEquals(pager.getTotal(), demoList.size()/2);
+        Assertions.assertEquals(pager.getPages(), demoList.size() / pager.getPageSize());
+        Assertions.assertEquals(pager.getTotal(), demoList.size());
     }
 }

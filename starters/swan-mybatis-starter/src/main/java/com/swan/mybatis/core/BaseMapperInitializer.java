@@ -1,6 +1,7 @@
 package com.swan.mybatis.core;
 
 import com.github.pagehelper.PageInterceptor;
+import com.swan.mybatis.exception.SwanMybatisException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.plugin.InterceptorChain;
 import org.apache.ibatis.session.Configuration;
@@ -13,17 +14,36 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Set;
 
-/** 核心逻辑
+/** 核心逻辑, spring 完成初始化后，开始处理
  * @author zongf
  * @date 2021-01-08
  */
 @Slf4j
-public class BaseMapperRegister implements ApplicationListener<ContextRefreshedEvent> {
+public class BaseMapperInitializer implements ApplicationListener<ContextRefreshedEvent> {
 
     // 标识是否已解析
     private static boolean parsed = false;
 
     private DefaultListableBeanFactory beanFactory ;
+
+    @Override
+    public void onApplicationEvent(ContextRefreshedEvent event) {
+        beanFactory = (DefaultListableBeanFactory) event.getApplicationContext().getAutowireCapableBeanFactory();
+
+        if(!parsed){
+            // 为BaseMapper自动生成MapperStatement
+            Set<Class> entityClasses = new BaseMapperStatementCreator(beanFactory).process();
+
+            // 解析字段拦截器需要拦截的字段列表
+            new EntityFieldParser().parseFields(entityClasses);
+
+            // 动态添加 mybatis 拦截器
+            registerInterceptor(beanFactory.getBean(SqlSessionFactory.class));
+
+            // 防止重复解析
+            parsed = true;
+        }
+    }
 
     /** 注册字段拦截器, 借助反射向mybtis 主配置类中注册字段拦截器
      * @param sqlSessionFactory
@@ -42,35 +62,13 @@ public class BaseMapperRegister implements ApplicationListener<ContextRefreshedE
             interceptors.setAccessible(true);
             List list = (List) interceptors.get(interceptorChain);
 
-            // 添加字段拦截器，完成 @AutoTime, @Encrypt 等字段自动赋值
+            // 添加字段拦截器，完成 @AutoTime, @Encrypt, @ForceNull 等字段自动赋值
             list.add(0, new EntityFieldInterceptor());
             // 添加 pageHelper 插件
             list.add(1, new PageInterceptor());
         } catch (Exception ex) {
-            throw new RuntimeException("Mybatis 字段拦截器注册失败!", ex);
+            throw new SwanMybatisException("Mybatis 字段拦截器注册失败!", ex);
         }
     }
 
-    @Override
-    public void onApplicationEvent(ContextRefreshedEvent event) {
-        beanFactory = (DefaultListableBeanFactory) event.getApplicationContext().getAutowireCapableBeanFactory();
-
-        if(parsed){
-            log.info("重复处理....");
-            return;
-        }
-
-        // 为BaseMapper自动生成MapperStatement
-        Set<Class> entityClasses = new BaseMapperStatementCreator(beanFactory).process();
-
-        // 字段拦截器处理
-        new EntityFieldParser().parseFields(entityClasses);
-
-        // 注册字段拦截器
-        registerInterceptor(beanFactory.getBean(SqlSessionFactory.class));
-
-        // 防止重复解析
-        parsed = true;
-
-    }
 }

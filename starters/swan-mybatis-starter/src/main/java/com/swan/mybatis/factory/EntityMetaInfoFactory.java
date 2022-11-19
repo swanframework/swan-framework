@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class EntityMetaInfoFactory {
 
-    public static EntityMetaInfo createEntityMetaInfo(Class entityType, String conditionName, List<String> ignoreFields) {
+    public static EntityMetaInfo createEntityMetaInfo(Class entityType, List<String> ignoreFields) {
         if (!entityType.isAnnotationPresent(Table.class)) {
             throw new SwanMybatisException(entityType.getName() + " 未使用 @Table 指定映射的表名");
         }
@@ -28,7 +28,6 @@ public class EntityMetaInfoFactory {
         EntityMetaInfo entityMetaInfo = new EntityMetaInfo();
 
         entityMetaInfo.setClassName(entityType.getCanonicalName());
-        entityMetaInfo.setConditionName(conditionName);
 
         Table table = (Table) entityType.getAnnotation(Table.class);
         entityMetaInfo.setTableName(table.name());

@@ -38,11 +38,11 @@ public class BaseMapperStatementCreator {
     // 模板路径
     private static final String BASE_MAPPER_FTL = "mybatis/BaseMapper.ftl";
 
+    // 自定义配置信息
     private SwanMybatisProperties swanMybatisProperties;
 
+    // freemarker 模板
     private IFreemarkerTemplate freemarkerTemplate;
-
-    private static Set<String> ignoreFields = new HashSet<>();
 
     public BaseMapperStatementCreator(DefaultListableBeanFactory beanFactory) {
         this.applicationContext = beanFactory;
@@ -65,19 +65,21 @@ public class BaseMapperStatementCreator {
             // 获取 MapperFactoryBean 真正的类型
             Class mapperInterface = mapperFactoryBean.getMapperInterface();
 
-            // 只处理继承了 @Mapper 的接口
+            // 只处理使用 @Mapper 修饰的接口
             if (!mapperInterface.isAnnotationPresent(Mapper.class)) {
                 continue;
             }
 
-            // 获取IBaseMapper 的三个参数类型
+            // 获取IBaseMapper 的2个参数类型
             Type[] rawParamTypes = ReflectUtil.getRawParamTypes(mapperInterface, BaseMethod.class);
 
+            // 获取实体类型
             Class entityClz = (Class) rawParamTypes[1];
 
             // 生成动态xml
-            String mapperXml = createMapperXml(mapperInterface, entityClz, getConditionSqlFragmentName(mapperInterface));
-            parseMapperXml(mapperInterface.getName(), mapperXml);
+            String mapperXml = createMapperXml(mapperInterface, entityClz);
+            // 注册 mapperXml, 交由mybatis 解析
+            registeMapperXml(mapperInterface.getName(), mapperXml);
 
             // 记录mapper 的实体类型
             entityClass.add(entityClz);
@@ -140,18 +142,17 @@ public class BaseMapperStatementCreator {
 
     /** 动态生成xml 映射文件
      * @param mapperInterface 接口类型
-     * @param conditionName
      * @param entityType 实体类型
      * @return String
      * @author zongf
      * @date 2020-01-09
      */
-    private String createMapperXml(Class mapperInterface, Class entityType, String conditionName) {
+    private String createMapperXml(Class mapperInterface, Class entityType) {
 
         String namespace = mapperInterface.getName();
         Map<String, Object> dateMap = new HashMap<>();
         dateMap.put("namespace", namespace);
-        dateMap.put("entityMeta", EntityMetaInfoFactory.createEntityMetaInfo(entityType, conditionName, swanMybatisProperties.getIgnoreFields()));
+        dateMap.put("entityMeta", EntityMetaInfoFactory.createEntityMetaInfo(entityType, swanMybatisProperties.getIgnoreFields()));
         dateMap.put("methodsInfo", new MapperMethodsMetaInfo(mapperInterface));
 
         String mapperXml = this.freemarkerTemplate.getContent(BASE_MAPPER_FTL, dateMap);
@@ -174,7 +175,7 @@ public class BaseMapperStatementCreator {
      * @param id
      * @param mapperXml
      */
-    private void parseMapperXml(String id, String mapperXml) {
+    private void registeMapperXml(String id, String mapperXml) {
         // mybatis 会根据资源id判断是否已经解析过此xml. 这样可防止用户创建相同的资源
         String resourceId = id + "-auto";
         InputStream inputStream = new ByteArrayInputStream(mapperXml.getBytes());
