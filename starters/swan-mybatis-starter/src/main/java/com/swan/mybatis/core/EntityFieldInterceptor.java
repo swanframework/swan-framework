@@ -5,7 +5,7 @@ import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.plugin.*;
-import com.swan.mybatis.field.handler.AbsFieldHandler;
+import com.swan.mybatis.mapper.field.handler.AbsFieldHandler;
 
 import java.util.Arrays;
 import java.util.Collection;

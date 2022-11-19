@@ -1,4 +1,4 @@
-package com.swan.mybatis.field.id;
+package com.swan.mybatis.mapper.field.id;
 
 import com.swan.mybatis.enums.IdGeneratorType;
 

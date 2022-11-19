@@ -2,8 +2,8 @@ package com.swan.mybatis.anno;
 
 
 import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.field.id.IdGenerator;
-import com.swan.mybatis.field.id.SnowIdGenerator;
+import com.swan.mybatis.mapper.field.id.IdGenerator;
+import com.swan.mybatis.mapper.field.id.SnowIdGenerator;
 
 import java.lang.annotation.*;
 

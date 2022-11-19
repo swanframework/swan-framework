@@ -2,17 +2,15 @@ package com.swan.mybatis.factory;
 
 import com.swan.mybatis.anno.*;
 import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.exception.BaseMapperException;
-import com.swan.mybatis.field.meta.DeleteFieldMetaInfo;
-import com.swan.mybatis.field.meta.EntityMetaInfo;
-import com.swan.mybatis.field.meta.FieldMetaInfo;
-import com.swan.mybatis.field.meta.VersionFieldMetaInfo;
+import com.swan.mybatis.exception.SwanMybatisException;
+import com.swan.mybatis.mapper.field.meta.DeleteFieldMetaInfo;
+import com.swan.mybatis.mapper.field.meta.EntityMetaInfo;
+import com.swan.mybatis.mapper.field.meta.FieldMetaInfo;
+import com.swan.mybatis.mapper.field.meta.VersionFieldMetaInfo;
 import com.swan.mybatis.util.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +22,7 @@ public class EntityMetaInfoFactory {
 
     public static EntityMetaInfo createEntityMetaInfo(Class entityType, String conditionName, List<String> ignoreFields) {
         if (!entityType.isAnnotationPresent(Table.class)) {
-            throw new BaseMapperException(entityType.getName() + " 未使用 @Table 指定映射的表名");
+            throw new SwanMybatisException(entityType.getName() + " 未使用 @Table 指定映射的表名");
         }
 
         EntityMetaInfo entityMetaInfo = new EntityMetaInfo();
@@ -67,7 +65,7 @@ public class EntityMetaInfoFactory {
         }
 
         if (entityMetaInfo.getIdField() == null) {
-            throw new BaseMapperException(entityType.getName() + " 未使用 @Id 指定主键列");
+            throw new SwanMybatisException(entityType.getName() + " 未使用 @Id 指定主键列");
         }
 
         return entityMetaInfo;

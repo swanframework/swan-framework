@@ -1,8 +1,8 @@
-package com.swan.mybatis.field.handler;
+package com.swan.mybatis.mapper.field.handler;
 
 import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.field.id.IdGenerator;
-import com.swan.mybatis.field.id.IdGeneratorFactory;
+import com.swan.mybatis.mapper.field.id.IdGenerator;
+import com.swan.mybatis.mapper.field.id.IdGeneratorFactory;
 
 import java.lang.reflect.Field;
 

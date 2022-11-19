@@ -1,4 +1,4 @@
-package com.swan.mybatis.field.meta;
+package com.swan.mybatis.mapper.field.meta;
 
 import lombok.Getter;
 import lombok.Setter;

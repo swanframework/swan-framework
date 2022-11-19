@@ -1,7 +1,6 @@
 package com.swan.mybatis.core;
 
 import com.swan.core.exception.SwanBaseException;
-import com.swan.mybatis.anno.Delete;
 import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
@@ -21,7 +20,6 @@ import org.apache.ibatis.scripting.xmltags.WhereSqlNode;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import com.swan.mybatis.exception.BaseMapperException;
 import com.swan.mybatis.util.ReflectUtil;
 
 import java.lang.reflect.Field;

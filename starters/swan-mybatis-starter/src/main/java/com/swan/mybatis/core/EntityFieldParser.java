@@ -5,10 +5,10 @@ import com.swan.mybatis.anno.Id;
 import com.swan.mybatis.anno.AutoTime;
 import com.swan.mybatis.anno.ForceNull;
 import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.field.handler.AbsFieldHandler;
-import com.swan.mybatis.field.handler.AutoTimeFieldHandler;
-import com.swan.mybatis.field.handler.ForceNullFieldHandler;
-import com.swan.mybatis.field.handler.IdFieldHandler;
+import com.swan.mybatis.mapper.field.handler.AbsFieldHandler;
+import com.swan.mybatis.mapper.field.handler.AutoTimeFieldHandler;
+import com.swan.mybatis.mapper.field.handler.ForceNullFieldHandler;
+import com.swan.mybatis.mapper.field.handler.IdFieldHandler;
 import com.swan.mybatis.util.ReflectUtil;
 
 import java.lang.reflect.Field;

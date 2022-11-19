@@ -1,4 +1,4 @@
-package com.swan.mybatis.field.id;
+package com.swan.mybatis.mapper.field.id;
 
 /** 数据库主键生成器
  * @author zongf

@@ -1,4 +1,4 @@
-package com.swan.mybatis.field.id;
+package com.swan.mybatis.mapper.field.id;
 
 /** 主键生成器
  * @param <T> 主键类型

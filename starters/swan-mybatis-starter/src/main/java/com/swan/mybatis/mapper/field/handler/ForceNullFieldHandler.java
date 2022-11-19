@@ -1,4 +1,4 @@
-package com.swan.mybatis.field.handler;
+package com.swan.mybatis.mapper.field.handler;
 
 import java.lang.reflect.Field;
 
