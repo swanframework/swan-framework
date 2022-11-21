@@ -25,6 +25,7 @@
         <module>starters/test-swan-mail-starter</module>
         <module>starters/test-swan-mybatis-starter</module>
         <module>starters/test-swan-rabbitmq-starter</module>
+        <module>starters/test-swan-kafka-starter</module>
     </modules>
 
 </project>
