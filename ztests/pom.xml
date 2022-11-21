@@ -24,6 +24,7 @@
         <module>starters/test-swan-freemarker-starter</module>
         <module>starters/test-swan-mail-starter</module>
         <module>starters/test-swan-mybatis-starter</module>
+        <module>starters/test-swan-rabbitmq-starter</module>
     </modules>
 
 </project>
