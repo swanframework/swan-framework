@@ -33,7 +33,6 @@ import java.util.List;
  * @since 2021-12-01
  */
 @Slf4j
-@Component
 public class YamlSourceFactoryPostProcessor implements BeanDefinitionRegistryPostProcessor, EnvironmentAware {
 
     private Environment environment;
