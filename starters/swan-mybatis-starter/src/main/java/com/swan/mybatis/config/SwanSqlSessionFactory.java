@@ -144,7 +144,6 @@ public class SwanSqlSessionFactory extends SqlSessionFactoryBean {
 
         List<Interceptor> interceptors = new ArrayList<>();
         interceptors.add(new EntityFieldInterceptor());
-        interceptors.add(new PageInterceptor());
 
         // 自定义插件
         if (!ObjectUtils.isEmpty(this.interceptors)) {

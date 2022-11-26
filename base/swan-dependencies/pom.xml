@@ -31,7 +31,7 @@
         <!-- swagger end-->
 
         <mybatis.spring.version>2.1.3</mybatis.spring.version>
-        <mybatis.pagehelper.verion>5.2.1</mybatis.pagehelper.verion>
+        <pagehelper.boot.version>1.4.1</pagehelper.boot.version>
         <mysql.connector.version>8.0.25</mysql.connector.version>
 
         <jacoco.version>0.8.8</jacoco.version>
@@ -94,9 +94,10 @@
 
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper</artifactId>
-                <version>${mybatis.pagehelper.verion}</version>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
             </dependency>
+
 
             <dependency>
                 <groupId>mysql</groupId>
