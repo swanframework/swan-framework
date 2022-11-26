@@ -4,18 +4,16 @@ import com.swan.freemarker.core.IFreemarkerTemplate;
 import com.swan.mybatis.mapper.field.meta.EntityMetaInfo;
 import com.swan.core.utils.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.builder.xml.XMLMapperBuilder;
 import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.session.Configuration;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 import com.swan.mybatis.config.SwanMybatisProperties;
 import com.swan.mybatis.factory.EntityMetaInfoFactory;
 import com.swan.mybatis.mapper.MapperMethodsMetaInfo;
 import com.swan.mybatis.mapper.methods.BaseMethod;
 import com.swan.core.utils.TxtFileUtil;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.util.StringUtils;
 
 import java.io.ByteArrayInputStream;
@@ -34,7 +32,7 @@ public class AutoMapperStatementRegister {
     private Configuration configuration;
 
     // spring bean 工厂
-    private DefaultListableBeanFactory applicationContext;
+    private DefaultListableBeanFactory beanFactory;
 
     // 模板路径
     private static final String BASE_MAPPER_FTL = "mybatis/BaseMapper.ftl";
@@ -45,73 +43,44 @@ public class AutoMapperStatementRegister {
     // freemarker 模板
     private IFreemarkerTemplate freemarkerTemplate;
 
-    public AutoMapperStatementRegister(DefaultListableBeanFactory beanFactory) {
-        this.applicationContext = beanFactory;
-        this.configuration = this.applicationContext.getBean(SqlSessionFactory.class).getConfiguration();
-        this.swanMybatisProperties = this.applicationContext.getBean(SwanMybatisProperties.class);
+    private ResourceLoader resourceLoader;
 
-        this.freemarkerTemplate = this.applicationContext.getBean("freemarkerTemplateInside", IFreemarkerTemplate.class);
+    public AutoMapperStatementRegister(Configuration configuration, DefaultListableBeanFactory beanFactory, ResourceLoader resourceLoader) {
+        this.configuration = configuration;
+        this.beanFactory = beanFactory;
+        this.swanMybatisProperties = this.beanFactory.getBean(SwanMybatisProperties.class);
+        this.freemarkerTemplate = this.beanFactory.getBean("freemarkerTemplateInside", IFreemarkerTemplate.class);
+        this.resourceLoader = resourceLoader;
     }
 
     public Set<Class> process() {
 
         Set<Class> entityClass = new HashSet<>();
 
-        // 获取所有继承IBaseMapper 接口, 且使用@Mapper 修饰的组件.
-        // Mybatis 会为每个@Mapper 修饰的接口注册MapperFactoryBean 组件
-        List<MapperFactoryBean> factoryBeanList = getBaseMapperFactoryBeans();
+        // 扫描所有使用 @Mapper 修饰的接口
+        List<Class> mapperList = new MapperScanner(beanFactory, resourceLoader).doScan();
 
-        for (MapperFactoryBean mapperFactoryBean : factoryBeanList) {
-
-            // 获取 MapperFactoryBean 真正的类型
-            Class mapperInterface = mapperFactoryBean.getMapperInterface();
-
-            // 只处理使用 @Mapper 修饰的接口
-            if (!mapperInterface.isAnnotationPresent(Mapper.class)) {
-                continue;
-            }
+        for (Class mapperInterface : mapperList) {
 
             // 获取IBaseMapper 的2个参数类型
             Type[] rawParamTypes = ReflectUtil.getRawParamTypes(mapperInterface, BaseMethod.class);
 
-            // 获取实体类型
-            Class entityClz = (Class) rawParamTypes[1];
+            if (rawParamTypes != null && rawParamTypes.length == 2) {
+                // 获取实体类型
+                Class entityClz = (Class) rawParamTypes[1];
 
-            // 生成动态xml
-            String mapperXml = createMapperXml(mapperInterface, entityClz);
-            // 注册 mapperXml, 交由mybatis 解析
-            registerMapperXml(mapperInterface.getName(), mapperXml);
+                // 生成动态xml
+                String mapperXml = createMapperXml(mapperInterface, entityClz);
 
-            // 记录mapper 的实体类型
-            entityClass.add(entityClz);
-        }
+                // 注册 mapperXml, 交由mybatis 解析
+                registerMapperXml(mapperInterface.getName(), mapperXml);
 
-        return entityClass;
-    }
-
-    /** 获取所有继承IBaseMapper 接口, 且使用@Mapper 修饰的组件.
-     * @return
-     * @author zongf
-     * @since 2021-01-11
-     */
-    private List<MapperFactoryBean> getBaseMapperFactoryBeans() {
-        List<MapperFactoryBean> baseMapperFactoryBeanList = new ArrayList<>();
-
-        // mybatis 会将所有@Mapper 修饰的接口, 注册为MapperFactoryBean 定义信息
-        Map<String, MapperFactoryBean> beanMap = this.applicationContext.getBeansOfType(MapperFactoryBean.class);
-
-        for (MapperFactoryBean mapperFactoryBean : beanMap.values()) {
-
-            // 获取 MapperFactoryBean 真正的类型
-            Class mapperInterface = mapperFactoryBean.getMapperInterface();
-
-            // 如果实现了 IBaseMapper.class 接口
-            if (ReflectUtil.isImplement(mapperInterface, BaseMethod.class)) {
-                baseMapperFactoryBeanList.add(mapperFactoryBean);
+                // 记录mapper 的实体类型
+                entityClass.add(entityClz);
             }
         }
 
-        return baseMapperFactoryBeanList;
+        return entityClass;
     }
 
     /** 动态生成xml 映射文件

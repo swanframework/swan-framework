@@ -3,8 +3,6 @@
 
 <mapper namespace="com.swan.test.mybatis.mapper.IAutoMapper">
 
-
-
     <delete id="truncate">
         truncate  t_auto
     </delete>
@@ -12,5 +10,11 @@
     <select id="queryListByIds" resultType="com.swan.test.mybatis.po.AutoEntity">
         select <include refid="columns"/>
         from <include refid="tableName"/>
+    </select>
+    <select id="queryOnCondition" resultType="com.swan.test.mybatis.po.AutoEntity">
+        select <include refid="columns"/>
+        from <include refid="tableName"/>
+        <where> <include refid="condition"/>
+        </where>
     </select>
 </mapper>

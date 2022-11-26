@@ -1,4 +1,4 @@
-package com.swan.mybatis.core;
+package com.swan.mybatis.deprecated;
 
 import com.swan.core.exception.SwanBaseException;
 import org.apache.ibatis.binding.MapperMethod;

@@ -5,7 +5,6 @@ import com.swan.test.mybatis.mapper.IAutoDelVersionMapper;
 import com.swan.test.mybatis.mapper.IAutoMapper;
 import com.swan.test.mybatis.mapper.IAutoVersionMapper;
 import org.junit.jupiter.api.BeforeEach;
-import com.swan.mybatis.config.EnableAutoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,7 +14,6 @@ import org.springframework.test.context.ActiveProfiles;
  * @since 2020-11-27
  */
 @SpringBootTest
-@EnableAutoMapper
 @ActiveProfiles("dev")
 public class BaseMapperTest {
 

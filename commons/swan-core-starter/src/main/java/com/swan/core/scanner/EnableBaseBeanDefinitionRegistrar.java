@@ -1,10 +1,12 @@
 package com.swan.core.scanner;
 
+import com.swan.core.utils.ClassUtil;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 import org.springframework.core.io.ResourceLoader;
@@ -13,10 +15,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 
 import java.lang.annotation.Annotation;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /** BeanDefinition 自定义注册器
  *  1) 不能实现ApplicationContextAware接口, 不能回调. 因为ImportBeanDefinitionRegistrar 的执行时机为: refresh -> invokeBeanFactoryPostProcessors 中, 在bean 初始化之前
@@ -88,9 +87,11 @@ public abstract class EnableBaseBeanDefinitionRegistrar implements ImportBeanDef
 
         // 添加注解定义的包
         Map<String, Object> attributes = importingMetadata .getAnnotationAttributes(clz.getCanonicalName());
-        for (String pkg : (String[]) attributes.get("basePackages")) {
-            if (StringUtils.hasText(pkg)) {
-                basePackages.add(pkg);
+        if (attributes != null) {
+            for (String pkg : (String[]) attributes.get("basePackages")) {
+                if (StringUtils.hasText(pkg)) {
+                    basePackages.add(pkg);
+                }
             }
         }
 
@@ -116,19 +117,24 @@ public abstract class EnableBaseBeanDefinitionRegistrar implements ImportBeanDef
      */
     protected Set<String> getSpringBootApplicationPackage(ConfigurableListableBeanFactory beanFactory){
         Set<String> packages = new HashSet<>();
-        Class clz = null;
-        try {
             // 加载SpringBootApplication, 如果没有则表示非springboot 环境
-            clz = Class.forName("org.springframework.boot.autoconfigure.SpringBootApplication");
 
-            for (String beanName : beanFactory.getBeanNamesForAnnotation(clz)) {
+            for (String beanName : beanFactory.getBeanNamesForAnnotation(SpringBootApplication.class)) {
                 String beanClassName = beanFactory.getBeanDefinition(beanName).getBeanClassName();
-                packages.add(ClassUtils.getPackageName(beanClassName));
+
+                // 加载启动类
+                Class<?> beanClass =  ClassUtil.forName(beanClassName, beanFactory.getBeanClassLoader());
+                SpringBootApplication annotation = beanClass.getAnnotation(SpringBootApplication.class);
+
+                // 如果指定了扫描包，则添加指定的扫描包，否则添加启动类所在包路径
+                if (annotation.scanBasePackages() != null && annotation.scanBasePackages().length > 0) {
+                    packages.addAll(Arrays.asList(annotation.scanBasePackages()));
+                }else {
+                    packages.add(ClassUtils.getPackageName(beanClassName));
+                }
+
             }
 
-        } catch (ClassNotFoundException e) {
-            // do nothing
-        }
         return packages;
     }
 

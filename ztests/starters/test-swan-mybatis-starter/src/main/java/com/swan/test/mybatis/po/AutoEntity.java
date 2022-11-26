@@ -1,5 +1,6 @@
 package com.swan.test.mybatis.po;
 
+import com.swan.mybatis.anno.AutoTime;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -1,4 +1,4 @@
-package com.swan.mybatis.core;
+package com.swan.mybatis.deprecated;
 
 /** 查询条件
  * @author zongf

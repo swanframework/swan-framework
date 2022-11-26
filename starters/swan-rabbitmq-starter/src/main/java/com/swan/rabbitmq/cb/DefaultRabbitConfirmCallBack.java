@@ -1,6 +1,6 @@
 package com.swan.rabbitmq.cb;
 
-import com.alibaba.fastjson.JSONObject;
+import com.swan.core.utils.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -16,9 +16,9 @@ public class DefaultRabbitConfirmCallBack implements RabbitTemplate.ConfirmCallb
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         if (ack) {
-            log.debug("消息发送成功!，correlationData:{} ,ack:{}, cause:{}", JSONObject.toJSONString(correlationData), ack, cause);
+            log.debug("消息发送成功!，correlationData:{} ,ack:{}, cause:{}", JacksonUtil.toString(correlationData), ack, cause);
         } else {
-            log.debug("消息发送失败!，correlationData:{} ,ack:{}, cause:{}", JSONObject.toJSONString(correlationData), ack, cause);
+            log.debug("消息发送失败!，correlationData:{} ,ack:{}, cause:{}", JacksonUtil.toString(correlationData), ack, cause);
         }
     }
 

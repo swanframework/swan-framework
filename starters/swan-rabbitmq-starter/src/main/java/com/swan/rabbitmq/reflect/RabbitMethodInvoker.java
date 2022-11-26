@@ -1,8 +1,8 @@
 package com.swan.rabbitmq.reflect;
 
-import com.alibaba.fastjson.JSONObject;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.core.invoker.IMethodInvoker;
+import com.swan.core.utils.JacksonUtil;
 import com.swan.core.utils.SnowIdUtil;
 import com.swan.rabbitmq.anno.RabbitParam;
 import com.swan.rabbitmq.anno.RabbitPush;
@@ -49,7 +49,7 @@ public class RabbitMethodInvoker implements IMethodInvoker {
             messageBaseEntity.setUpdateTime(System.currentTimeMillis());
             messageBaseEntity.setBody(this.parseParams(method, args));
 
-            log.info("消息推送, 交换器名称:{}, 路由键:{}, 消息体:{}, 开始", rabbitPush.exchange(), rabbitPush.routingKey(), JSONObject.toJSONString(messageBaseEntity));
+            log.info("消息推送, 交换器名称:{}, 路由键:{}, 消息体:{}, 开始", rabbitPush.exchange(), rabbitPush.routingKey(), JacksonUtil.toString(messageBaseEntity));
 
             if (rabbitPush.sync()) {
 
@@ -72,7 +72,7 @@ public class RabbitMethodInvoker implements IMethodInvoker {
         } catch (SwanBaseException ex) {
             throw ex;
         } catch (Exception ex) {
-            log.error("消息推送, 请求参数:{}, 失败", JSONObject.toJSONString(messageBaseEntity), ex);
+            log.error("消息推送, 请求参数:{}, 失败", JacksonUtil.toString(messageBaseEntity), ex);
         }
 
         return null;
