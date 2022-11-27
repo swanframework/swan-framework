@@ -1,7 +1,10 @@
 package com.swan.core.utils;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 import java.lang.reflect.Array;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -49,6 +52,56 @@ public class ListUtil {
         }
         return array;
     }
+
+    /** 对list中的元素进行分组
+     * @param list 列表
+     * @param function 获取分组key的方法
+     * @param <K> 分组 key
+     * @param <V> list元素类型
+     * @return Map<K, List<V>>
+     */
+    public static <K, V> Map<K, List<V>> groupToMap(List<V> list, Function<V, K> function) {
+        if (list == null) {
+            return null;
+        }
+        Map<K, List<V>> map = new HashMap<>();
+        for (V item : list) {
+            List<V> values = map.computeIfAbsent(function.apply(item), lst -> new ArrayList());
+            values.add(item);
+        }
+        return map;
+    }
+
+    @Data
+    @AllArgsConstructor
+    static class TestPO{
+        private Integer id;
+
+        private String name;
+    }
+
+
+    public static void main(String[] args) {
+        List<TestPO> list = new ArrayList<>();
+        list.add(new TestPO(1, "a"));
+        list.add(new TestPO(1, "aa"));
+        list.add(new TestPO(1, "aaa"));
+        list.add(new TestPO(1, "aaaa"));
+        list.add(new TestPO(2, "b"));
+        list.add(new TestPO(2, "bb"));
+        list.add(new TestPO(2, "bbb"));
+        list.add(new TestPO(3, "c"));
+        list.add(new TestPO(3, "cc"));
+        list.add(new TestPO(3, "ccc"));
+
+        Map<Integer, List<TestPO>> map = groupToMap(list, TestPO::getId);
+
+        map.forEach((key, value) -> System.out.println(key + ":" + value));
+
+
+
+    }
+
 
 
 }

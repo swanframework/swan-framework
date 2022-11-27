@@ -78,27 +78,45 @@ public class CriterionFactory {
                 return createNoParam(logicOp, column, opType.getOperator(), values);
             case between:
             case notBetween:
+                if (values.length == 0) {
+                    return null;
+                }
                 // 两个参数
                 return createTwoParams(logicOp, column, opType.getOperator(), values);
             case in:
             case notIn:
+                if (values.length == 0) {
+                    return null;
+                }
                 // 多个参数
                 return createMultiParams(logicOp, column, opType.getOperator(), Arrays.asList(values));
             case like:
             case notLike:
+                if (values.length == 0) {
+                    return null;
+                }
                 checkOneParam(values, opType);
                 return createOneParam(logicOp, column, opType.getOperator(), "%" + values[0] + "%");
             case leftLike:
             case leftNotLike:
+                if (values.length == 0) {
+                    return null;
+                }
                 // 默认1个参数
                 checkOneParam(values, opType);
                 return createOneParam(logicOp, column, opType.getOperator(), values[0] + "%");
             case rightLike:
             case rightNotLike:
+                if (values.length == 0) {
+                    return null;
+                }
                 // 默认1个参数
                 checkOneParam(values, opType);
                 return createOneParam(logicOp, column, opType.getOperator(), "%" + values[0]);
             default:
+                if (values.length == 0) {
+                    return null;
+                }
                 // 默认1个参数
                 checkOneParam(values, opType);
                 return createOneParam(logicOp, column, opType.getOperator(), values[0]);

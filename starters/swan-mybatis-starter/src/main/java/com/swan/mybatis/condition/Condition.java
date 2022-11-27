@@ -32,7 +32,10 @@ public class Condition {
      * @since 2022-11-18
      */
     public Condition and(String field, OpType opType, Object... values) {
-        this.criterionList.add(CriterionFactory.create("and", NameUtil.toHungaryName(field), opType, values));
+        Criterion criterion = CriterionFactory.create("and", NameUtil.toHungaryName(field), opType, values);
+        if (criterion != null) {
+            this.criterionList.add(criterion);
+        }
         return this;
     }
 
@@ -44,7 +47,10 @@ public class Condition {
      * @since 2022-11-18
      */
     public Condition or(String field, OpType opType, Object... values) {
-        this.criterionList.add(CriterionFactory.create("or", NameUtil.toHungaryName(field), opType, values));
+        Criterion criterion = CriterionFactory.create("or", NameUtil.toHungaryName(field), opType, values);
+        if (criterion != null) {
+            this.criterionList.add(criterion);
+        }
         return this;
     }
 

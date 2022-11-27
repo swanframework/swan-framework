@@ -3,6 +3,7 @@ package com.swan.test.mybatis.mapper.page;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 
+import com.github.pagehelper.PageInfo;
 import com.swan.mybatis.condition.Condition;
 import com.swan.mybatis.condition.OpType;
 import org.junit.jupiter.api.Test;
@@ -32,12 +33,13 @@ public class PageHelperTest extends BaseMapperTest {
                 .and(AutoEntity.Fields.name, OpType.equals, "lisi");
 
         Page<AutoEntity> pager = PageHelper
-                .startPage(-1, 2)
+                .startPage(0, 2)
                 .count(true)
                 .reasonable(false)
                 .pageSizeZero(false)
                 .doSelectPage(() -> this.autoMapper.selectList(condition))
                 ;
+        PageInfo<AutoEntity> autoEntityPageInfo = new PageInfo<>(pager);
 
         System.out.println(pager);
         Assertions.assertEquals(pager.getPages(), demoList.size() / pager.getPageSize());
