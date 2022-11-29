@@ -3,6 +3,8 @@ package com.swan.core.autoConfig;
 import com.swan.core.components.ApplicationContextHolder;
 import com.swan.core.components.BeanFactoryHolder;
 import com.swan.core.components.ResourceScanner;
+import com.swan.core.listener.EventMulticaster;
+import com.swan.core.listener.IEventListener;
 import com.swan.core.threadPool.ThreadPoolRegister;
 import com.swan.core.threadPool.ThreadPoolsProperties;
 import com.swan.core.yaml.YamlSource;
@@ -10,6 +12,8 @@ import com.swan.core.yaml.YamlSourceFactoryPostProcessor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.List;
 
 /** 自动化配置
  * @author zongf
@@ -42,6 +46,11 @@ public class SwanCoreAutoConfig {
     @Bean
     public YamlSourceFactoryPostProcessor yamlSourceFactoryPostProcessor() {
         return new YamlSourceFactoryPostProcessor();
+    }
+
+    @Bean
+    public EventMulticaster eventMulticaster(List<IEventListener> eventListeners) {
+        return new EventMulticaster(eventListeners);
     }
 
 }
