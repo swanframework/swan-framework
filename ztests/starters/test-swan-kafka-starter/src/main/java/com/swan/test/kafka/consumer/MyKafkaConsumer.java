@@ -1,6 +1,6 @@
 package com.swan.test.kafka.consumer;
 
-import com.alibaba.fastjson.JSONObject;
+import com.swan.core.utils.JacksonUtil;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -19,7 +19,7 @@ public class MyKafkaConsumer {
 
     @KafkaListener(topics = "topic2",groupId = "test-sboot-starter-kafka-2")
     public void listen2(ProducerRecord<String, String> message) {
-        System.out.println("接收到消息:" + JSONObject.toJSONString(message));
+        System.out.println("接收到消息:" + JacksonUtil.toString(message));
     }
 
 }

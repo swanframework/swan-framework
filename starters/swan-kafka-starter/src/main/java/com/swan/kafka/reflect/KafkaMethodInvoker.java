@@ -1,7 +1,7 @@
 package com.swan.kafka.reflect;
 
-import com.alibaba.fastjson.JSONObject;
 import com.swan.core.invoker.IMethodInvoker;
+import com.swan.core.utils.JacksonUtil;
 import com.swan.core.utils.SnowIdUtil;
 import com.swan.kafka.anno.KafkaParam;
 import com.swan.kafka.anno.KafkaPush;
@@ -69,11 +69,11 @@ public class KafkaMethodInvoker implements IMethodInvoker {
                 body = kafkaMessage;
             }
 
-            String json = JSONObject.toJSONString(body);
+            String json = JacksonUtil.toString(body);
             log.info("kafka 消息推送, topic:{}, 消息体:{}", topic, json);
             return kafkaTemplate.send(topic, json);
         } catch (Exception ex) {
-            log.error("kafka 消息推送, 请求参数:{}, 失败", JSONObject.toJSONString(body), ex);
+            log.error("kafka 消息推送, 请求参数:{}, 失败", JacksonUtil.toString(body), ex);
         }
         return null;
     }

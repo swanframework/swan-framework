@@ -1,6 +1,6 @@
 package com.swan.test.mail;
 
-import com.swan.freemarker.core.IFreemarkerTemplate;
+import com.swan.core.utils.ThreadUtil;
 import com.swan.mail.core.IMailSender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,8 @@ class MailSenderTest {
 
         mailSender.sendHtmlMail("订单报警", toList, ccList,
                 "你好，您的邮件验证码为:123456", new ArrayList<>());
-    }
 
+        ThreadUtil.sleep(3);
+    }
 
 }

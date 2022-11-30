@@ -1,8 +1,10 @@
 package com.swan.mail.core;
 
 import cn.hutool.core.util.ObjectUtil;
+import com.swan.core.listener.EventMulticaster;
 import com.swan.freemarker.core.FreemarkerTemplate;
 import com.swan.mail.config.SwanMailProperties;
+import com.swan.mail.listener.MailEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,6 +41,9 @@ public class MailSender implements IMailSender {
     @Autowired
     private MailProperties mailProperties;
 
+    @Autowired
+    private EventMulticaster eventMulticaster;
+
     private static final String INSIDE_MAIL_FTL = "mail/mail.ftl";
 
     @Override
@@ -72,7 +77,9 @@ public class MailSender implements IMailSender {
         return sendMail(title, toList, ccList, htmlContent, attachmentList.size(), true);
     }
 
-    private boolean sendMail(String title, List<String> toList, List<String> ccList, String content, int attachmentSize, Boolean isHtml) {
+    @Override
+    public boolean sendMail(String title, List<String> toList, List<String> ccList, String content, int attachmentSize, Boolean isHtml) {
+        Boolean isSendSuccess = false;
         try {
             // 转换收件人
             MimeMessage message = javaMailSender.createMimeMessage();
@@ -103,13 +110,27 @@ public class MailSender implements IMailSender {
 
             log.info("[邮件发送成功] 邮件类型:{}, 标题:{}, 收件人:{}, 抄送人:{}, 附件数量:{}",
                     isHtml?"文本邮件":"html邮件", title, toList, ccList, attachmentSize);
-            return true;
+            isSendSuccess = true;
         } catch (Exception ex) {
             String message = String.format("[邮件发送失败] 邮件类型:%s, 标题:%s, 收件人:%s, 抄送人:%s, 附件数量:{}",
                     isHtml?"文本邮件":"html邮件", title, toList, ccList, attachmentSize);
             log.warn(message, ex);
+        }finally {
+            this.notifyEmailEventListeners(title, toList, ccList, content, attachmentSize, isHtml, isSendSuccess);
         }
-        return false;
+        return isSendSuccess;
+    }
+
+    protected void notifyEmailEventListeners(String title, List<String> toList, List<String> ccList, String content, int attachmentSize, Boolean isHtml, Boolean sendStatus) {
+        MailEvent mailEvent = new MailEvent();
+        mailEvent.setTitle(title);
+        mailEvent.setToList(toList);
+        mailEvent.setCcList(ccList);
+        mailEvent.setContent(content);
+        mailEvent.setAttachmentSize(attachmentSize);
+        mailEvent.setIsHtml(isHtml);
+        mailEvent.setSendStatus(sendStatus);
+        this.eventMulticaster.asyncPublish(mailEvent);
     }
 
 }

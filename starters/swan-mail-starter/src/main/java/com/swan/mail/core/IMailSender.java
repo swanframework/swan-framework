@@ -43,5 +43,5 @@ public interface IMailSender {
     boolean sendHtmlMail(String title, List<String> toList, List<String>  ccList, String content, List<MailAttachment> attachmentList);
 
 
-
+    boolean sendMail(String title, List<String> toList, List<String> ccList, String content, int attachmentSize, Boolean isHtml);
 }

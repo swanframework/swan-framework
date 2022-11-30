@@ -1,6 +1,6 @@
 package com.swan.test.kafka.producer;
 
-import com.alibaba.fastjson.JSONObject;
+import com.swan.core.utils.JacksonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -21,9 +21,9 @@ public class MyKafkaProducer {
 
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send(topic, message);
         future.addCallback(result -> {
-            System.out.println("消息发送成功：" + JSONObject.toJSONString(result));
+            System.out.println("消息发送成功：" + JacksonUtil.toString(result));
         }, ex -> {
-            System.out.println("消息发送失败：" + JSONObject.toJSONString(ex));
+            System.out.println("消息发送失败：" + JacksonUtil.toString(ex));
         });
 
     }
