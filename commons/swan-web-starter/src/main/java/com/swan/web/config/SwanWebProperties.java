@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class SwanWebProperties {
 
     /** 全局异常处理 */
-    private GlobalException exception;
+    private GlobalException exception = new GlobalException();
 
     @Setter @Getter
     public static class GlobalException {

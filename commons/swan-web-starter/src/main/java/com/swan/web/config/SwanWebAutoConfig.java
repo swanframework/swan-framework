@@ -37,7 +37,6 @@ public class SwanWebAutoConfig {
     private DispatcherServlet dispatcherServlet;
 
     // 全局异常捕获处理
-    @Bean
     public GlobalExceptionHandler defaultGlobalExceptionHandler() {
         // 处理404异常
         if (swanWebProperties.getException().isConvert404()) {
