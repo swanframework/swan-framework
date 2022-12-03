@@ -6,44 +6,51 @@ package com.swan.mybatis.condition;
  */
 public enum OpType {
 
-    equals("="),
-    notEquals("!="),
+    isNull("is null", 0),
+    isNotNull("is not null", 0),
 
-    lessThan("<"),
-    lessOrEquals("<="),
+    equals("=", 1),
+    notEquals("!=", 1),
 
-    greaterThan(">"),
-    greaterOrEquals(">="),
+    lessThan("<", 1),
+    lessOrEquals("<=", 1),
+
+    greaterThan(">", 1),
+    greaterOrEquals(">=", 1),
+
+    like("like", 1),
+    notLike("not like", 1),
+
+    leftLike("like", 1),
+    leftNotLike("not like", 1),
+
+    rightLike("like", 1),
+    rightNotLike("not like", 1),
 
     /** 左右闭区间 */
-    between("between"),
+    between("between", 2),
     /** 左右开区间 */
-    notBetween("not between"),
+    notBetween("not between", 2),
 
-    in("in"),
-    notIn("not in"),
+    in("in", 3),
+    notIn("not in", 3),
 
-    like("like"),
-    notLike("not like"),
-
-    leftLike("like"),
-    leftNotLike("not like"),
-
-    rightLike("like"),
-    rightNotLike("not like"),
-
-    isNull("is null"),
-    isNotNull("is not null"),
     ;
 
     private String operator;
 
-    OpType(String operator){
+    private Integer params;
+
+    OpType(String operator, Integer params){
         this.operator = operator;
+        this.params = params;
     }
 
     public String getOperator() {
         return this.operator;
     }
 
+    public Integer getParams() {
+        return params;
+    }
 }
