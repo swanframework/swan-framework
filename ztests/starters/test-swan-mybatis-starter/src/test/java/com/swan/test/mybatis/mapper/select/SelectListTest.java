@@ -262,7 +262,7 @@ public class SelectListTest extends BaseMapperTest {
         List<Long> zhangIds = zhangList.stream().map(AutoEntity::getId).collect(Collectors.toList());
         // 通过id列表
         condition.clear()
-                .and(AutoEntity.Fields.id, OpType.in, zhangIds.toArray());
+                .and(AutoEntity.Fields.id, OpType.in, zhangIds);
 
         List<AutoEntity> poList = this.autoMapper.selectList(condition);
         Assertions.assertEquals(zhangList.size(), poList.size());
@@ -286,7 +286,7 @@ public class SelectListTest extends BaseMapperTest {
 
         // 通过id列表
         condition.clear()
-                .and(AutoEntity.Fields.id, OpType.notIn, zhangIds.toArray());
+                .and(AutoEntity.Fields.id, OpType.notIn, zhangIds);
         List<AutoEntity> poList = this.autoMapper.selectList(condition);
         Assertions.assertEquals(liList.size(), poList.size());
 

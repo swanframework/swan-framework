@@ -157,7 +157,7 @@ public class AutoDelMapper_CountTest extends BaseMapperTest {
 
         // 通过id列表
         condition.clear()
-                .and(AutoEntity.Fields.id, OpType.in, zhangIds.toArray());
+                .and(AutoEntity.Fields.id, OpType.in, zhangIds);
         int zhangCount = this.autoMapper.count(condition);
         Assertions.assertEquals(zhangIds.size(), zhangCount);
     }
@@ -176,7 +176,7 @@ public class AutoDelMapper_CountTest extends BaseMapperTest {
 
         // 通过id列表
         condition.clear()
-                .and(AutoEntity.Fields.id, OpType.notIn, zhangIds.toArray());
+                .and(AutoEntity.Fields.id, OpType.notIn, zhangIds);
         int zhangCount = this.autoMapper.count(condition);
         Assertions.assertEquals(liList.size(), zhangCount);
     }
