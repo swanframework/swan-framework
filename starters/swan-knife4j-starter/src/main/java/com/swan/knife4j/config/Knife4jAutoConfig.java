@@ -1,6 +1,7 @@
 package com.swan.knife4j.config;
 
 import com.swan.core.exception.SwanBaseException;
+import com.swan.knife4j.core.CustomModelResolverInitializer;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -163,6 +164,11 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
         });
 
         return builder.build();
+    }
+
+    @Bean
+    public CustomModelResolverInitializer customModelResolverInitializer() {
+        return new CustomModelResolverInitializer();
     }
 
 }
