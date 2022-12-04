@@ -14,7 +14,7 @@ public class PagerResponse<T> {
 
     private Integer pages;
 
-    private Integer total;
+    private Long total;
 
     private List<T> data;
 
