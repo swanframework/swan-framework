@@ -1,9 +1,7 @@
 package com.swan.mybatis.anno;
 
-
-import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.mapper.field.id.IdGenerator;
-import com.swan.mybatis.mapper.field.id.SnowIdGenerator;
+import com.swan.mybatis.mapper.field.encrypt.IEncryptor;
+import com.swan.mybatis.mapper.field.encrypt.Md5Encryptor;
 
 import java.lang.annotation.*;
 
@@ -16,10 +14,16 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Encrypt {
 
-    /** 主键生成器 */
-    IdGeneratorType generatorType() default IdGeneratorType.AUTO_INC;
-
     /** 自定义主键生成器时, 生成器 */
-    Class<? extends IdGenerator> generator() default SnowIdGenerator.class;
+    Class<? extends IEncryptor> encryptor() default Md5Encryptor.class;
+
+    /** 插入时强制设置为null */
+    boolean onCreate() default false;
+
+    /** 更新时强制设置为null */
+    boolean onUpdate() default false;
+
+    /** 转大写 */
+    boolean toUpper() default false;
 
 }

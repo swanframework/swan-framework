@@ -1,14 +1,12 @@
 package com.swan.mybatis.core;
 
+import com.swan.mybatis.anno.Encrypt;
+import com.swan.mybatis.mapper.field.handler.*;
 import org.apache.ibatis.mapping.SqlCommandType;
 import com.swan.mybatis.anno.Id;
 import com.swan.mybatis.anno.AutoTime;
 import com.swan.mybatis.anno.ForceNull;
 import com.swan.mybatis.enums.IdGeneratorType;
-import com.swan.mybatis.mapper.field.handler.AbsFieldHandler;
-import com.swan.mybatis.mapper.field.handler.AutoTimeFieldHandler;
-import com.swan.mybatis.mapper.field.handler.ForceNullFieldHandler;
-import com.swan.mybatis.mapper.field.handler.IdFieldHandler;
 import com.swan.core.utils.ReflectUtil;
 
 import java.lang.reflect.Field;
@@ -42,10 +40,15 @@ public class EntityFieldParser {
                     parseAutoTime(clzMap, declaredField, declaredField.getAnnotation(AutoTime.class));
                 } else if (declaredField.isAnnotationPresent(ForceNull.class)) {
                     parseForceNull(clzMap, declaredField, declaredField.getAnnotation(ForceNull.class));
+                } else if (declaredField.isAnnotationPresent(Encrypt.class)) {
+                    parseEncrypt(clzMap, declaredField, declaredField.getAnnotation(Encrypt.class));
+
                 }
             }
         }
     }
+
+
 
     // 处理 @Id 注解
     private void parseId(Map<SqlCommandType, List<AbsFieldHandler>> clzMap, Field declaredField, Id id) {
@@ -88,6 +91,19 @@ public class EntityFieldParser {
             if (autoTime.onDelete()) {
                 List<AbsFieldHandler> fieldMap = clzMap.computeIfAbsent(SqlCommandType.DELETE, k -> new ArrayList<>());
                 fieldMap.add(new ForceNullFieldHandler(declaredField));
+            }
+        }
+    }
+
+    private void parseEncrypt(Map<SqlCommandType, List<AbsFieldHandler>> clzMap, Field declaredField, Encrypt encrypt) {
+        if (encrypt != null) {
+            if (encrypt.onCreate()) {
+                List<AbsFieldHandler> fieldMap = clzMap.computeIfAbsent(SqlCommandType.INSERT, k -> new ArrayList<>());
+                fieldMap.add(new EncryptFieldHandler(declaredField, encrypt.encryptor(), encrypt.toUpper()));
+            }
+            if (encrypt.onUpdate()) {
+                List<AbsFieldHandler> fieldMap = clzMap.computeIfAbsent(SqlCommandType.UPDATE, k -> new ArrayList<>());
+                fieldMap.add(new EncryptFieldHandler(declaredField, encrypt.encryptor(), encrypt.toUpper()));
             }
         }
     }
