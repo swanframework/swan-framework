@@ -33,12 +33,13 @@ public class CustomModelResolver extends ModelResolver {
             }
         }
 
-        // 自定义扩展逻辑
+        // 兼容处理 @Length 注解
         if (annos.containsKey("org.hibernate.validator.constraints.Length")) {
-
             if (schema instanceof StringSchema) {
                 Length pattern = (Length) annos.get("org.hibernate.validator.constraints.Length");
-                schema.setDescription(schema.getDescription() + " 长度范围:[" + pattern.min() + "-" + pattern.max() + "]");
+                StringSchema sp = (StringSchema) schema;
+                sp.minLength(Integer.valueOf(pattern.min()));
+                sp.maxLength(Integer.valueOf(pattern.max()));
             }
         }
     }
