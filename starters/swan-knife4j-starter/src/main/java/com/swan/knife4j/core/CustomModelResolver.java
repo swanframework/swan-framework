@@ -3,6 +3,7 @@ package com.swan.knife4j.core;
 import io.swagger.v3.core.jackson.ModelResolver;
 import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.models.media.Schema;
+import io.swagger.v3.oas.models.media.StringSchema;
 import org.hibernate.validator.constraints.Length;
 
 import java.lang.annotation.Annotation;
@@ -34,8 +35,11 @@ public class CustomModelResolver extends ModelResolver {
 
         // 自定义扩展逻辑
         if (annos.containsKey("org.hibernate.validator.constraints.Length")) {
-            Length pattern = (Length) annos.get("org.hibernate.validator.constraints.Length");
-            schema.setDescription(schema.getDescription() + "<br/> min:" + pattern.min() + ", max:" + pattern.max());
+
+            if (schema instanceof StringSchema) {
+                Length pattern = (Length) annos.get("org.hibernate.validator.constraints.Length");
+                schema.setDescription(schema.getDescription() + " 长度范围:[" + pattern.min() + "-" + pattern.max() + "]");
+            }
         }
     }
 }
