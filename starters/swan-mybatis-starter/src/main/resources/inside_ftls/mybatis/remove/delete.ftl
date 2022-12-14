@@ -1,6 +1,6 @@
 
 <delete id="delete">
-    update <include refid="tableName"/>
+    update <include refid="table"/>
     set
         ${entityMeta.idField.columnName} = ${entityMeta.idField.columnName}
         <#if entityMeta.deleteField??>

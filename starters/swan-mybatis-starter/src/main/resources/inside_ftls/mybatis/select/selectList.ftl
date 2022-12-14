@@ -1,7 +1,7 @@
 
 <select id="selectList" resultType="${entityMeta.className}">
     select <include refid="optionFields" />
-    from <include refid="tableName"/>
+    from <include refid="table"/>
     <where>
         <include refid="condition"/>
         <#if entityMeta.deleteField??>

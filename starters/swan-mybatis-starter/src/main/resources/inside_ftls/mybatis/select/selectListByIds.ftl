@@ -1,7 +1,7 @@
 
 <select id="selectListByIds" resultType="${entityMeta.className}">
     select <include refid="optionFields" />
-    from <include refid="tableName"/>
+    from <include refid="table"/>
     where ${entityMeta.idField.columnName} in
         <foreach collection="idList" open="(" separator="," close=")" item="id">
             ${r'#{id}'}

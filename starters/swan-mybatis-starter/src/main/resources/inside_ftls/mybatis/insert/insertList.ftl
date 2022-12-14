@@ -1,6 +1,6 @@
 
 <insert id="insertList" <#if (entityMeta.autoIncId?string('true','false'))=="true"> useGeneratedKeys="true" keyProperty="${entityMeta.idField.propertyName}"</#if>>
-    insert <include refid="tableName"/>(<include refid="columns"/>)
+    insert <include refid="table"/>(<include refid="columns"/>)
     values
     <foreach collection="list" separator="," item="entity">
         (

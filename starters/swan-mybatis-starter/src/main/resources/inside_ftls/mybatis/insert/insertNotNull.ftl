@@ -1,6 +1,6 @@
 
 <insert id="insertNotNull" <#if (entityMeta.autoIncId?string('true','false'))=="true"> useGeneratedKeys="true" keyProperty="${entityMeta.idField.propertyName}"</#if>>
-    insert <include refid="tableName"/>(
+    insert <include refid="table"/>(
         ${entityMeta.idField.columnName}
         <#list entityMeta.commonFields as field>
             <if test="${field.propertyName} != null ">,${field.columnName}</if>

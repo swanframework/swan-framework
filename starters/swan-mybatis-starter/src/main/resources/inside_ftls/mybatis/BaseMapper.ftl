@@ -3,7 +3,7 @@
 
 <mapper namespace="${namespace}">
 
-    <sql id="tableName">
+    <sql id="table">
         ${entityMeta.tableName}
     </sql>
 
