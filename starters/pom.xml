@@ -18,6 +18,7 @@
         <module>swan-rabbitmq-starter</module>
         <module>swan-kafka-starter</module>
         <module>swan-redis-starter</module>
+        <module>swan-kaptcha-starter</module>
     </modules>
 
 </project>
