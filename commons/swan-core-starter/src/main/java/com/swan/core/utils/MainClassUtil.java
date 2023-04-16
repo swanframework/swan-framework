@@ -1,5 +1,6 @@
 package com.swan.core.utils;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 
 /** 启动类, 需要注意的是, 当使用单元测试框架时(如junit),返回结果为junit 的启动类, 和预期不一致
@@ -23,7 +24,7 @@ public final class MainClassUtil {
             }
         }
         catch (ClassNotFoundException ex) {
-            throw new SwanBaseException("未找到启动类", ex);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "未找到启动类", ex);
         }
         return null;
     }

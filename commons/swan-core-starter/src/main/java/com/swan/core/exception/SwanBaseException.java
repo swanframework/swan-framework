@@ -6,24 +6,26 @@ package com.swan.core.exception;
  **/
 public class SwanBaseException extends RuntimeException{
 
+    private Integer code;
+
     public SwanBaseException() {
         super();
-    }
-
-    public SwanBaseException(String message) {
-        super(message);
-    }
-
-    public SwanBaseException(String message, Throwable cause) {
-        super(message, cause);
     }
 
     public SwanBaseException(Throwable cause) {
         super(cause);
     }
 
-    protected SwanBaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public SwanBaseException(Integer code, String message) {
+        super(message);
+        this.code = code;
     }
+
+    public SwanBaseException(Integer code, String message, Throwable cause) {
+        super(message, cause);
+        this.code = code;
+    }
+
+
 
 }

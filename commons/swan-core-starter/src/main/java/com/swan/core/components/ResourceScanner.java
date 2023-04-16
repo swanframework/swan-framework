@@ -1,5 +1,6 @@
 package com.swan.core.components;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -148,9 +149,9 @@ public class ResourceScanner implements ResourceLoaderAware, ApplicationContextA
                 classSet.add(clazz);
             }
         } catch (IOException ex) {
-            throw new SwanBaseException("资源扫描异常", ex);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "资源扫描异常", ex);
         } catch (ClassNotFoundException ex) {
-            throw new SwanBaseException("加载class文件异常", ex);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "加载class文件异常", ex);
         }
         return classSet;
     }
@@ -167,7 +168,7 @@ public class ResourceScanner implements ResourceLoaderAware, ApplicationContextA
             String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolvePackagePath(basePackage) + '/' + resourcePattern;
             return this.resourcePatternResolver.getResources(packageSearchPath);
         } catch (IOException ex) {
-            throw new SwanBaseException("资源扫描异常", ex);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "资源扫描异常", ex);
         }
     }
 

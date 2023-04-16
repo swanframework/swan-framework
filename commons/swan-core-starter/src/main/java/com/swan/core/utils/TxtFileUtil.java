@@ -1,5 +1,6 @@
 package com.swan.core.utils;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 
 import java.io.*;
@@ -30,7 +31,7 @@ public class TxtFileUtil {
                 bw.newLine();
             }
         } catch (IOException e) {
-            throw new SwanBaseException("文件写入失败, 文件名:" + filePath, e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "文件写入失败, 文件名:" + filePath, e);
         }finally {
             IOUtils.close(bw);
         }
@@ -67,7 +68,7 @@ public class TxtFileUtil {
             }
             return lines;
         } catch (IOException e) {
-            throw new SwanBaseException("读取文件失败, 文件名:" + filePath, e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "读取文件失败, 文件名:" + filePath, e);
         }finally {
             IOUtils.close(br);
         }

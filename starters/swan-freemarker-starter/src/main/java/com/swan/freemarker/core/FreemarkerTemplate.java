@@ -36,7 +36,7 @@ public class FreemarkerTemplate implements IFreemarkerTemplate{
             osw.flush();
             return bos.toString();
         } catch (Exception ex) {
-            throw new SwanBaseException("模板解析失败!", ex);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "模板解析失败!", ex);
         } finally {
             IoUtil.close(bos);
             IoUtil.close(osw);

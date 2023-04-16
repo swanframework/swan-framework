@@ -57,13 +57,13 @@ public class SwanMailAutoConfig {
     private void checkConfig() {
         // 校验参数
         if (!StringUtils.hasText(mailProperties.getHost())) {
-            throw new SwanBaseException("配置异常: spring.mail.host 不能为空");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "配置异常: spring.mail.host 不能为空");
         }
         if (!StringUtils.hasText(mailProperties.getUsername())) {
-            throw new SwanBaseException("配置异常: spring.mail.username 不能为空");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "配置异常: spring.mail.username 不能为空");
         }
         if (!StringUtils.hasText(mailProperties.getPassword())) {
-            throw new SwanBaseException("配置异常: spring.mail.password 不能为空");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "配置异常: spring.mail.password 不能为空");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.swan.web.utils;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.web.excetion.SwanValidateException;
 import org.hibernate.validator.HibernateValidator;
@@ -66,7 +67,7 @@ public class HibernateValidatorUtil {
                 sb.append(validateResult.getMessage()).append("\n");
             }
             System.out.println(sb.toString());
-            throw new SwanValidateException(sb.toString());
+            throw new SwanValidateException(ExceptionCodeEnum.VALIDATE.code(), sb.toString());
         }
     }
 

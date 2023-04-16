@@ -28,7 +28,7 @@ public class MetaDao implements IMetaDao {
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {
-            throw new CodesGeneratorException("", e);
+            throw new RuntimeException("", e);
         }
     }
 
@@ -53,7 +53,7 @@ public class MetaDao implements IMetaDao {
 
             return schemaPOList.size() > 0 ? schemaPOList : null;
         } catch (SQLException ex) {
-            throw new CodesGeneratorException("结果集解析异常", ex);
+            throw new RuntimeException("结果集解析异常", ex);
         }
     }
 
@@ -76,7 +76,7 @@ public class MetaDao implements IMetaDao {
             }
             return tablePOList.size() > 0 ? tablePOList : null;
         } catch (SQLException ex) {
-            throw new CodesGeneratorException("结果集解析异常", ex);
+            throw new RuntimeException("结果集解析异常", ex);
         }
     }
 
@@ -96,7 +96,7 @@ public class MetaDao implements IMetaDao {
                 return tablePO;
             }
         } catch (SQLException ex) {
-            throw new CodesGeneratorException("结果集解析异常", ex);
+            throw new RuntimeException("结果集解析异常", ex);
         }
         return null;
     }
@@ -128,7 +128,7 @@ public class MetaDao implements IMetaDao {
             }
             return columnPOList.size() > 0 ? columnPOList : null;
         } catch (SQLException ex) {
-            throw new CodesGeneratorException("结果集解析异常", ex);
+            throw new RuntimeException("结果集解析异常", ex);
         }
     }
 
@@ -148,7 +148,7 @@ public class MetaDao implements IMetaDao {
             }
             return pstmt.executeQuery();
         } catch (SQLException e) {
-            throw new CodesGeneratorException("数据库查询失败", e);
+            throw new RuntimeException("数据库查询失败", e);
         }
     }
 

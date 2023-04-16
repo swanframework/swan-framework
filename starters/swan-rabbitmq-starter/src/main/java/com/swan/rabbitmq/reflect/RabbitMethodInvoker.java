@@ -55,7 +55,7 @@ public class RabbitMethodInvoker implements IMethodInvoker {
 
                 // 如果spring.rabbitmq.publisher-confirm-type 配置为none, 则抛出异常. none 不支持同步模式
                 if (CachingConnectionFactory.ConfirmType.NONE.toString().equals(confirmType.toUpperCase())) {
-                    throw new SwanBaseException("spring.rabbitmq.publisher-confirm-type 配置不能为 none");
+                    throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "spring.rabbitmq.publisher-confirm-type 配置不能为 none");
                 }
 
                 // 同步推送消息

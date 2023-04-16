@@ -1,5 +1,6 @@
 package com.swan.generator.generator;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.generator.exception.CodesGeneratorException;
 import com.swan.generator.persistence.dao.IMetaDao;
 import com.swan.generator.persistence.po.ColumnPO;
@@ -32,7 +33,7 @@ public class EntityMetaCreator {
 
         // 如果查询表不存，则返回 null
         if(tablePO == null) {
-            throw new CodesGeneratorException(" 表不存在, 数据库:" + schemaName + ", 表名:" + tableName);
+            throw new CodesGeneratorException(ExceptionCodeEnum.FREEMARKER.code(), " 表不存在, 数据库:" + schemaName + ", 表名:" + tableName);
         }
 
         List<ColumnPO> columnPOList = metaDao.queryColumns(schemaName, tableName);

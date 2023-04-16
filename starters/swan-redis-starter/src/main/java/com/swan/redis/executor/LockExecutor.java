@@ -1,5 +1,6 @@
 package com.swan.redis.executor;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.redis.exception.LockException;
 import com.swan.redis.locker.ILocker;
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ public class LockExecutor {
             boolean lockSuccess = locker.tryLock(lockName, lockTime);
 
             if (!lockSuccess) {
-                throw new LockException("分布式锁获取异常");
+                throw new LockException(ExceptionCodeEnum.LOCK.code(), "分布式锁获取异常");
             }
 
             // 执行业务逻辑
@@ -70,7 +71,7 @@ public class LockExecutor {
             boolean lockSuccess = locker.tryLock(lockName, lockTime);
 
             if (!lockSuccess) {
-                throw new LockException("分布式锁获取异常");
+                throw new LockException(ExceptionCodeEnum.LOCK.code(), "分布式锁获取异常");
             }
 
             // 执行业务逻辑

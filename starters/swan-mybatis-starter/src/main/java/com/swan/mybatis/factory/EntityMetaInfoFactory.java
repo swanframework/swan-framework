@@ -1,5 +1,6 @@
 package com.swan.mybatis.factory;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.mybatis.anno.*;
 import com.swan.mybatis.enums.IdGeneratorType;
 import com.swan.mybatis.exception.SwanMybatisException;
@@ -23,7 +24,7 @@ public class EntityMetaInfoFactory {
     public static EntityMetaInfo createEntityMetaInfo(Class entityType, List<String> ignoreFields) {
         // 未使用 @Table 注解修饰，则抛出异常
         if (!entityType.isAnnotationPresent(Table.class)) {
-            throw new SwanMybatisException(entityType.getName() + " 未使用 @Table 指定映射的表名");
+            throw new SwanMybatisException(ExceptionCodeEnum.MYBATIS.code(), entityType.getName() + " 未使用 @Table 指定映射的表名");
         }
 
         Table table = (Table) entityType.getAnnotation(Table.class);
@@ -69,7 +70,7 @@ public class EntityMetaInfoFactory {
         }
 
         if (entityMetaInfo.getIdField() == null) {
-            throw new SwanMybatisException(entityType.getName() + " 未使用 @Id 指定主键列");
+            throw new SwanMybatisException(ExceptionCodeEnum.MYBATIS.code(), entityType.getName() + " 未使用 @Id 指定主键列");
         }
 
         return entityMetaInfo;

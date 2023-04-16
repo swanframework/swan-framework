@@ -54,7 +54,7 @@ public class Condition {
      */
     public Condition and(String field, OpType opType) {
         if (!opTypeMap.get(NumberConstant.ZERO).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         return addCondition(AND, field, opType, new Object[]{});
     }
@@ -69,7 +69,7 @@ public class Condition {
      */
     public Condition and(String field, OpType opType, Object value) {
         if (!opTypeMap.get(NumberConstant.ONE).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         if (Objects.isNull(value)) {
             return this;
@@ -87,7 +87,7 @@ public class Condition {
      */
     public Condition and(String field, OpType opType, Object min, Object max) {
         if (!opTypeMap.get(NumberConstant.TWO).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         return addCondition(AND, field, opType, new Object[]{min, max});
     }
@@ -102,7 +102,7 @@ public class Condition {
      */
     public Condition and(String field, OpType opType, List values) {
         if (!opTypeMap.get(NumberConstant.THREE).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         if (Objects.isNull(values) || values.isEmpty()) {
             return this;
@@ -119,7 +119,7 @@ public class Condition {
      */
     public Condition or(String field, OpType opType) {
         if (!opTypeMap.get(NumberConstant.ZERO).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         return addCondition(OR, field, opType, new Object[]{});
     }
@@ -133,7 +133,7 @@ public class Condition {
      */
     public Condition or(String field, OpType opType, Object value) {
         if (!opTypeMap.get(NumberConstant.ONE).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         return addCondition(OR, field, opType, new Object[]{value});
     }
@@ -148,7 +148,7 @@ public class Condition {
      */
     public Condition or(String field, OpType opType, Object min, Object max) {
         if (!opTypeMap.get(NumberConstant.TWO).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         return addCondition(OR, field, opType, new Object[]{min, max});
 
@@ -163,7 +163,7 @@ public class Condition {
      */
     public Condition or(String field, OpType opType, List values) {
         if (!opTypeMap.get(NumberConstant.THREE).contains(opType)) {
-            throw new SwanBaseException("参数数量不对");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
         if (Objects.isNull(values) || values.isEmpty()) {
             return this;

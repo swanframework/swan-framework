@@ -1,12 +1,12 @@
-package com.swan.redis.exception;
+package com.swan.locker.exception;
 
 import com.swan.core.exception.SwanBaseException;
 
-/**锁异常
+/** 锁异常
  * @author zongf
- * @date 2021-05-15
- */
-public class LockException extends SwanBaseException {
+ * @since 2023-03-02
+ **/
+public class LockException extends SwanBaseException{
     public LockException() {
         super();
     }

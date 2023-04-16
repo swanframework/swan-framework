@@ -1,5 +1,6 @@
 package com.swan.core.utils;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 
 /** 类加载工具
@@ -13,7 +14,7 @@ public class ClassUtil {
         try {
             return classLoader.loadClass(className);
         } catch (ClassNotFoundException e) {
-            throw new SwanBaseException("类加载异常:" + className, e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "类加载异常:" + className, e);
         }
     }
 

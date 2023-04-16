@@ -1,5 +1,6 @@
 package com.swan.mybatis.mapper.field.handler;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.mybatis.mapper.field.encrypt.EncryptorFactory;
 import com.swan.mybatis.mapper.field.encrypt.IEncryptor;
@@ -31,7 +32,7 @@ public class EncryptFieldHandler extends AbsFieldHandler {
             String encrypt = EncryptorFactory.getEncryptor(encryptor).encrypt((String) oldValue);
             return toUpper ? encrypt.toUpperCase() : encrypt;
         } else {
-          throw new SwanBaseException("字段加密异常");
+          throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "字段加密异常");
         }
     }
 

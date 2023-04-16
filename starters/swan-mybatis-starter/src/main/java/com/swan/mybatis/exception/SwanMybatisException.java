@@ -12,19 +12,15 @@ public class SwanMybatisException extends SwanBaseException {
         super();
     }
 
-    public SwanMybatisException(String message) {
-        super(message);
-    }
-
-    public SwanMybatisException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public SwanMybatisException(Throwable cause) {
         super(cause);
     }
 
-    protected SwanMybatisException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+    public SwanMybatisException(Integer code, String message) {
+        super(code, message);
+    }
+
+    public SwanMybatisException(Integer code, String message, Throwable cause) {
+        super(code, message, cause);
     }
 }

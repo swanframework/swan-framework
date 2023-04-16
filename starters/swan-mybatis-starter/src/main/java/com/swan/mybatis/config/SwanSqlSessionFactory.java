@@ -222,7 +222,7 @@ public class SwanSqlSessionFactory extends SqlSessionFactoryBean {
                     Resource[] mappers = resourceResolver.getResources(mapperLocation);
                     resources.addAll(Arrays.asList(mappers));
                 } catch (IOException e) {
-                    throw new SwanBaseException("mapperLocations 初始化异常", e);
+                    throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "mapperLocations 初始化异常", e);
                 }
             }
         }

@@ -126,7 +126,7 @@ public class Knife4jAutoConfig implements BeanFactoryAware{
             group.setName("");
         }else {
             if (!StringUtils.hasText(group.getName())) {
-                throw new SwanBaseException("group.name 属性不能为空");
+                throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "group.name 属性不能为空");
             }
         }
 

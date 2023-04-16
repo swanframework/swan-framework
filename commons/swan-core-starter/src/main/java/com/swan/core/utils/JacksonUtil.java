@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 
 import java.util.*;
@@ -27,7 +28,7 @@ public class JacksonUtil {
         try {
             return objectMapper.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            throw new SwanBaseException("json 序列化异常", e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "json 序列化异常", e);
         }
     }
 
@@ -35,7 +36,7 @@ public class JacksonUtil {
         try {
             return objectMapper.readValue(json, t);
         } catch (JsonProcessingException e) {
-            throw new SwanBaseException("json 反序列化异常", e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "json 反序列化异常", e);
         }
     }
 
@@ -58,7 +59,7 @@ public class JacksonUtil {
         try {
             return objectMapper.readValue(json, typeReference);
         } catch (JsonProcessingException e) {
-            throw new SwanBaseException("json 反序列化异常", e);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "json 反序列化异常", e);
         }
     }
 

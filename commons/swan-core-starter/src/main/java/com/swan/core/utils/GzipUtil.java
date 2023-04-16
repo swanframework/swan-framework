@@ -1,6 +1,7 @@
 package com.swan.core.utils;
 
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 
 import java.io.ByteArrayInputStream;
@@ -33,7 +34,7 @@ public final class GzipUtil {
             gzipos = new GZIPOutputStream(bos);
             gzipos.write(bytes);
         } catch (Exception e) {
-            throw new SwanBaseException("Gzip 压缩异常");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "Gzip 压缩异常");
         } finally {
             IOUtils.close(gzipos, bos);
         }
@@ -62,7 +63,7 @@ public final class GzipUtil {
                 byteAos.write(b, 0, temp);
             }
         } catch (Exception e) {
-            throw new SwanBaseException("Gzip 解压异常");
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "Gzip 解压异常");
         } finally {
             IOUtils.close(byteAos, gzipIn, byteArrayIn);
         }

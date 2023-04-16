@@ -8,18 +8,19 @@ import com.swan.core.exception.SwanBaseException;
  * @since 2021-11-02
  */
 public class CodesGeneratorException extends SwanBaseException {
-
     public CodesGeneratorException() {
         super();
     }
 
-    public CodesGeneratorException(String message) {
-        super(message);
+    public CodesGeneratorException(Throwable cause) {
+        super(cause);
     }
 
-    public CodesGeneratorException(String message, Throwable cause) {
-        super(message, cause);
+    public CodesGeneratorException(Integer code, String message) {
+        super(code, message);
     }
 
-
+    public CodesGeneratorException(Integer code, String message, Throwable cause) {
+        super(code, message, cause);
+    }
 }
