@@ -61,13 +61,13 @@
         where id = ${r'#{id}'}
     </update>
 
-    <select id="selectById" resultType="${entityMeta.packageName}.${entityMeta.className}" >
+    <select id="selectById" resultType="${entityPackageName}.${entityMeta.className}" >
         select <include refid="columns" />
         from <include refid="table" />
         where id = ${r'#{id}'}
     </select>
 
-    <select id="select" resultType="${entityMeta.packageName}.${entityMeta.className}" >
+    <select id="select" resultType="${entityPackageName}.${entityMeta.className}" >
         select <include refid="columns" />
         from <include refid="table" />
         <where>
@@ -75,7 +75,7 @@
         </where>
     </select>
 
-    <select id="selectList" resultType="${entityMeta.packageName}.${entityMeta.className}" >
+    <select id="selectList" resultType="${entityPackageName}.${entityMeta.className}" >
         select <include refid="columns" />
         from <include refid="table" />
         <where>

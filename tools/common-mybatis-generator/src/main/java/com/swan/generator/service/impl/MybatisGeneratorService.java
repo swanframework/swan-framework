@@ -191,6 +191,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         dataMap.put("mapperName", config.getMapper().getPackageName() + "." + mapperName);
         dataMap.put("conditionName", conditionName);
         dataMap.put("entityMeta", metaInfo);
+        dataMap.put("entityPackageName", config.getEntity().getPackageName());
 
         // 生成代码
         String codeList = freemarkerTemplateInside.getContent(FtlConstant.MYBATIS_MAPPER_XML, dataMap);
