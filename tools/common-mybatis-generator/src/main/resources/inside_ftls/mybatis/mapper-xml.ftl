@@ -42,13 +42,13 @@
 
     <update id="updateNotNullById">
         update <include refid="table"/>
-        set
+        <set>
         <#list entityMeta.fields as field>
             <if test="${field.name} != null ">
                 ${field.columnName} = ${r'#{'}${field.name}}<#sep>,</#sep>
             </if>
         </#list>
-
+        </set>
         where id = ${r'#{id}'}
     </update>
 
