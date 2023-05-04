@@ -1,6 +1,7 @@
 package com.swan.freemarker.core;
 
 import cn.hutool.core.io.IoUtil;
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
