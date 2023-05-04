@@ -23,6 +23,6 @@ public interface ${metaInfo.className}{
 
     public ${entityName} select(${conditionName} condition);
 
-    public List<${metaInfo.className}> selectList(${conditionName} condition);
+    public List<${entityName}> selectList(${conditionName} condition);
 
 }

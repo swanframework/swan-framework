@@ -45,7 +45,7 @@
         set
         <#list entityMeta.fields as field>
             <if test="${field.name} != null ">
-                ${field.columnName} = ${r'#{'}${field.name}}<#sep>,
+                ${field.columnName} = ${r'#{'}${field.name}}<#sep>,</#sep>
             </if>
         </#list>
 
