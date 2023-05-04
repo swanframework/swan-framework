@@ -1,6 +1,7 @@
 package com.swan.mybatis.condition;
 
 import com.swan.core.constants.NumberConstant;
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.core.utils.ListUtil;
 import com.swan.core.utils.NameUtil;

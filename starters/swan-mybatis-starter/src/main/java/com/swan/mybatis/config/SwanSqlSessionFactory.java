@@ -1,6 +1,7 @@
 package com.swan.mybatis.config;
 
 import com.github.pagehelper.PageInterceptor;
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.mybatis.core.AutoMapperStatementRegister;
 import com.swan.mybatis.core.EntityFieldInterceptor;

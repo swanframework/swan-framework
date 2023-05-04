@@ -138,7 +138,7 @@ public class ConditionInterceptor implements Interceptor {
             return conditionSqlList.get(0);
         }else {
             String errMsg = "请保证条件类名称唯一:" + conditionName;
-            throw new SwanBaseException(errMsg);
+            throw new SwanBaseException(-1, errMsg);
         }
     }
 
