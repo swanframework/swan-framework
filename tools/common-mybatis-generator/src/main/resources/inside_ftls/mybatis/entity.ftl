@@ -9,15 +9,11 @@ import ${import};
 * @since ${createDate}
 */
 @Getter @Setter
-@Table(name = "${metaInfo.tableName}")
 public class ${metaInfo.className} <#if config.parentClass??>extends ${config.parentClass.simpleName}</#if>{
 <#list metaInfo.fields as field>
 
     <#if commentType == 1 || commentType == 3>
     /** ${field.comment} */
-    </#if>
-    <#if (field.pkColumn?string('true','false'))=="true">
-    @Id
     </#if>
     <#if commentType == 2 || commentType == 3>
     @ApiModelProperty("${field.comment}")

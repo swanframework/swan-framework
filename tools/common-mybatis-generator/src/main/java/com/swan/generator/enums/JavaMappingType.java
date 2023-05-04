@@ -6,6 +6,7 @@ package com.swan.generator.enums;
  */
 public enum JavaMappingType {
 
+    BYTE("Byte"),
     INTEGER("Integer"),
     LONG("Long"),
     FLOAT("Float"),

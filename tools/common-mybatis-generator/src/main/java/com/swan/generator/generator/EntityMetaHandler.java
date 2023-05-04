@@ -144,18 +144,6 @@ public class EntityMetaHandler {
             imports.add(generatorConfig.getParentClass().getCanonicalName());
         }
 
-        String annoPackage = StringUtils.hasText(generatorConfig.getAnnoPackage())
-                ? generatorConfig.getAnnoPackage() : "com.swan.mybatis";
-        // 处理 mybatis 依赖
-        if (GenerateTypeEnum.ENTITY.equals(generateType)) {
-            imports.add(annoPackage + ".anno.Table");
-            for (EntityFieldMeta field : entityMetaInfo.getFields()) {
-                if (field.isPkColumn()) {
-                    imports.add(annoPackage + ".anno.Id");
-                    break;
-                }
-            }
-        }
     }
 
     /** 处理字段继承，移除父类定义的字段
