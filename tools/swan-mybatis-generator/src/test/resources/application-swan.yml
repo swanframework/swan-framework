@@ -8,11 +8,10 @@ sboot:
   generator:
     mybatis:
       author: zongf
-      table-prefix: t_
+      table-prefix: bytesbc_
       entity:
         package-name: com.swan.generator.auto
-        name-prefix: Sboot
-        name-suffix: Entity
+        name-suffix: PO
         anno-package: com.swan.mybatis
       mapper:
         package-name: com.swan.generator.auto
@@ -21,3 +20,11 @@ sboot:
         id-type: Long
         xml-dir: mappers
         parent-class: com.swan.mybatis.mapper.mapper.IBaseMapper
+      condition:
+        package-name: com.swan.generator.auto
+        name-suffix: Condition
+mybatis:
+  mapper-locations: classpath:*Mapper.xml
+  type-aliases-package: com.swan.mybatis.po
+  configuration:
+    map-underscore-to-camel-case: true
