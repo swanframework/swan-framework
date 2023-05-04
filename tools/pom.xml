@@ -12,6 +12,7 @@
 
     <modules>
         <module>swan-mybatis-generator</module>
+        <module>common-mybatis-generator</module>
     </modules>
 
 </project>
