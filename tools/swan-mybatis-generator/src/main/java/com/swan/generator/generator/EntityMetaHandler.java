@@ -104,7 +104,7 @@ public class EntityMetaHandler {
         String tableName = metaVO.getTableName();
         if (StringUtils.hasText(tablePrefix)) {
             int idx = metaVO.getTableName().lastIndexOf(tablePrefix);
-            tableName = metaVO.getTableName().substring(idx + tablePrefix.length() + 1);
+            tableName = metaVO.getTableName().substring(idx + tablePrefix.length());
         }
 
         nameSb.append(NameUtil.firstUppercase(NameUtil.toHumpName(tableName)));
