@@ -8,7 +8,7 @@
     </sql>
 
     <sql id="columns">
-        <#list entityMeta.fields as field>${field.columnName}, </#list>
+        <#list entityMeta.fields as field>${field.columnName}<#sep>, </#list>
     </sql>
 
     <sql id="condition">
@@ -19,8 +19,9 @@
         insert <include refid="table"/>(<include refid="columns"/>)
         values (
         <#list entityMeta.fields as field>
-            ${r'#{'}${field.name}},
+            ${r'#{'}${field.name}}<#sep>,
         </#list>
+
         );
     </insert>
 
@@ -33,8 +34,9 @@
         update <include refid="table"/>
         set
         <#list entityMeta.fields as field>
-            ${field.columnName} = ${r'#{'}${field.name}},
+            ${field.columnName} = ${r'#{'}${field.name}}<#sep>,
         </#list>
+
         where id = ${r'#{id}'}
     </update>
 
@@ -43,9 +45,10 @@
         set
         <#list entityMeta.fields as field>
             <if test="${field.name} != null ">
-                ,${field.columnName} = ${r'#{'}${field.name}}
+                ${field.columnName} = ${r'#{'}${field.name}}<#sep>,
             </if>
         </#list>
+
         where id = ${r'#{id}'}
     </update>
 

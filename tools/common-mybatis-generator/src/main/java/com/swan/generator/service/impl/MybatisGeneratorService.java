@@ -128,7 +128,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
 
         // 生成 Condition, Entity, Mapper 名称
         String entityName =  EntityMetaHandler.handleClassName(entityMetaInfo, config.getEntity(), config.getTablePrefix());
-        String conditionName =  "Condition";
+        String conditionName =  EntityMetaHandler.handleClassName(entityMetaInfo, config.getCondition(), config.getTablePrefix());
         String mapperName = EntityMetaHandler.handleClassName(entityMetaInfo, mapperConfig, config.getTablePrefix());
         entityMetaInfo.setClassName(mapperName);
 
@@ -155,7 +155,9 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         dataMap.put("config", mapperConfig);
         dataMap.put("metaInfo", entityMetaInfo);
         dataMap.put("createDate", DateUtil.getToday());
-        dataMap.put("parentMapperName", mapperConfig.getParentClass().getSimpleName());
+        if (mapperConfig.getParentClass() != null) {
+            dataMap.put("parentMapperName", mapperConfig.getParentClass().getSimpleName());
+        }
         dataMap.put("entityName", entityName);
         dataMap.put("conditionName", conditionName);
 

@@ -19,7 +19,8 @@ class CodeGeneratorTest extends AbsBaseTest{
         String schemaName = "swan-mybatis";
         String tableName = "bytesbc_account";
 //        this.mybatisGeneratorService.generateEntity(schemaName, tableName, CommentTypeEnum.DOC);
-        this.mybatisGeneratorService.generateMapperXml(schemaName, tableName);
+//        this.mybatisGeneratorService.generateMapperXml(schemaName, tableName);
+        this.mybatisGeneratorService.generateMapper(schemaName, tableName);
     }
 
 }
