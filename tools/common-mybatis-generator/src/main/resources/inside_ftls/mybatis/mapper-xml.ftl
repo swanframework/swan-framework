@@ -16,14 +16,23 @@
     </sql>
 
     <insert id="insert" >
-        insert <include refid="table"/>(<include refid="columns"/>)
-        values (
+        insert <include refid="table"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
         <#list entityMeta.fields as field>
-            ${r'#{'}${field.name}}<#sep>,
+            <if test="${field.name} != null ">
+                ${field.columnName},
+            </if>
         </#list>
-
-        );
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <#list entityMeta.fields as field>
+            <if test="${field.name} != null ">
+                ${r'#{'}${field.name}},
+            </if>
+        </#list>
+        </trim>
     </insert>
+
 
     <delete id="deleteById">
         delete from <include refid="table"/>
