@@ -24,12 +24,17 @@ public class MetaDao implements IMetaDao {
     @Autowired
     private DataSource dataSource;
 
-    private Connection getConnection() {
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException("", e);
+    private Connection connection;
+
+    private synchronized Connection getConnection() {
+        if (connection == null) {
+            try {
+                connection = dataSource.getConnection();
+            } catch (SQLException e) {
+                throw new RuntimeException("", e);
+            }
         }
+        return this.connection;
     }
 
     @Override
