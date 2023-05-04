@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter @Getter
 public class PagerRequest<T> {
 
-    private Integer pageIndex;
+    private Integer pageNum;
 
     private Integer pageSize;
 

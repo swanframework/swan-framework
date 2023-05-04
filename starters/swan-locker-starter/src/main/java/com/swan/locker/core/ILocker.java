@@ -1,6 +1,6 @@
 package com.swan.locker.core;
 
-/**  限流器, 控制限流访问次数，默认使用 redis 实现
+/**  锁
  * @author zongf
  * @since 2022-06-16
  **/

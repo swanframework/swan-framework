@@ -1,7 +1,6 @@
 package com.swan.web.utils;
 
 import com.swan.core.enums.ExceptionCodeEnum;
-import com.swan.core.exception.SwanBaseException;
 import com.swan.web.excetion.SwanValidateException;
 import org.hibernate.validator.HibernateValidator;
 
