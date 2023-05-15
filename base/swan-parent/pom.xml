@@ -111,6 +111,11 @@
                 <artifactId>swan-locker-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.swan</groupId>
+                <artifactId>swan-poi-starter</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

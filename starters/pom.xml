@@ -20,6 +20,7 @@
         <module>swan-redis-starter</module>
         <module>swan-kaptcha-starter</module>
         <module>swan-locker-starter</module>
+        <module>swan-poi-starter</module>
     </modules>
 
 </project>
