@@ -1,5 +1,6 @@
 package com.swan.knife4j.config;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.knife4j.core.CustomModelResolverInitializer;
 import io.swagger.v3.oas.models.OpenAPI;

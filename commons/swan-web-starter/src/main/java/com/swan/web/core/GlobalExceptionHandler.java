@@ -3,7 +3,7 @@ package com.swan.web.core;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.web.config.SwanWebProperties;
 import com.swan.web.constant.ResponseCode;
-import com.swan.web.vo.BaseResponse;
+import com.swan.web.domain.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindException;

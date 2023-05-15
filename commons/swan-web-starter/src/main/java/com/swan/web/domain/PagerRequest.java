@@ -1,4 +1,4 @@
-package com.swan.web.vo;
+package com.swan.web.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,8 +14,6 @@ public class PagerRequest<T> {
 
     private Integer pageSize;
 
-    private Long lastId;
-
-    private T body;
+    private T lastId;
 
 }

@@ -13,13 +13,15 @@ public class ResponseCode {
     /** 成功 */
     public static final Integer SUCCESS = 0;
 
+    /** 未知异常 */
+    public static final Integer UNKNOWN = -1;
+
     /** 参数非法 */
     public static final Integer PARAM_ERROR = 101;
 
     /** 参数非法 */
-    public static final Integer PATH_NOT_FOUND_ERROR = 404;
+    public static final Integer PATH_NOT_FOUND_ERROR = 400;
 
-    /** 未知异常 */
-    public static final Integer UNKNOWN = 999999;
+
 
 }

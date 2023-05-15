@@ -1,25 +1,33 @@
-package com.swan.web.vo;
+package com.swan.web.domain;
 
 import com.swan.web.constant.ResponseCode;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @author zongf
  * @since 2020-10-22
  */
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter @Getter
-public class BaseResponse<T> {
+@Data
+public class BaseResponse<T> extends AbsResponse {
 
-    private Integer code;
-
-    private String message;
-
+    // 数据
     private T data;
+
+    public BaseResponse() {
+    }
+    public BaseResponse(T data) {
+        this.data = data;
+    }
+
+    public BaseResponse(T data, String message) {
+        super(ResponseCode.SUCCESS, message);
+        this.data = data;
+    }
+
+    public BaseResponse(T data, Integer code, String message) {
+        super(code, message);
+        this.data = data;
+    }
 
     /** 请求成功
      * @return BaseResponse<T>
@@ -48,7 +56,7 @@ public class BaseResponse<T> {
      * @since 2021-07-14
      */
     public static <T> BaseResponse<T> success(T data, String message) {
-        return new BaseResponse<>(ResponseCode.SUCCESS, message, data);
+        return new BaseResponse<>(data, ResponseCode.SUCCESS, message);
     }
 
     /** 请求失败
@@ -72,17 +80,7 @@ public class BaseResponse<T> {
      * @since 2021-07-14
      */
     public static <T> BaseResponse<T> fail(T data, Integer code, String message) {
-        return new BaseResponse<>(code, message, data);
-    }
-
-
-    /** 判断返回值是否成功
-     * @return boolean
-     * @author zongf
-     * @since 2021-08-16
-     */
-    public boolean isSuccess() {
-        return ResponseCode.SUCCESS == code;
+        return new BaseResponse<>(data, code, message);
     }
 
 }
