@@ -11,7 +11,7 @@ public interface SelectMethod<ID, E>  extends BaseMethod {
      * @param options 查询选项，可指定排序方式、查询字段等。虽是可变变量，但最多只可传入一个参数
      * @return 无记录时，返回 null; 存在多条记录时, 抛出异常
      */
-    public E selectOnCondition(@Param("condition") Condition condition,
-                               @Param("options") SelectOption... options);
+    public E select(@Param("condition") Condition condition,
+                    @Param("options") SelectOption... options);
 
 }
