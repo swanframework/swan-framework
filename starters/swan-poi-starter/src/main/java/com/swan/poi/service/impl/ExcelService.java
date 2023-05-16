@@ -3,6 +3,8 @@ package com.swan.poi.service.impl;
 import com.swan.poi.cache.ExcelCache;
 import com.swan.poi.config.SwanPoiProperties;
 import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.handler.ExcelCellHandler;
+import com.swan.poi.handler.ExcelCellHandlerChain;
 import com.swan.poi.service.IExcelService;
 import com.swan.poi.utils.PoiExcelWriter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,10 +27,13 @@ public class ExcelService implements IExcelService {
     @Autowired
     private SwanPoiProperties swanPoiProperties;
 
+    @Autowired
+    private ExcelCellHandlerChain excelCellHandlerChain;
+
     @Override
     public <T> Workbook write(String sheetName, List<T> data, Class<T> clz) {
 
-        PoiExcelWriter poiExcelWriter = new PoiExcelWriter(clz, sheetName, swanPoiProperties);
+        PoiExcelWriter poiExcelWriter = new PoiExcelWriter(clz, sheetName, swanPoiProperties, excelCellHandlerChain);
 
         Workbook wb = poiExcelWriter.write(data);
 

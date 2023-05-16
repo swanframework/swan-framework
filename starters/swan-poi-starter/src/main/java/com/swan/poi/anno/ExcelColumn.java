@@ -1,7 +1,7 @@
 package com.swan.poi.anno;
 
 import com.swan.poi.enums.ColumnType;
-import com.swan.poi.handler.ExcelColumnConverter;
+import com.swan.poi.handler.ExcelCellHandler;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 
@@ -37,7 +37,7 @@ public @interface ExcelColumn {
     public String prompt() default "";
 
     /** 字段处理器 */
-    public Class<? extends ExcelColumnConverter> handler() default ExcelColumnConverter.class;
+    public Class<? extends ExcelCellHandler> handler() default ExcelCellHandler.class;
 
     /** 设置只能选择不能输入的列内容.    */
     public String[] options() default {};
@@ -56,9 +56,6 @@ public @interface ExcelColumn {
 
     /** 导出时在excel中每个列的宽 单位为字符    */
     public double width() default 16;
-
-    /** 导出类型（0数字 1字符串）    */
-    public ColumnType cellType() default ColumnType.STRING;
 
     /** 水平对齐方式 */
     public HorizontalAlignment horAlign() default HorizontalAlignment.CENTER;

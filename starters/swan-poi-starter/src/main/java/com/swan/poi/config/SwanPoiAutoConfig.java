@@ -1,10 +1,16 @@
 package com.swan.poi.config;
 
+import com.swan.poi.handler.ExcelCellHandler;
+import com.swan.poi.handler.ExcelCellHandlerChain;
+import com.swan.poi.handler.impl.*;
 import com.swan.poi.service.IExcelService;
 import com.swan.poi.service.impl.ExcelService;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+import java.util.List;
 
 /**
  * @author zongf
@@ -12,11 +18,17 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({SwanPoiProperties.class})
+@Import({BigDecimalHandler.class, DoubleCellHandler.class, NumberCellHandler.class, DateCellHandler.class, DefaultCellHandler.class})
 public class SwanPoiAutoConfig {
 
     @Bean
     public IExcelService excelService() {
         return new ExcelService();
+    }
+
+    @Bean
+    public ExcelCellHandlerChain excelCellHandlerChain(List<ExcelCellHandler> excelCellHandlers) {
+        return new ExcelCellHandlerChain(excelCellHandlers);
     }
 
 }

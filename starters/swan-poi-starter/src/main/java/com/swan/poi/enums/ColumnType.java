@@ -1,14 +1,22 @@
 package com.swan.poi.enums;
 
 public enum ColumnType {
-        NUMERIC(0), STRING(1), IMAGE(2);
-        private final int value;
 
-        ColumnType(int value) {
-            this.value = value;
-        }
+    /** 数字类型, 全部转换为 long */
+    NUMBER,
 
-        public int value() {
-            return this.value;
-        }
-    }
+    /** 字符串类型 */
+    String,
+
+    /** 日期类型 */
+    Date,
+
+    /** 日期字符串 */
+    DateStr,
+
+    /** 布尔类型 */
+    BOOLEAN,
+
+    ;
+
+}

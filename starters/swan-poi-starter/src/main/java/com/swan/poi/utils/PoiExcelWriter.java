@@ -1,12 +1,19 @@
 package com.swan.poi.utils;
 
+import com.swan.core.utils.DateUtil;
 import com.swan.core.utils.ReflectUtil;
 import com.swan.poi.cache.ExcelCache;
 import com.swan.poi.config.SwanPoiProperties;
 import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.handler.ExcelCellHandlerChain;
+import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+import org.apache.poi.xssf.usermodel.XSSFRichTextString;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,9 +39,14 @@ public class PoiExcelWriter {
     // sheet页最大记录数
     private static final int maxSheetSize = 65536;
 
-    public PoiExcelWriter(Class clz, String sheetName, SwanPoiProperties swanPoiProperties) {
+
+    private ExcelCellHandlerChain chain;
+
+    public PoiExcelWriter(Class clz, String sheetName
+            , SwanPoiProperties swanPoiProperties, ExcelCellHandlerChain chain) {
         this.sheetName = sheetName;
         this.swanPoiProperties = swanPoiProperties;
+        this.chain = chain;
 
         this.wb = new SXSSFWorkbook(rowAccessWindowSize);
 
@@ -94,7 +106,9 @@ public class PoiExcelWriter {
             for (ExcelColumnInfo columnInfo : this.columnInfos) {
                 Cell cell = row.createCell(columnIdx++);
                 cell.setCellStyle(toPoiCellStyle(swanPoiProperties.getData()));
-                cell.setCellValue("" + ReflectUtil.getFieldValue(rowData, columnInfo.getField()));
+                Object fieldValue = ReflectUtil.getFieldValue(rowData, columnInfo.getField());
+
+                this.chain.setValue(cell, fieldValue, columnInfo.getExcelColumn());
             }
         }
     }
