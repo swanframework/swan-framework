@@ -199,4 +199,22 @@ public class ReflectUtil {
         }
     }
 
+
+    public static Object getFieldValue(Object object, Field field) {
+        if (Objects.isNull(field)) {
+            return null;
+        }
+
+        if (!field.isAccessible()) {
+            field.setAccessible(true);
+        }
+
+
+        try {
+            return field.get(object);
+        } catch (Exception ex) {
+
+        }
+        return null;
+    }
 }

@@ -114,7 +114,7 @@
             <dependency>
                 <groupId>com.swan</groupId>
                 <artifactId>swan-poi-starter</artifactId>
-                <version>${poi.version}</version>
+                <version>${project.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
