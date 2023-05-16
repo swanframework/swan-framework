@@ -1,20 +1,25 @@
 package com.swan.poi.utils;
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.swan.core.utils.DateUtil;
 import com.swan.core.utils.ReflectUtil;
+import com.swan.poi.anno.ExcelColumn;
 import com.swan.poi.cache.ExcelCache;
 import com.swan.poi.config.SwanPoiProperties;
 import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.handler.ExcelCellHandler;
 import com.swan.poi.handler.ExcelCellHandlerChain;
 import jdk.internal.org.objectweb.asm.tree.analysis.Value;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author zongf
@@ -108,7 +113,22 @@ public class PoiExcelWriter {
                 cell.setCellStyle(toPoiCellStyle(swanPoiProperties.getData()));
                 Object fieldValue = ReflectUtil.getFieldValue(rowData, columnInfo.getField());
 
-                this.chain.setValue(cell, fieldValue, columnInfo.getExcelColumn());
+
+                boolean setSuccess = false;
+                ExcelColumn excelColumn = columnInfo.getExcelColumn();
+                if (StringUtils.hasText(excelColumn.handlerBeanName())) {
+
+                    // 自定义了字段解析器
+                    ExcelCellHandler customerHandler = SpringUtil.getBean(excelColumn.handlerBeanName(), ExcelCellHandler.class);
+                    if (Objects.nonNull(customerHandler)) {
+                        setSuccess = customerHandler.setValue(cell, fieldValue, columnInfo.getExcelColumn());
+                    }
+                }
+
+                // 未成功设置，则使用默认设置
+                if (!setSuccess) {
+                    this.chain.setValue(cell, fieldValue, columnInfo.getExcelColumn());
+                }
             }
         }
     }

@@ -36,8 +36,8 @@ public @interface ExcelColumn {
     /** 提示信息  */
     public String prompt() default "";
 
-    /** 字段处理器 */
-    public Class<? extends ExcelCellHandler> handler() default ExcelCellHandler.class;
+    /** 自定义字段处理器bean名称, 需要实现 ExcelCellHandler*/
+    public String handlerBeanName() default "";
 
     /** 设置只能选择不能输入的列内容.    */
     public String[] options() default {};
