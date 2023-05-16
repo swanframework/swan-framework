@@ -1,5 +1,6 @@
 package com.swan.generator.generator;
 
+import com.swan.core.utils.ReflectUtil;
 import com.swan.generator.config.SbootGeneratorMybatisProperties;
 import com.swan.generator.enums.CommentTypeEnum;
 import com.swan.generator.enums.GenerateTypeEnum;
@@ -11,10 +12,12 @@ import com.swan.generator.vo.EntityFieldMeta;
 import com.swan.generator.vo.EntityMeta;
 import org.springframework.util.StringUtils;
 
+import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author zongf
@@ -166,7 +169,8 @@ public class EntityMetaHandler {
      */
     public static void handleInheritFields(EntityMeta entityMetaInfo,  SbootGeneratorMybatisProperties.ClassConfig config) {
         if (config.getParentClass() != null) {
-            Set<String> allDeclareFields = ReflectorUtil.getAllDeclareFields(config.getParentClass());
+            Set<String> allDeclareFields = ReflectUtil.getAllDeclareFields(config.getParentClass())
+                            .stream().map(Field::getName).collect(Collectors.toSet());
             Iterator<EntityFieldMeta> iterator = entityMetaInfo.getFields().iterator();
             while (iterator.hasNext()) {
                 String fieldName = iterator.next().getName();
