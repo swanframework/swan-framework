@@ -73,9 +73,4 @@ public class NameUtil {
     }
 
 
-    public static void main(String[] args) {
-        System.out.println(toHungaryName("age"));
-        System.out.println(toHungaryName("aUserName"));
-    }
-
 }

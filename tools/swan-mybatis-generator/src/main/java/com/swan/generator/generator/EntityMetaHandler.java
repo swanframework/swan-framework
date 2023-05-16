@@ -1,13 +1,12 @@
 package com.swan.generator.generator;
 
+import com.swan.core.utils.NameUtil;
 import com.swan.core.utils.ReflectUtil;
 import com.swan.generator.config.SbootGeneratorMybatisProperties;
 import com.swan.generator.enums.CommentTypeEnum;
 import com.swan.generator.enums.GenerateTypeEnum;
 import com.swan.generator.enums.JavaMappingType;
 import com.swan.generator.persistence.po.ColumnPO;
-import com.swan.generator.util.NameUtil;
-import com.swan.generator.util.ReflectorUtil;
 import com.swan.generator.vo.EntityFieldMeta;
 import com.swan.generator.vo.EntityMeta;
 import org.springframework.util.StringUtils;

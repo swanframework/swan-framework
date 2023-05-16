@@ -1,6 +1,8 @@
 package com.swan.generator.service.impl;
 
 
+import com.swan.core.utils.DateUtil;
+import com.swan.core.utils.TxtFileUtil;
 import com.swan.freemarker.core.IFreemarkerTemplate;
 import com.swan.generator.config.SbootGeneratorMybatisProperties;
 import com.swan.generator.constants.FtlConstant;
@@ -9,8 +11,6 @@ import com.swan.generator.enums.GenerateTypeEnum;
 import com.swan.generator.generator.EntityMetaCreator;
 import com.swan.generator.generator.EntityMetaHandler;
 import com.swan.generator.service.api.IMybatisGeneratorService;
-import com.swan.generator.util.DateUtil;
-import com.swan.generator.util.GenerateFileUtil;
 import com.swan.generator.util.PathUtil;
 import com.swan.generator.vo.EntityMeta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,7 +73,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         String filePath = PathUtil.getClassPath(config.getProjectPath(), entityConfig.getPackageName(), metaInfo.getClassName());
 
         // 写入文件
-        GenerateFileUtil.writeFile(filePath,code);
+        TxtFileUtil.writeFile(filePath,code);
 
         return metaInfo;
     }
@@ -111,7 +111,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         String filePath = PathUtil.getClassPath(config.getProjectPath(), config.getCondition().getPackageName(), metaInfo.getClassName());
 
         // 写入文件
-        GenerateFileUtil.writeFile(filePath, code);
+        TxtFileUtil.writeFile(filePath, code);
 
         return filePath;
     }
@@ -166,7 +166,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         String filePath = PathUtil.getClassPath(config.getProjectPath(),mapperConfig.getPackageName(), entityMetaInfo.getClassName());
 
         // 写入文件
-        GenerateFileUtil.writeFile(filePath, codeList);
+        TxtFileUtil.writeFile(filePath, codeList);
 
         return filePath;
     }
@@ -194,7 +194,7 @@ public class MybatisGeneratorService implements IMybatisGeneratorService {
         String filePath = PathUtil.getXmlPath(config.getProjectPath(), config.getMapper().getXmlDir(), mapperName);
 
         // 写入文件
-        GenerateFileUtil.writeFile(filePath, codeList);
+        TxtFileUtil.writeFile(filePath, codeList);
 
         return filePath;
     }
