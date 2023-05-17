@@ -1,15 +1,12 @@
 package com.swan.poi.service.impl;
 
-import com.swan.poi.cache.ExcelCache;
 import com.swan.poi.config.SwanPoiProperties;
-import com.swan.poi.domain.ExcelColumnInfo;
-import com.swan.poi.handler.ExcelCellHandler;
 import com.swan.poi.handler.ExcelCellHandlerChain;
 import com.swan.poi.service.IExcelService;
+import com.swan.poi.utils.PoiExcelReader;
 import com.swan.poi.utils.PoiExcelWriter;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.InputStream;
@@ -41,8 +38,10 @@ public class ExcelService implements IExcelService {
     }
 
     @Override
-    public <T> List<T> read(InputStream is, Class<T> clz) {
-        return null;
+    public <T> List<T> read(InputStream is, Class<T> clz, Integer sheetNum) {
+
+        PoiExcelReader poiExcelReader = new PoiExcelReader(excelCellHandlerChain);
+        return poiExcelReader.parse(is, clz, sheetNum);
     }
 
 

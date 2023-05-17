@@ -20,7 +20,7 @@ public interface IExcelService {
      * @param <T>
      * @return
      */
-    public <T> List<T> read(InputStream is, Class<T> clz);
+    public <T> List<T> read(InputStream is, Class<T> clz, Integer sheetNum);
 
 
 }

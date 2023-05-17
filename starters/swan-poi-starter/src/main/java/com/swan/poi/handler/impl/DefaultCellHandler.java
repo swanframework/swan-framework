@@ -1,21 +1,26 @@
 package com.swan.poi.handler.impl;
 
 import com.swan.poi.anno.ExcelColumn;
-import com.swan.poi.handler.ExcelCellHandler;
+import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.handler.IExcelCellHandler;
 import org.apache.poi.ss.usermodel.Cell;
-
-import java.math.BigDecimal;
 
 /**
  * @author zongf
  * @since 2023-05-16
  **/
-public class DefaultCellHandler implements ExcelCellHandler {
+public class DefaultCellHandler implements IExcelCellHandler {
 
     @Override
     public boolean setValue(Cell cell, Object value, ExcelColumn excelColumn) {
         cell.setCellValue("" + value);
         return true;
+    }
+
+    @Override
+    public Object getValue(Cell cell, ExcelColumnInfo columnInfo) {
+
+        return cell.getStringCellValue();
     }
 
     @Override

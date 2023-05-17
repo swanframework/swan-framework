@@ -1,43 +1,44 @@
 swan:
   poi:
-    title:
-      font-name: Arial
-      font-bold: true
-      font-height: 16
-      hor-align: center
-      ver-align: center
-      left-border: dash_dot
-      left-border-color: green
-      font-color: red
-      back-color: black
-    data:
-      font-name: Arial
-      font-bold: true
-      font-height: 10
-      hor-align: center
-      ver-align: center
-      left-border: dash_dot
-      left-border-color: green
-      font-color: black
-      back-color: black
-    interlace:
-      odd-row:
+    style:
+      title:
         font-name: Arial
         font-bold: true
-        font-height: 30
-        font-color: red
-        back-color: black
+        font-height: 16
         hor-align: center
         ver-align: center
         left-border: dash_dot
         left-border-color: green
-      even-row:
-        font-name: Arial
-        font-bold: true
-        font-height: 30
         font-color: red
         back-color: black
+      data:
+        font-name: Arial
+        font-bold: true
+        font-height: 10
         hor-align: center
         ver-align: center
         left-border: dash_dot
         left-border-color: green
+        font-color: black
+        back-color: black
+      interlace:
+        odd-row:
+          font-name: Arial
+          font-bold: true
+          font-height: 30
+          font-color: red
+          back-color: black
+          hor-align: center
+          ver-align: center
+          left-border: dash_dot
+          left-border-color: green
+        even-row:
+          font-name: Arial
+          font-bold: true
+          font-height: 30
+          font-color: red
+          back-color: black
+          hor-align: center
+          ver-align: center
+          left-border: dash_dot
+          left-border-color: green

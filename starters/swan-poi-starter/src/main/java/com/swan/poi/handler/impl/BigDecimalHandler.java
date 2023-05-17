@@ -1,18 +1,18 @@
 package com.swan.poi.handler.impl;
 
-import cn.hutool.poi.excel.cell.CellHandler;
 import com.swan.poi.anno.ExcelColumn;
-import com.swan.poi.handler.ExcelCellHandler;
+import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.handler.IExcelCellHandler;
 import org.apache.poi.ss.usermodel.Cell;
-import org.springframework.core.Ordered;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 
 /**
  * @author zongf
  * @since 2023-05-16
  **/
-public class BigDecimalHandler implements ExcelCellHandler {
+public class BigDecimalHandler implements IExcelCellHandler {
 
 
     @Override
@@ -28,6 +28,16 @@ public class BigDecimalHandler implements ExcelCellHandler {
         }
 
         return success;
+    }
+
+    @Override
+    public Object getValue(Cell cell, ExcelColumnInfo excelColumn) {
+
+        if (excelColumn.getField().getType().isAssignableFrom(BigDecimal.class)) {
+            return new BigDecimal(cell.getStringCellValue());
+        }
+
+        return null;
     }
 
     @Override

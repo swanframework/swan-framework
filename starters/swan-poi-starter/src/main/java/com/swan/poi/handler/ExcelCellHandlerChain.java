@@ -1,8 +1,8 @@
 package com.swan.poi.handler;
 
 import com.swan.poi.anno.ExcelColumn;
+import com.swan.poi.domain.ExcelColumnInfo;
 import org.apache.poi.ss.usermodel.Cell;
-import org.springframework.core.OrderComparator;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,11 +11,11 @@ import java.util.Objects;
  * @author zongf
  * @since 2023-05-17
  **/
-public class ExcelCellHandlerChain {
+public class ExcelCellHandlerChain{
 
-    private List<ExcelCellHandler> cellHandlers;
+    private List<IExcelCellHandler> cellHandlers;
 
-    public ExcelCellHandlerChain(List<ExcelCellHandler> cellHandlers) {
+    public ExcelCellHandlerChain(List<IExcelCellHandler> cellHandlers) {
         this.cellHandlers = cellHandlers;
     }
 
@@ -24,7 +24,7 @@ public class ExcelCellHandlerChain {
             return;
         }
 
-        for (ExcelCellHandler cellHandler : cellHandlers) {
+        for (IExcelCellHandler cellHandler : cellHandlers) {
             boolean setSuccess = cellHandler.setValue(cell, value, excelColumn);
 
             if (setSuccess) {
@@ -33,8 +33,17 @@ public class ExcelCellHandlerChain {
         }
     }
 
+    public Object getValue(Cell cell, ExcelColumnInfo columnInfo) {
 
+        Object value = null;
+        for (IExcelCellHandler cellHandler : cellHandlers) {
+            value = cellHandler.getValue(cell, columnInfo);
 
-
+            if (Objects.nonNull(value)) {
+                break;
+            }
+        }
+        return value;
+    }
 
 }

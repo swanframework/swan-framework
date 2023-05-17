@@ -35,7 +35,7 @@ public class UserDO extends BaseDO {
     private Double lg;
 
     @ExcelColumn(title = "布尔", scale = 3, roundingMode = BigDecimal.ROUND_CEILING)
-    private boolean bl;
+    private boolean bl = true;
 
 
 

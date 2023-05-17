@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -45,10 +46,22 @@ public class PoiTest {
         Workbook wb = excelService.write("UserDo", doList, UserDO.class);
 
 
-        FileOutputStream fis = new FileOutputStream(new File("test.xls"));
-        wb.write(fis);
+        FileOutputStream fos = new FileOutputStream("test.xls");
+        wb.write(fos);
+
+
+
 
     }
+
+    @Test
+    public void importData() throws Exception{
+        FileInputStream fis = new FileInputStream("test.xls");
+        List<UserDO> readList = excelService.read(fis, UserDO.class, 0);
+        readList.forEach(System.out::println);
+    }
+
+
 
 
 

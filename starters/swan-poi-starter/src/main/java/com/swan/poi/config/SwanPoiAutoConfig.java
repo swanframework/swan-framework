@@ -1,6 +1,6 @@
 package com.swan.poi.config;
 
-import com.swan.poi.handler.ExcelCellHandler;
+import com.swan.poi.handler.IExcelCellHandler;
 import com.swan.poi.handler.ExcelCellHandlerChain;
 import com.swan.poi.handler.impl.*;
 import com.swan.poi.service.IExcelService;
@@ -27,7 +27,7 @@ public class SwanPoiAutoConfig {
     }
 
     @Bean
-    public ExcelCellHandlerChain excelCellHandlerChain(List<ExcelCellHandler> excelCellHandlers) {
+    public ExcelCellHandlerChain excelCellHandlerChain(List<IExcelCellHandler> excelCellHandlers) {
         return new ExcelCellHandlerChain(excelCellHandlers);
     }
 

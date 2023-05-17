@@ -12,11 +12,8 @@ import java.lang.reflect.Field;
 @Data
 public class ExcelColumnInfo {
 
-
     private ExcelColumn excelColumn;
 
     private Field field;
-
-
 
 }

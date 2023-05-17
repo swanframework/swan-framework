@@ -217,4 +217,22 @@ public class ReflectUtil {
         }
         return null;
     }
+
+    public static <T> T newInstance(Class<T> clz) {
+
+        try {
+           return clz.newInstance();
+
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
+    public static void setField(Object target, Field field, Object fieldValue) {
+        try {
+            field.set(target, fieldValue);
+        } catch (Exception e) {
+        }
+    }
 }

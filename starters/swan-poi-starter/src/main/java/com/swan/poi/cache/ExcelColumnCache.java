@@ -4,7 +4,6 @@ import com.swan.core.utils.ReflectUtil;
 import com.swan.poi.anno.ExcelColumn;
 import com.swan.poi.domain.ExcelColumnInfo;
 
-import java.lang.reflect.Field;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
  * @author zongf
  * @since 2023-05-16
  **/
-public class ExcelCache {
+public class ExcelColumnCache {
 
     public static Map<Class, List<ExcelColumnInfo>> cache = new ConcurrentHashMap<>();
 
