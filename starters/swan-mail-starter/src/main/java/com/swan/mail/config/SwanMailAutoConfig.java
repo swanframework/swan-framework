@@ -1,5 +1,6 @@
 package com.swan.mail.config;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.mail.core.IMailSender;
 import com.swan.mail.core.MailSender;

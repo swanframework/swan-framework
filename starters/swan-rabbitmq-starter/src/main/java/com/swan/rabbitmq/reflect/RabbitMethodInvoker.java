@@ -1,5 +1,6 @@
 package com.swan.rabbitmq.reflect;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.exception.SwanBaseException;
 import com.swan.core.invoker.IMethodInvoker;
 import com.swan.core.utils.JacksonUtil;
