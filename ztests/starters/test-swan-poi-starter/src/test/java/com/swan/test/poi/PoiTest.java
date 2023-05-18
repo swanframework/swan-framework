@@ -43,7 +43,7 @@ public class PoiTest {
             doList.add(userDO);
         }
 
-        Workbook wb = excelService.exportData("UserDo", doList, UserDO.class);
+        Workbook wb = excelService.exportData("UserDo", doList, UserDO.class, 100);
 
         FileOutputStream fos = new FileOutputStream("test.xls");
         wb.write(fos);

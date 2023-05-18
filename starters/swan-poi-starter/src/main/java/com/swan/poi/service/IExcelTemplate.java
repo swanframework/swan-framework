@@ -12,7 +12,7 @@ public interface IExcelTemplate {
      * @param <T> 字段映射
      * @return
      */
-    public <T> Workbook exportData(String sheetName, List<T> data, Class<T> clz);
+    public <T> Workbook exportData(String sheetName, List<T> data, Class<T> clz, Integer sheetSize);
 
     /** 导入数据
      * @param is 输入流
