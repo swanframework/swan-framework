@@ -1,8 +1,10 @@
 package com.swan.poi.cache;
 
+import com.swan.core.enums.ExceptionCodeEnum;
 import com.swan.core.utils.ReflectUtil;
 import com.swan.poi.anno.ExcelColumn;
 import com.swan.poi.domain.ExcelColumnInfo;
+import com.swan.poi.exception.SwanPoiException;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,10 +16,17 @@ import java.util.stream.Collectors;
  **/
 public class ExcelColumnCache {
 
+    // 缓存字段信息
     public static Map<Class, List<ExcelColumnInfo>> cache = new ConcurrentHashMap<>();
 
+    public static boolean hasExcelAnnoField(Class clz) {
+        List<ExcelColumnInfo> columnInfos = ExcelColumnCache.getColumns(clz);
 
-    public static List<ExcelColumnInfo> get(Class clz) {
+        return !columnInfos.isEmpty();
+    }
+
+
+    public static List<ExcelColumnInfo> getColumns(Class clz) {
 
         List<ExcelColumnInfo> excelColumnInfos = cache.get(clz);
 

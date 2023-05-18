@@ -16,6 +16,7 @@ public enum ExceptionCodeEnum {
     FREEMARKER(600, "模板"),
     LOCK(700, "加锁异常"),
     MINIO(800, "mino"),
+    POI(900, "poi"),
 
     ;
 

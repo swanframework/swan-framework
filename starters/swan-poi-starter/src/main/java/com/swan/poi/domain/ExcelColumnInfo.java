@@ -12,8 +12,10 @@ import java.lang.reflect.Field;
 @Data
 public class ExcelColumnInfo {
 
+    /** 注解信息 */
     private ExcelColumn excelColumn;
 
+    /** 反射字段 */
     private Field field;
 
 }

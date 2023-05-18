@@ -9,7 +9,7 @@ import org.springframework.core.Ordered;
  * @author zongf
  * @since 2023-05-16
  **/
-public interface IExcelCellHandler extends Ordered {
+public interface ICellHandler extends Ordered {
 
     public boolean setValue(Cell cell, Object value, ExcelColumn excelColumn);
 

@@ -1,7 +1,6 @@
 package com.swan.poi.config;
 
 import lombok.Data;
-import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
@@ -12,8 +11,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @since 2023-05-16
  **/
 @Data
-@ConfigurationProperties(prefix = "swan.poi")
-public class SwanPoiProperties {
+@ConfigurationProperties(prefix = "swan.poi.excel")
+public class ExcelConfig {
 
     /** 每个 sheet 最大行数量 */
     private Integer sheetSize = 50;

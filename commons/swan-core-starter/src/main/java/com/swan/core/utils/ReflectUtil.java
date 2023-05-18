@@ -1,15 +1,17 @@
 package com.swan.core.utils;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
+import com.swan.core.enums.ExceptionCodeEnum;
+import com.swan.core.exception.SwanBaseException;
+import lombok.extern.slf4j.Slf4j;
+
+import java.lang.reflect.*;
 import java.util.*;
 
 /** 反射工具类
  * @author zongf
  * @since 2021-01-07
  */
+@Slf4j
 public class ReflectUtil {
 
     /***
@@ -200,6 +202,20 @@ public class ReflectUtil {
     }
 
 
+    public static <T> T newInstance(Class<T> clz) {
+
+        try {
+            Constructor<T> constructor = clz.getConstructor();
+            if (constructor == null) {
+                throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), clz.getSimpleName() + " 没有无参构造函数");
+            }
+            return clz.newInstance();
+
+        } catch (Exception e) {
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), clz.getSimpleName() + " 实例创建异常");
+        }
+    }
+
     public static Object getFieldValue(Object object, Field field) {
         if (Objects.isNull(field)) {
             return null;
@@ -209,7 +225,6 @@ public class ReflectUtil {
             field.setAccessible(true);
         }
 
-
         try {
             return field.get(object);
         } catch (Exception ex) {
@@ -218,21 +233,23 @@ public class ReflectUtil {
         return null;
     }
 
-    public static <T> T newInstance(Class<T> clz) {
-
-        try {
-           return clz.newInstance();
-
-        } catch (Exception e) {
-
+    public static void setFieldValue(Object target, Field field, Object fieldValue) {
+        if (Objects.isNull(target) || Objects.isNull(field)) {
+            return;
         }
-        return null;
+        try {
+            if (field.isAccessible()) {
+                field.setAccessible(true);
+            }
+
+            if (Objects.nonNull(fieldValue)) {
+                field.set(target, fieldValue);
+            }
+        } catch (Exception e) {
+            log.info("field:{}, fieldType:{}, fieldValue{}", field.getName(), field.getType().getSimpleName(), fieldValue);
+            throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "设置属性失败", e);
+        }
     }
 
-    public static void setField(Object target, Field field, Object fieldValue) {
-        try {
-            field.set(target, fieldValue);
-        } catch (Exception e) {
-        }
-    }
+
 }

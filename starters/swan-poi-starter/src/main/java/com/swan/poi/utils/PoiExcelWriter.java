@@ -4,10 +4,10 @@ import cn.hutool.extra.spring.SpringUtil;
 import com.swan.core.utils.ReflectUtil;
 import com.swan.poi.anno.ExcelColumn;
 import com.swan.poi.cache.ExcelColumnCache;
-import com.swan.poi.config.SwanPoiProperties;
+import com.swan.poi.config.ExcelConfig;
 import com.swan.poi.domain.ExcelColumnInfo;
-import com.swan.poi.handler.IExcelCellHandler;
-import com.swan.poi.handler.ExcelCellHandlerChain;
+import com.swan.poi.handler.ICellHandler;
+import com.swan.poi.handler.CellHandlerChain;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.springframework.util.StringUtils;
@@ -30,7 +30,7 @@ public class PoiExcelWriter {
     private List<ExcelColumnInfo> columnInfos;
 
     // 配置
-    private SwanPoiProperties swanPoiProperties;
+    private ExcelConfig excelConfig;
 
     // 内存中缓存记录数
     private static final Integer rowAccessWindowSize = 500;
@@ -39,17 +39,17 @@ public class PoiExcelWriter {
     private static final int maxSheetSize = 65536;
 
     // 事件处理器
-    private ExcelCellHandlerChain chain;
+    private CellHandlerChain chain;
 
     public PoiExcelWriter(Class clz, String sheetName
-            , SwanPoiProperties swanPoiProperties, ExcelCellHandlerChain chain) {
+            , ExcelConfig excelConfig, CellHandlerChain chain) {
         this.sheetName = sheetName;
-        this.swanPoiProperties = swanPoiProperties;
+        this.excelConfig = excelConfig;
         this.chain = chain;
 
         this.wb = new SXSSFWorkbook(rowAccessWindowSize);
 
-        this.columnInfos = ExcelColumnCache.get(clz);
+        this.columnInfos = ExcelColumnCache.getColumns(clz);
     }
 
     public <T> Workbook write(List<T> list) {
@@ -65,6 +65,7 @@ public class PoiExcelWriter {
             // 1.创建sheet
             Sheet sheet = wb.createSheet();
             wb.setSheetName(sheetIdx, sheetName + "_" + sheetIdx );
+            sheet.setDefaultColumnWidth(25);
 
             // 2.计算起始索引
             int start = sheetIdx * sheetSize ;
@@ -81,13 +82,12 @@ public class PoiExcelWriter {
     }
 
     private int writeTitleRow(Sheet sheet) {
-        SwanPoiProperties.RoleStyle titleRowStyle = swanPoiProperties.getStyle().getTitle();
+        ExcelConfig.RoleStyle titleRowStyle = excelConfig.getStyle().getTitle();
 
         // 创建标题行，设置行高
         int rowNum = 0;
         Row row = sheet.createRow(rowNum++);
         row.setHeightInPoints(titleRowStyle.getHeight());
-
         // 写入标题行
         int columnIdx = 0;
         for (ExcelColumnInfo columnInfo : columnInfos) {
@@ -102,7 +102,7 @@ public class PoiExcelWriter {
 
     private <T> void writeDataRows(Sheet sheet, int rowNum, List<T> list, int start, int end) {
 
-        SwanPoiProperties.RoleStyle dataRowStyle = swanPoiProperties.getStyle().getData();
+        ExcelConfig.RoleStyle dataRowStyle = excelConfig.getStyle().getData();
 
         for (int i = start; i <end; i++) {
 
@@ -110,9 +110,10 @@ public class PoiExcelWriter {
             T rowData = list.get(i);
             Row row = sheet.createRow(rowNum++);
             row.setHeightInPoints(dataRowStyle.getHeight());
-
             int columnIdx = 0;
             for (ExcelColumnInfo columnInfo : this.columnInfos) {
+                sheet.setColumnWidth(columnIdx,dataRowStyle.getWidth());
+
                 Cell cell = row.createCell(columnIdx++);
                 cell.setCellStyle(getCellStyle(dataRowStyle));
                 setCellValue(cell, rowData, columnInfo);
@@ -130,7 +131,7 @@ public class PoiExcelWriter {
         // 如果自定义了字段转换器，则尝试用自定义转换器处理
         if (StringUtils.hasText(excelColumn.handler())) {
             // 自定义了字段解析器
-            IExcelCellHandler customerHandler = SpringUtil.getBean(excelColumn.handler(), IExcelCellHandler.class);
+            ICellHandler customerHandler = SpringUtil.getBean(excelColumn.handler(), ICellHandler.class);
             if (Objects.nonNull(customerHandler)) {
                 setSuccess = customerHandler.setValue(cell, fieldValue, columnInfo.getExcelColumn());
             }
@@ -144,7 +145,7 @@ public class PoiExcelWriter {
 
 
     // 设置单元格样式
-    private CellStyle getCellStyle(SwanPoiProperties.RoleStyle roleStyle) {
+    private CellStyle getCellStyle(ExcelConfig.RoleStyle roleStyle) {
 
         CellStyle cs = wb.createCellStyle();
 
@@ -153,16 +154,25 @@ public class PoiExcelWriter {
         font.setFontName(roleStyle.getFontName());
         font.setBold(roleStyle.isFontBold());
         font.setFontHeightInPoints(roleStyle.getFontHeight());
-        font.setColor(roleStyle.getFontColor().getIndex());
+        if (Objects.nonNull(roleStyle.getFontColor())) {
+            font.setColor(roleStyle.getFontColor().getIndex());
+        }
         cs.setFont(font);
 
-        // 设置背景色、前景色
-        cs.setFillForegroundColor(roleStyle.getFontColor().getIndex());
-        cs.setFillBackgroundColor(roleStyle.getBackColor().getIndex());
+        // 设置背景
+        if (Objects.nonNull(roleStyle.getBackColor())) {
+            cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            cs.setFillForegroundColor(roleStyle.getBackColor().getIndex());
+        }
 
         // 设置对齐方式
         cs.setVerticalAlignment(roleStyle.getVerAlign());
         cs.setAlignment(roleStyle.getHorAlign());
+
+        cs.setBorderTop(BorderStyle.THIN);
+        cs.setBorderBottom(BorderStyle.THIN);
+        cs.setBorderLeft(BorderStyle.THIN);
+        cs.setBorderRight(BorderStyle.THIN);
 
         return cs;
     }

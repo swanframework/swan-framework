@@ -1,14 +1,12 @@
 package com.swan.test.poi;
 
-import cn.hutool.core.util.RandomUtil;
-import com.swan.poi.service.IExcelService;
+import com.swan.poi.service.IExcelTemplate;
 import com.swan.test.poi.domain.UserDO;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
@@ -24,11 +22,11 @@ import java.util.List;
 public class PoiTest {
 
     @Autowired
-    private IExcelService excelService;
+    private IExcelTemplate excelService;
 
 
     @Test
-    public void getContent() throws Exception{
+    public void exportData() throws Exception{
 
         List<UserDO> doList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
@@ -43,21 +41,16 @@ public class PoiTest {
             doList.add(userDO);
         }
 
-        Workbook wb = excelService.write("UserDo", doList, UserDO.class);
-
+        Workbook wb = excelService.exportData("UserDo", doList, UserDO.class);
 
         FileOutputStream fos = new FileOutputStream("test.xls");
         wb.write(fos);
-
-
-
-
     }
 
     @Test
     public void importData() throws Exception{
         FileInputStream fis = new FileInputStream("test.xls");
-        List<UserDO> readList = excelService.read(fis, UserDO.class, 0);
+        List<UserDO> readList = excelService.importData(fis, UserDO.class, 0);
         readList.forEach(System.out::println);
     }
 

@@ -2,7 +2,7 @@ package com.swan.poi.handler.impl;
 
 import com.swan.poi.anno.ExcelColumn;
 import com.swan.poi.domain.ExcelColumnInfo;
-import com.swan.poi.handler.IExcelCellHandler;
+import com.swan.poi.handler.ICellHandler;
 import org.apache.poi.ss.usermodel.Cell;
 
 import java.math.BigDecimal;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @author zongf
  * @since 2023-05-16
  **/
-public class DoubleCellHandler implements IExcelCellHandler {
+public class DoubleCellHandler implements ICellHandler {
 
 
     @Override

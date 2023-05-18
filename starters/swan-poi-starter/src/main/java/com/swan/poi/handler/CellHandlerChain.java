@@ -11,11 +11,11 @@ import java.util.Objects;
  * @author zongf
  * @since 2023-05-17
  **/
-public class ExcelCellHandlerChain{
+public class CellHandlerChain {
 
-    private List<IExcelCellHandler> cellHandlers;
+    private List<ICellHandler> cellHandlers;
 
-    public ExcelCellHandlerChain(List<IExcelCellHandler> cellHandlers) {
+    public CellHandlerChain(List<ICellHandler> cellHandlers) {
         this.cellHandlers = cellHandlers;
     }
 
@@ -24,7 +24,7 @@ public class ExcelCellHandlerChain{
             return;
         }
 
-        for (IExcelCellHandler cellHandler : cellHandlers) {
+        for (ICellHandler cellHandler : cellHandlers) {
             boolean setSuccess = cellHandler.setValue(cell, value, excelColumn);
 
             if (setSuccess) {
@@ -36,7 +36,7 @@ public class ExcelCellHandlerChain{
     public Object getValue(Cell cell, ExcelColumnInfo columnInfo) {
 
         Object value = null;
-        for (IExcelCellHandler cellHandler : cellHandlers) {
+        for (ICellHandler cellHandler : cellHandlers) {
             value = cellHandler.getValue(cell, columnInfo);
 
             if (Objects.nonNull(value)) {

@@ -28,4 +28,7 @@ public @interface ExcelColumn {
     /** 自定义字段处理器bean名称, 需要实现 ExcelCellHandler*/
     public String handler() default "";
 
+    /** 字段约束信息 */
+    public String desc() default "";
+
 }
