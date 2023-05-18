@@ -112,7 +112,8 @@ public class PoiExcelWriter {
             row.setHeightInPoints(dataRowStyle.getHeight());
             int columnIdx = 0;
             for (ExcelColumnInfo columnInfo : this.columnInfos) {
-                sheet.setColumnWidth(columnIdx,dataRowStyle.getWidth());
+                int width = (int) (dataRowStyle.getWidth() + 0.75) * 256;
+                sheet.setColumnWidth(columnIdx, width);
 
                 Cell cell = row.createCell(columnIdx++);
                 cell.setCellStyle(getCellStyle(dataRowStyle));
@@ -151,28 +152,45 @@ public class PoiExcelWriter {
 
         // 设置字体样式
         Font font = wb.createFont();
-        font.setFontName(roleStyle.getFontName());
         font.setBold(roleStyle.isFontBold());
-        font.setFontHeightInPoints(roleStyle.getFontHeight());
+        font.setFontName(roleStyle.getFontName());
+        if (Objects.nonNull(roleStyle.getFontHeight())) {
+            font.setFontHeightInPoints(roleStyle.getFontHeight());
+        }
         if (Objects.nonNull(roleStyle.getFontColor())) {
             font.setColor(roleStyle.getFontColor().getIndex());
         }
         cs.setFont(font);
 
-        // 设置背景
+        // 设置背景色
         if (Objects.nonNull(roleStyle.getBackColor())) {
             cs.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             cs.setFillForegroundColor(roleStyle.getBackColor().getIndex());
         }
 
         // 设置对齐方式
-        cs.setVerticalAlignment(roleStyle.getVerAlign());
-        cs.setAlignment(roleStyle.getHorAlign());
+        if (Objects.nonNull(roleStyle.getVerAlign())) {
+            cs.setVerticalAlignment(roleStyle.getVerAlign());
+        }
+        if (Objects.nonNull(roleStyle.getHorAlign())) {
+            cs.setAlignment(roleStyle.getHorAlign());
+        }
 
-        cs.setBorderTop(BorderStyle.THIN);
-        cs.setBorderBottom(BorderStyle.THIN);
-        cs.setBorderLeft(BorderStyle.THIN);
-        cs.setBorderRight(BorderStyle.THIN);
+        // 处理边框样式
+        if (Objects.nonNull(roleStyle.getBorderStyle())) {
+            cs.setBorderLeft(roleStyle.getBorderStyle());
+            cs.setBorderRight(roleStyle.getBorderStyle());
+            cs.setBorderTop(roleStyle.getBorderStyle());
+            cs.setBorderBottom(roleStyle.getBorderStyle());
+        }
+
+        // 处理边框颜色
+        if (Objects.nonNull(roleStyle.getBorderColor())) {
+            cs.setLeftBorderColor(roleStyle.getBorderColor().getIndex());
+            cs.setRightBorderColor(roleStyle.getBorderColor().getIndex());
+            cs.setTopBorderColor(roleStyle.getBorderColor().getIndex());
+            cs.setBottomBorderColor(roleStyle.getBorderColor().getIndex());
+        }
 
         return cs;
     }

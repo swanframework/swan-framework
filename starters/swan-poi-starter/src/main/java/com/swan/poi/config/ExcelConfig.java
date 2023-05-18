@@ -1,6 +1,7 @@
 package com.swan.poi.config;
 
 import lombok.Data;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
@@ -63,16 +64,22 @@ public class ExcelConfig {
         private boolean fontBold;
 
         /** 字体颜色 */
-        private IndexedColors fontColor;
+        private IndexedColors fontColor = IndexedColors.BLACK;
 
         /** 背景颜色 */
-        private IndexedColors backColor;
+        private IndexedColors backColor ;
 
         /** 水平对齐方式 */
         private HorizontalAlignment horAlign = HorizontalAlignment.CENTER;
 
         /** 垂直对齐方式 */
         private VerticalAlignment verAlign = VerticalAlignment.CENTER;
+
+        /** 边框颜色 */
+        private IndexedColors borderColor = IndexedColors.GREY_50_PERCENT;
+
+        /** 边框样式 */
+        private BorderStyle borderStyle = BorderStyle.THIN;
 
     }
 
