@@ -72,6 +72,24 @@ public class ListUtil {
         return map;
     }
 
+    /** 对list中的元素转换为map
+     * @param list 列表
+     * @param function 获取key的方法
+     * @param <K> key 类型
+     * @param <V> list元素类型
+     * @return Map<K, List<V>>
+     */
+    public static <K, V> Map<K, V> toMap(List<V> list, Function<V, K> function) {
+        if (list == null) {
+            return null;
+        }
+        Map<K, V> map = new HashMap<>();
+        for (V item : list) {
+            map.put(function.apply(item), item);
+        }
+        return map;
+    }
+
     @Data
     @AllArgsConstructor
     static class TestPO{
