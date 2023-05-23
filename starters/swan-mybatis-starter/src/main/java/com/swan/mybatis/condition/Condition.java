@@ -26,6 +26,8 @@ public class Condition {
 
     private static final  Map<Integer, List<OpType>> opTypeMap;
 
+    private boolean ignoreEmpty;
+
     static {
         opTypeMap = ListUtil.groupToMap(Arrays.asList(values()), OpType::getParams);
     }
@@ -35,6 +37,12 @@ public class Condition {
     }
 
     public static Condition newInstance() {
+        return new Condition(new ArrayList<>());
+    }
+
+    public static Condition newInstance(boolean ignoreEmptyString) {
+        Condition condition = new Condition(new ArrayList<>());
+        condition.ignoreEmptyString();
         return new Condition(new ArrayList<>());
     }
 
@@ -72,7 +80,7 @@ public class Condition {
         if (!opTypeMap.get(NumberConstant.ONE).contains(opType)) {
             throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
-        if (Objects.isNull(value)) {
+        if (isEmpty(value)) {
             return this;
         }
         return addCondition(AND, field, opType, new Object[]{value});
@@ -136,6 +144,9 @@ public class Condition {
         if (!opTypeMap.get(NumberConstant.ONE).contains(opType)) {
             throw new SwanBaseException(ExceptionCodeEnum.UNKNOWN.code(), "参数数量不对");
         }
+        if (isEmpty(value)) {
+            return this;
+        }
         return addCondition(OR, field, opType, new Object[]{value});
     }
 
@@ -176,6 +187,20 @@ public class Condition {
         Criterion criterion = CriterionFactory.create(relationOp, NameUtil.toHungaryName(field), opType, values);
         this.criterionList.add(criterion);
         return this;
+    }
+
+    public boolean isEmpty(Object value) {
+        if (value == null) {
+            return true;
+        }
+        if (this.ignoreEmpty && value instanceof String && ((String) value).isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public void ignoreEmptyString() {
+        this.ignoreEmpty = true;
     }
 
 }
