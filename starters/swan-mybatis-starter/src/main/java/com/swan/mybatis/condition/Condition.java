@@ -43,7 +43,7 @@ public class Condition {
     public static Condition newInstance(boolean ignoreEmptyString) {
         Condition condition = new Condition(new ArrayList<>());
         condition.ignoreEmptyString();
-        return new Condition(new ArrayList<>());
+        return condition;
     }
 
     /** 清空所有筛选条件
