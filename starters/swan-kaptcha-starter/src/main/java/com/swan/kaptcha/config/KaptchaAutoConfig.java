@@ -71,7 +71,7 @@ public class KaptchaAutoConfig {
         // 验证码文本生成器
         properties.setProperty(KAPTCHA_TEXTPRODUCER_IMPL, KaptchaTextCreator.class.getCanonicalName());
         // 验证码文本字符间距 默认为2
-        properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_SPACE, "10");
+        properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_SPACE, "15");
         // 验证码文本字符长度 默认为5
         properties.setProperty(KAPTCHA_TEXTPRODUCER_CHAR_LENGTH, "6");
         // 验证码文本字体样式 默认为new Font("Arial", 1, fontSize), new Font("Courier", 1, fontSize)

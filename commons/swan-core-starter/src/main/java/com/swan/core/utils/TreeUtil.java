@@ -48,8 +48,8 @@ public class TreeUtil {
     }
 
 
-    private static <ID> boolean isEquals(ID a, ID b) {
-        return a == null ? a == b : a.equals(b);
+    private static <ID> boolean isEquals(ID nodeValue, ID topValue) {
+        return Objects.equals(topValue, nodeValue);
     }
 
 
