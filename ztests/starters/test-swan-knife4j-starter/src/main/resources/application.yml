@@ -50,11 +50,13 @@ knife4j:
   groups:
     - name: order                         # knife 分组列表已 group name 进行排序
       displayName: 订单接口组               # 分组名称
-      pathsToMatch: /order/**                   # 以路径分组
+      filter:
+        pathsToMatch: /order/**                   # 以路径分组
       common-parameters: requestId
     - name: user
       displayName: 用户接口组
-      pathsToMatch: /user/**
+      filter:
+        pathsToMatch: /user/**
       commonParameters: token
 
 
