@@ -20,6 +20,6 @@ public abstract class AbsTreeNode<T> {
     private T parentId;
 
     // 子节点列表
-    private List<T> children = new ArrayList<>();
+    private List<AbsTreeNode> children = new ArrayList<>();
 
 }

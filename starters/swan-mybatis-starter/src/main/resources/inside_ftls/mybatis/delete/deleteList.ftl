@@ -1,5 +1,5 @@
 
-<delete id="batchDelete">
+<delete id="deleteList">
     delete from <include refid="table"/>
     <where>
         <include refid="condition"/>

@@ -1,5 +1,5 @@
 
-<delete id="batchDelete">
+<delete id="deleteList">
     update <include refid="table"/>
     set
         ${entityMeta.idField.columnName} = ${entityMeta.idField.columnName}
