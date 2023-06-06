@@ -1,5 +1,6 @@
 package com.swan.core.utils;
 
+import com.swan.core.domain.AbsTreeNode;
 import com.swan.core.domain.TreeNode;
 
 import java.util.*;
@@ -52,5 +53,36 @@ public class TreeUtil {
         return Objects.equals(topValue, nodeValue);
     }
 
+    /**
+     * @param list
+     * @param topValue
+     * @param <E>
+     * @param <ID>
+     * @return
+     */
+    public static <E extends AbsTreeNode, ID> List<E> buildTree(List<E> list, ID topValue) {
+        if (Objects.isNull(list)) {
+            return null;
+        }
+        if (list.isEmpty()) {
+            return Collections.emptyList();
+        }
+
+        for (E parentNode : list) {
+            List<E> children = list.stream()
+                    .filter(node -> !node.equals(parentNode))
+                    .filter(node -> Objects.equals(node.getParentId(), parentNode.getId()))
+                    .collect(Collectors.toList());
+
+            parentNode.setChildren(children);
+        }
+
+        // 根节点
+        List<E> rootList = list.stream()
+                .filter(node -> Objects.equals(node.getParentId(), topValue))
+                .collect(Collectors.toList());
+
+        return rootList;
+    }
 
 }
