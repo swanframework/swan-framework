@@ -3,6 +3,7 @@ package com.swan.core.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,6 @@ public abstract class AbsTreeNode<T> {
     private T parentId;
 
     // 子节点列表
-    private List<T> children;
+    private List<T> children = new ArrayList<>();
 
 }
