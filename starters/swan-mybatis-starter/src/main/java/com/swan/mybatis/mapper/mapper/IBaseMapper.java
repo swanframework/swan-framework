@@ -15,6 +15,7 @@ public interface IBaseMapper<ID, E> extends
         DeleteMethod<ID, E>,
         DeleteByIdMethod<ID, E>,
         DeleteByIdsMethod<ID, E>,
+        DeleteListMethod<ID, E>,
 
         UpdateMethod<ID, E>,
         UpdateByIdMethod<ID, E>,

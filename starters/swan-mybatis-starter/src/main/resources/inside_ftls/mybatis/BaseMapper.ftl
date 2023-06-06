@@ -61,6 +61,13 @@
             <#include "delete/deleteById.ftl"/>
         </#if>
     </#if>
+    <#if methodsInfo.methodNames?seq_contains("deleteOn")>
+        <#if entityMeta.deleteField??>
+            <#include "remove/deleteList.ftl"/>
+        <#else >
+            <#include "delete/deleteList.ftl"/>
+        </#if>
+    </#if>
 
     <!-- 更新方法 -->
     <#if methodsInfo.methodNames?seq_contains("update")>
