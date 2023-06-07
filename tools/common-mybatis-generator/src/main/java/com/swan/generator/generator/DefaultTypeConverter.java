@@ -23,12 +23,13 @@ public class DefaultTypeConverter {
             case BIT:
                 return maxIntDigits == 1? JavaMappingType.BOOLEAN : JavaMappingType.STRING;
             case TINYINT:
+                return unsigned ? JavaMappingType.BYTE : JavaMappingType.BYTE;
             case SMALLINT:
             case MEDIUMINT:
             case INT:
                 return unsigned ? JavaMappingType.LONG : JavaMappingType.INTEGER;
             case BIGINT:
-                return unsigned ? JavaMappingType.BIGINTEGER : JavaMappingType.LONG;
+                return  JavaMappingType.LONG;
             case FLOAT:
                 return JavaMappingType.FLOAT;
             case DOUBLE:

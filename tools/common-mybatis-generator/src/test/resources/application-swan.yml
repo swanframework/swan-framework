@@ -8,19 +8,19 @@ sboot:
   generator:
     mybatis:
       author: zongf
-      table-prefix: sys_
+      table-prefix: bytesbc_
       entity:
-        package-name: com.swan.generator.auto
+        package-name: com.bytedance.volc.bytesbc.data.model.po
         name-suffix: PO
         anno-package: com.swan.mybatis
       mapper:
-        package-name: com.swan.generator.auto
+        package-name: com.bytedance.volc.bytesbc.data.mapper
         name-prefix: I
         name-suffix: Mapper
         id-type: Long
         xml-dir: mappers
       condition:
-        package-name: com.swan.generator.auto
+        package-name: com.bytedance.volc.bytesbc.data.model.condition
         name-suffix: Condition
 mybatis:
   mapper-locations: classpath:*Mapper.xml
