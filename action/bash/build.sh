@@ -1,5 +1,5 @@
 #!/bin/bash
-#Desc 打包
+#Desc 打包: $cmd clean|compile|package|install|deploy
 #Auth zongf
 #Date 2023-05-17
 
@@ -9,18 +9,15 @@ workspace=`cd ../.. && pwd`
 echo "workspace:$workspace"
 
 # 打包命令
-cmd="mvn clean install -DskipTests=true "
-
-# 清空控制台
-clear
+mvnCmd="mvn $1 -DskipTests=true "
 
 # 按依赖顺序依次打包
-cd $workspace/base/swan-dependencies && $cmd
+cd $workspace/base/swan-dependencies && $mvnCmd
 
-cd $workspace/base/swan-parent && $cmd
+cd $workspace/base/swan-parent && $mvnCmd
 
-cd $workspace/commons && $cmd
+cd $workspace/commons && $mvnCmd
 
-cd $workspace/starters && $cmd
+cd $workspace/starters && $mvnCmd
 
-cd $workspace/tools && $cmd
+cd $workspace/tools && $mvnCmd
