@@ -9,6 +9,11 @@ workspace=`cd ../.. && pwd`
 echo "workspace:$workspace"
 
 # 打包命令
+goals=$1
+if [ x$goals == "x" ]; then
+  goals="clean"
+fi
+
 mvnCmd="mvn $1 -DskipTests=true "
 
 # 按依赖顺序依次打包
