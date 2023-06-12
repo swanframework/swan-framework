@@ -14,7 +14,7 @@ if [ x$goals == "x" ]; then
   goals="clean"
 fi
 
-mvnCmd="mvn $1 -DskipTests=true "
+mvnCmd="mvn $goals -DskipTests=true "
 
 # 按依赖顺序依次打包
 cd $workspace/base/swan-dependencies && $mvnCmd
