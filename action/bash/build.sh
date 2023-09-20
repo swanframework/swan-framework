@@ -8,8 +8,17 @@
 workspace=`cd ../.. && pwd`
 echo "workspace:$workspace"
 
+home=`cd ~&&pwd`
+settings="$home/apps/apache-maven-3.8.5/conf/settings-orrsh.xml"
+
+if [ "$1" == "deploy" ]; then
+  goal=$1
+else
+  goal="install"
+fi
+
 # 打包命令
-cmd="mvn clean install -DskipTests=true "
+cmd="mvn -s $settings clean $goal -DskipTests=true "
 
 # 清空控制台
 clear
