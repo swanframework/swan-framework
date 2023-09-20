@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.swan</groupId>
+        <groupId>io.github.swanframework</groupId>
         <artifactId>swan-parent</artifactId>
         <version>2.0.0</version>
         <relativePath/>
     </parent>
 
     <!-- 使用 parent 版本号 -->
-    <groupId>com.swan</groupId>
+    <groupId>io.github.swanframework</groupId>
     <artifactId>common-mybatis-generator</artifactId>
     <description>
         不使用自定义 mybatis-starter 时，mapper 自动生成代码
@@ -20,7 +20,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>com.swan</groupId>
+            <groupId>io.github.swanframework</groupId>
             <artifactId>swan-core-starter</artifactId>
         </dependency>
 
@@ -30,12 +30,12 @@
         </dependency>
 
         <dependency>
-            <groupId>com.swan</groupId>
+            <groupId>io.github.swanframework</groupId>
             <artifactId>swan-freemarker-starter</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.swan</groupId>
+            <groupId>io.github.swanframework</groupId>
             <artifactId>swan-mybatis-starter</artifactId>
         </dependency>
 

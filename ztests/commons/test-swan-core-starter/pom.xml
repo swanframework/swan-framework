@@ -3,18 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.swan</groupId>
+        <groupId>io.github.swanframework</groupId>
         <artifactId>swan-parent</artifactId>
         <version>2.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.swan</groupId>
+    <groupId>io.github.swanframework</groupId>
     <artifactId>test-swan-core-starter</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>com.swan</groupId>
+            <groupId>io.github.swanframework</groupId>
             <artifactId>swan-core-starter</artifactId>
         </dependency>
 

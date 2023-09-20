@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.swan</groupId>
+        <groupId>io.github.swanframework</groupId>
         <artifactId>swan-dependencies</artifactId>
         <version>2.0.0</version>
         <relativePath>../swan-dependencies</relativePath>
     </parent>
 
-    <groupId>com.swan</groupId>
+    <groupId>io.github.swanframework</groupId>
     <artifactId>swan-parent</artifactId>
     <packaging>pom</packaging>
 
@@ -29,90 +29,90 @@
         <dependencies>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-core-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-env-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-log-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-web-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-freemarker-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-kafka-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-knife4j-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-mail-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-minio-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-mybatis-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-rabbitmq-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-redis-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-kaptcha-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-locker-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.swan</groupId>
+                <groupId>io.github.swanframework</groupId>
                 <artifactId>swan-poi-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>

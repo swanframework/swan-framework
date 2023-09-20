@@ -30,23 +30,11 @@ class CodeGeneratorTest extends AbsBaseTest{
     @Test
     public void batchGenerate() {
         List<String> tables = Arrays.asList(
-            "bytesbc_account",
-            "bytesbc_allow_list",
-            "bytesbc_carrier",
-            "bytesbc_deny_list",
-            "bytesbc_number",
-            "bytesbc_number_attribution",
-            "bytesbc_pstn",
-            "bytesbc_pstn_group",
-            "bytesbc_risk_limit_conf",
-            "bytesbc_service",
-            "bytesbc_trunk_in_customer_ip",
-            "bytesbc_trunk_out_customer_ip"
+            "vc_video_participant"
         );
 
         String schemaName = "swan-mybatis";
         for (String tableName : tables) {
-
             this.mybatisGeneratorService.generateEntity(schemaName, tableName, CommentTypeEnum.DOC);
             this.mybatisGeneratorService.generateMapperXml(schemaName, tableName);
             this.mybatisGeneratorService.generateMapper(schemaName, tableName);

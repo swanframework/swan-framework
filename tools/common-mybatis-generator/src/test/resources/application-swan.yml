@@ -8,19 +8,19 @@ sboot:
   generator:
     mybatis:
       author: zongf
-      table-prefix: bytesbc_
+      table-prefix: vc_
       entity:
-        package-name: com.bytedance.volc.bytesbc.data.model.po
+        package-name: com.po
         name-suffix: PO
         anno-package: com.swan.mybatis
       mapper:
-        package-name: com.bytedance.volc.bytesbc.data.mapper
+        package-name: com.mapper
         name-prefix: I
         name-suffix: Mapper
         id-type: Long
         xml-dir: mappers
       condition:
-        package-name: com.bytedance.volc.bytesbc.data.model.condition
+        package-name: com.condition
         name-suffix: Condition
 mybatis:
   mapper-locations: classpath:*Mapper.xml
