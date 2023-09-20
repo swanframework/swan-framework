@@ -32,4 +32,4 @@ cd $workspace/commons && $cmd
 
 cd $workspace/starters && $cmd
 
-cd $workspace/tools && $cmd
+#cd $workspace/tools && $cmd
